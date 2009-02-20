@@ -1,0 +1,14 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+mock_game:
+  id: 1
+  home_team_id: 90
+  visit_team_id: 132
+  played_on: 2005-1-1
+  neutral_site: f
+mock_game_2:
+  id: 2
+  home_team_id: 90
+  visit_team_id: 132
+  played_on: 2005-1-1
+  neutral_site: f
+  

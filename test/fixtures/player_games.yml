@@ -1,0 +1,265 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+fox_michigan_state_shannon_brown_against_cleveland_state:
+  id: 1
+  game_id: 
+  team_game_id: 
+  player_id: 3270
+  type: FoxPlayerGame
+  minutes: 34
+  fgm: 8
+  fga: 16
+  tpm: 3
+  tpa: 7
+  ftm: 8
+  fta: 9
+  offense_rebound: 1
+  total_rebound: 4
+  assist: 0
+  steal: 4
+  block: 0
+  turnover: 4
+  foul: 3
+  total_point: 27
+  player_name: S Brown, G
+fox_michigan_state_paul_davis_against_cleveland_state:
+  id: 2
+  game_id: 
+  team_game_id: 
+  player_id: 3272
+  type: FoxPlayerGame
+  minutes: 34
+  fgm: 9
+  fga: 11
+  tpm: 0
+  tpa: 0
+  ftm: 6
+  fta: 7
+  offense_rebound: 2
+  total_rebound: 11
+  assist: 1
+  steal: 0
+  block: 1
+  turnover: 3
+  foul: 3
+  total_point: 24
+  player_name: P Davis, C
+fox_cleveland_state_patrick_tatham_against_cleveland_state:
+  id: 3
+  game_id: 
+  team_game_id: 2
+  player_id: 3908
+  type: FoxPlayerGame
+  minutes: 27
+  fgm: 4
+  fga: 13
+  tpm: 2
+  tpa: 4
+  ftm: 2
+  fta: 5
+  offense_rebound: 2
+  total_rebound: 4
+  assist: 3
+  steal: 1
+  block: 0
+  turnover: 2
+  foul: 4
+  total_point: 12
+  player_name: P Tatham, F
+fox_cleveland_state_JNathan_Bullock_against_cleveland_state:
+  id: 4
+  game_id: 
+  team_game_id: 2
+  player_id: 8024
+  type: FoxPlayerGame
+  minutes: 27
+  fgm: 3
+  fga: 7
+  tpm: 0
+  tpa: 0
+  ftm: 0
+  fta: 0
+  offense_rebound: 0
+  total_rebound: 0
+  assist: 2
+  steal: 2
+  block: 1
+  turnover: 3
+  foul: 3
+  total_point: 6
+  player_name: J Bullock, F
+validation_errors:
+  id: 5
+  game_id: 1
+  team_game_id: 4
+  player_id: 2
+  type: FoxPlayerGame
+  minutes: 10
+  fgm: 7
+  fga: 6
+  tpm: 1
+  tpa: 0
+  ftm: 2
+  fta: 1
+  offense_rebound: 3
+  total_rebound: 2
+  assist: 4
+  steal: 5
+  block: 6
+  turnover: 7
+  foul: 8
+  total_point: 6
+  player_name: F Johnson, F
+validate_team_game_1:
+  id: 6
+  game_id: 
+  team_game_id: 3
+  player_id: 1
+  type: FoxPlayerGame
+  minutes: 10
+  fgm: 3
+  fga: 7
+  tpm: 2
+  tpa: 8
+  ftm: 10
+  fta: 12
+  offense_rebound: 3
+  total_rebound: 9
+  assist: 4
+  steal: 5
+  block: 6
+  turnover: 7
+  foul: 4
+  total_point: 18
+  player_name: Bar, Foo
+validate_team_game_2:
+  id: 7
+  game_id: 
+  team_game_id: 3
+  player_id: 2
+  type: FoxPlayerGame
+  minutes: 35
+  fgm: 4
+  fga: 7
+  tpm: 0
+  tpa: 1
+  ftm: 9
+  fta: 10
+  offense_rebound: 1
+  total_rebound: 2
+  assist: 2
+  steal: 0
+  block: 1
+  turnover: 4
+  foul: 1
+  total_point: 17
+  player_name: Johnson, J 
+cstv_michigan_state_shannon_brown_against_cleveland_state:
+  id: 10
+  game_id: 
+  team_game_id: 
+  player_id: 3270
+  type: CstvPlayerGame
+  minutes: 34
+  fgm: 8
+  fga: 16
+  tpm: 3
+  tpa: 7
+  ftm: 8
+  fta: 9
+  offense_rebound: 1
+  total_rebound: 4
+  assist: 0
+  steal: 4
+  block: 0
+  turnover: 4
+  foul: 3
+  total_point: 27
+  player_name: S Brown
+cstv_michigan_state_paul_davis_against_cleveland_state:
+  id: 11
+  game_id: 
+  team_game_id: 
+  player_id: 3272
+  type: CstvPlayerGame
+  minutes: 34
+  fgm: 9
+  fga: 11
+  tpm: 0
+  tpa: 0
+  ftm: 6
+  fta: 7
+  offense_rebound: 2
+  total_rebound: 11
+  assist: 1
+  steal: 0
+  block: 1
+  turnover: 3
+  foul: 3
+  total_point: 24
+  player_name: P Davis
+cstv_cleveland_state_patrick_tatham_against_cleveland_state:
+  id: 12
+  game_id: 
+  team_game_id: 2
+  player_id: 3908
+  type: CstvPlayerGame
+  minutes: 27
+  fgm: 4
+  fga: 13
+  tpm: 2
+  tpa: 4
+  ftm: 2
+  fta: 5
+  offense_rebound: 2
+  total_rebound: 4
+  assist: 3
+  steal: 1
+  block: 0
+  turnover: 2
+  foul: 4
+  total_point: 12
+  player_name: P Tatham
+cstv_cleveland_state_JNathan_Bullock_against_cleveland_state:
+  id: 13
+  game_id: 
+  team_game_id: 2
+  player_id: 8024
+  type: CstvPlayerGame
+  minutes: 27
+  fgm: 3
+  fga: 7
+  tpm: 0
+  tpa: 0
+  ftm: 0
+  fta: 0
+  offense_rebound: 0
+  total_rebound: 0
+  assist: 2
+  steal: 2
+  block: 1
+  turnover: 3
+  foul: 3
+  total_point: 6
+  player_name: J Bullock
+validate_good:
+  id: 17
+  game_id: 1
+  team_game_id: 4
+  player_id: 2
+  type: FoxPlayerGame
+  minutes: 15
+  fgm: 6
+  fga: 10
+  tpm: 2
+  tpa: 8
+  ftm: 9
+  fta: 11
+  offense_rebound: 3
+  total_rebound: 6
+  assist: 1
+  steal: 2
+  block: 3
+  turnover: 4
+  foul: 4
+  total_point: 23 
+  player_name: J Johnson, F

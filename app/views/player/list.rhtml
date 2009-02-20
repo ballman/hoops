@@ -1,0 +1,73 @@
+<% content_for("player_edit_scripts") do -%>
+      function editing_player(my_id) {
+        clear_all();
+        var edit_player = $(my_id);
+        new Effect.Highlight(edit_player);
+        edit_player.style.color = "red";
+      }
+      function  clear_all() {
+        var roster_rows = $('roster_table').rows;
+        for (var i=0; i < roster_rows.length; i++)
+        {
+          roster_rows[i].style.color = "black";
+        }
+      }
+<% end -%>
+
+<%= render(:partial => 'team/team_header', :locals => { :team => @team }) %>
+    <br />
+    <div id="roster" style="width:87%">
+      <table id="roster_table" cellspacing="0" class="sortable">
+          <tr>
+            <th width="1%">&nbsp;</th>
+            <th width="7%">No.</th>
+            <th width="25%">Name</th>
+            <th width="7%">Pos.</th>
+            <th width="8%">Height</th>
+            <th width="8%">Weight</th>
+            <th width="8%">Yr.</th>
+            <th width="25%">Hometown</th>
+            <th width="5%">&nbsp;</th>
+            <th width="1%">&nbsp;</th>
+          </tr>
+        <% count = 0
+  @team.players.sort {|x,y| x.last_name <=> y.last_name}.each do | player |
+             count = (count + 1)
+             background = (count % 2 == 0) ? '#eeeee0' : '#f8f8f8'
+        %>
+      <tr style="background-color: <%= background %>" id="row_<%= count %>" >
+        <td width="1%">&nbsp;</td>
+        <td width="8%"><%= player.number %></td>
+        <td width="25%"><%= link_to_remote player.name,
+                :url => {
+                    :controller => "player",
+                    :action     => "move_into_edit",
+                    :id         => player.id},
+                :loading   => "editing_player('row_#{count}')",
+                :update => "add"
+             %>
+        </td>
+        <td width="8%"><%= player.position %></td>
+        <td width="9%"><%= player.height %></td>
+        <td width="9%"><%= player.weight %></td>
+        <td width="9%"><%= player.year_string %></td>
+        <td width="25%"><%= player.hometown %></td>
+        <td width="5%">
+            <%=
+              link_to "[Remove]", {:action => "remove_from_team",
+                                   :id => player.id, :team_id => @team.id },
+                                   :confirm => "Are you sure?"
+            %>
+          </td>
+        <td width="1%">&nbsp;</td>
+
+      </tr>
+        <%- end %>
+      </table>
+    </div>
+
+    <br />
+
+    <div id="add">
+        <%= render :partial => 'form', :locals => { :team_id => @team.id } %>
+    </div>

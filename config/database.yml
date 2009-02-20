@@ -1,0 +1,16 @@
+development:
+  adapter: postgresql
+  database: ncaa_development
+  host: localhost
+  username: ballman
+test:
+  adapter: postgresql
+  database: ncaa_test
+  host: localhost
+  username: ballman
+
+production:
+  adapter: postgresql
+  database: ncaa_production
+  host: localhost
+  username: ballman

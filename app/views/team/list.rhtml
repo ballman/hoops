@@ -1,0 +1,15 @@
+      <% for conference in @conferences %>
+      <div id="conferenceList">
+	    <table width="90%">
+		<tr>
+		  <th> <%= conference.name %> </th>
+		</tr>
+		<% for team in conference.teams.sort %>
+	        <tr>
+	          <td> <%= link_to team.name, { :action => "show",
+                                                :id => team } %> </td>
+	        </tr>
+                <% end -%>
+             </table>
+      </div>
+      <% end -%>

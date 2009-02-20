@@ -1,0 +1,1631 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>WereFrog College Basketball</title>
+
+  
+    
+    <link href="Delta_files/ncaa.css" media="all" rel="Stylesheet" type="text/css">
+    <link href="Delta_files/calendar-system.css" media="screen" rel="Stylesheet" type="text/css">
+    <script src="Delta_files/prototype.exe" type="text/javascript"></script>
+    <script src="Delta_files/effects.exe" type="text/javascript"></script>
+    <script src="Delta_files/calendar.exe" type="text/javascript"></script>
+<script src="Delta_files/calendar-en.exe" type="text/javascript"></script>
+<script src="Delta_files/calendar-setup.exe" type="text/javascript"></script>
+
+    <script type="text/javascript"></script>
+    <script type="text/javascript">
+      function dateChanged(calendar) {
+        // Beware that this function is called even if the end-user only
+        // changed the month/year. In order to determine if a date was
+        // clicked you can use the dateClicked property of the calendar:
+        if (calendar.dateClicked) {
+          // OK, a date was clicked, redirect to /yyyy/mm/dd/index.php
+          var y = calendar.date.getFullYear();
+          var m = calendar.date.getMonth();     // integer, 0..11
+          var d = calendar.date.getDate();      // integer, 1..31
+          // redirect...
+          window.location = "/" + y + "/" + m + "/" + d + "/index.php";
+        }
+      };
+    </script></head><body bgcolor="#f8f8f8">
+      <div id="banner">
+      </div>
+      <div id="side">
+      </div>
+      <div id="main">
+		      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> America East </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/1">Albany</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/2">Binghamton</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/3">Boston University</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/4">Hartford</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/5">Maine</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/211">Maryland - Baltimore County</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/6">New Hampshire</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/8">Stony Brook</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/9">Vermont</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Atlantic 10 </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/10">Dayton</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/11">Duquesne</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/12">Fordham</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/13">George Washington</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/14">La Salle</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/15">Massachusetts</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/117">North Carolona - Charlotte</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/16">Rhode Island</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/17">Richmond</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/18">St. Bonaventure</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/19">St. Joseph's</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/127">St. Louis</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/20">Temple</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/21">Xavier</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Atlantic Coast </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/55">Boston College</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/22">Clemson</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/23">Duke</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/24">Florida State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/25">Georgia Tech</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/26">Maryland</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/58">Miami</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/28">North Carolina</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/27">North Carolina State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/29">Virginia</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/67">Virginia Tech</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/30">Wake Forest</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Atlantic Sun </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/31">Belmont</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/32">Campbell</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/263">East Tennessee State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/34">Florida Atlantic</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/35">Gardner Webb</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/37">Jacksonville</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/333">Kennesaw State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/326">Lipscomb</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/39">Mercer</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/334">North Florida</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/41">Stetson</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Big Twelve </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/43">Baylor</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/44">Colorado</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/45">Iowa State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/46">Kansas</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/47">Kansas State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/48">Missouri</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/49">Nebraska</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/50">Oklahoma</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/51">Oklahoma State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/52">Texas</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/53">Texas A &amp; M</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/54">Texas Tech</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Big East </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/118">Cincinnati</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/56">Connecticut</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/119">DePaul</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/57">Georgetown</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/122">Louisville</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/123">Marquette</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/59">Notre Dame</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/60">Pittsburgh</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/61">Providence</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/62">Rutgers</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/63">Seton Hall</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/125">South Florida</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/64">St. John's</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/65">Syracuse</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/66">Villanova</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/68">West Virginia</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Big Sky </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/69">Eastern Washington</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/70">Idaho State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/71">Montana</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/72">Montana State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/73">Northern Arizona</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/74">Portland State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/75">Sacramento State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/76">Weber State</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Big South </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/77">Birmingham Southern</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/78">Charleston Southern</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/79">Coast Carolina</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/81">High Point</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/82">Liberty</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/83">North carolina - Asheville</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/84">Radford</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/268">Virginia Military Institue(VMI)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/85">Winthrop</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Big Ten </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/86">Illinois</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/87">Indiana</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/88">Iowa</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/89">Michigan</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/90">Michigan State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/91">Minnesota</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/92">Northwestern</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/93">Ohio State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/94">Penn State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/95">Purdue</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/96">Wisconsin</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Big West </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/98">Cal State - Northridge</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/104">California - Irvine</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/105">California - Riverside</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/97">California Poly</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/99">Fullerton State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/101">Long Beach State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/102">Santa Barbara</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/103">University of the Pacific</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Colonial Athletic Association </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/107">Delaware</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/108">Drexel</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/109">George Mason</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/36">Georgia State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/110">Hofstra</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/111">James Madison</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/112">North Carolina - Wilmington</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/7">Northeastern</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/113">Old Dominion</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/114">Towson</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/115">Virginia Commonwealth</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/116">William &amp; Mary</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Conference USA </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/130">Alabama - Birmingham</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/33">Central Florida</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/120">East Carolina</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/121">Houston</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/173">Marshall</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/124">Memphis</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/316">Rice</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/318">Southern Methodist (SMU)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/126">Southern Mississippi</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/320">Texas - El Paso (UTEP)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/129">Tulane</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/319">Tulsa</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Horizon </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/131">Butler</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/132">Cleveland State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/133">Detroit</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/134">Illinois (Chicago)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/135">Loyola (Chicago)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/136">Wisconsin - Green Bay</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/137">Wisconsin - Milwaukee</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/138">Wright State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/139">Youngstown State</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Independents </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/331">California - Davis</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/322">Indiana Purdue - Fort Wayne</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/327">Longwood</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/332">North Dakota State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/328">Northern Colorado</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/323">Savannah State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/329">South Dakota State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/325">Texas - Pan American</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/324">Texas A &amp; M - Corpus Christi</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/330">Utah Valley State</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Ivy League </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/140">Brown</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/141">Columbia</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/142">Cornell</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/143">Dartmouth</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/144">Harvard</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/145">Pennsylvania</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/146">Princeton</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/147">Yale</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Metro Atlantic Athletic </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/148">Canisius</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/149">Fairfield</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/150">Iona</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/151">Loyola (Maryland)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/152">Manhattan</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/153">Marist</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/154">Niagara</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/155">Rider</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/156">Siena</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/157">St. Peter's</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Mid Continent </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/321">Centenary</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/158">Chicago State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/159">Indiana Purdue</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/163">Missouri - Kansas City</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/160">Oakland</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/161">Oral Roberts</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/162">Southern Utah</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/164">Valparaiso</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/165">Western Illinois</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Mid-American </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/166">Akron</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/167">Ball State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/168">Bowling Green</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/169">Buffalo</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/170">Central Michigan</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/171">Eastern Michigan</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/172">Kent State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/174">Miami (Ohio)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/175">Northern Illinois</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/176">Ohio</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/177">Toledo</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/178">Western Michigan</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Mid-Eastern Athletic </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/179">Bethune Cookman</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/180">Coppin State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/181">Delaware State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/182">Florida A &amp; M</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/183">Hampton</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/184">Howard</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/185">Maryland - Eastern Shore</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/186">Morgan State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/188">Norfolk State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/187">North Carolina A &amp; T</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/189">South Carolina State</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Missouri Valley </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/190">Bradley</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/191">Creighton</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/192">Drake</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/193">Evansville</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/194">Illinois State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/195">Indiana State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/197">Missouri State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/196">Northern Iowa</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/198">Southern Illinois</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/199">Wichita State</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Mountain West </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/200">Air Force</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/201">Brigham Young</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/202">Colorado State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/205">Nevada - Las Vegas (UNLV)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/203">New Mexico</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/204">San Diego State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/128">Texas Christian (TCU)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/206">Utah</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/207">Wyoming</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Northeast </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/208">Central Connecticut State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/209">Fairleigh Dickinson</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/210">Long Island - Brooklyn</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/212">Monmouth (New Jersey)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/213">Mount St. Mary's</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/214">Quinnipiac</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/215">Robert Morris</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/216">Sacred Heart</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/217">St. Francis (New York)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/218">St. Francis (Pennsylvania)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/219">Wagner</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Ohio Valley </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/220">Austin Peay</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/221">Eastern Illinois</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/222">Eastern Kentucky</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/38">Jacksonville State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/223">Morehead State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/224">Murray State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/40">Samford</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/225">Southeast Missouri State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/226">Tennessee - Martin</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/227">Tennessee State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/228">Tennessee Tech</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Pac 10 </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/229">Arizona</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/230">Arizona State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/231">California</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/235">California - Los Angeles (UCLA)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/232">Oregon</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/233">Oregon State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/236">Southern California (USC)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/234">Stanford</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/237">Washington</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/238">Washington State</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Patriot League </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/239">American</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/240">Army</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/241">Bucknell</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/242">Colgate</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/243">Holy Cross</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/244">Lafayette</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/245">Lehigh</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/246">Navy</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Southeastern </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/247">Alabama</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/248">Arkansas</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/249">Auburn</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/250">Florida</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/251">Georgia</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/252">Kentucky</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/253">Louisiana State (LSU)</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/254">Mississippi</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/255">Mississippi State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/256">South Carolina</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/257">Tennessee</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/258">Vanderbilt</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Southern </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/259">Appalachian State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/260">College Of Charleston</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/262">Davidson</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/80">Elon University</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/264">Furman</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/265">Georgia Southern</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/266">North Carolina - Greensboro</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/267">Tennessee - Chattanooga</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/261">The Citadel</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/269">Western Carolina</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/270">Wofford</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Southland </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/271">Lamar</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/272">Louisiana - Monroe</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/273">McNeese State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/274">Nicholls State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/275">Northwestern State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/276">Sam Houston State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/277">Southeast Louisiana</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/278">Stephen F. Austin</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/280">Texas - Arlington</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/279">Texas - San Antonio</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/281">Texas State</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Southwestern Athletic </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/282">Alabama A &amp; M</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/283">Alabama State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/284">Alcorn State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/285">Arkansas - Pine Bluff</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/286">Grambling State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/287">Jackson State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/288">Mississippi Valley State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/289">Prairie View A &amp; M</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/290">Southern Univeristy</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/291">Texas Southern</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Sun Belt </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/292">Arkansas - Little Rock</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/293">Arkansas State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/294">Denver</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/295">Florida International</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/296">Louisiana - Lafayette</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/297">Middle Tennessee State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/299">New Orleans</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/300">North Texas</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/301">South Alabama</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/42">Troy State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/302">Western Kentucky</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> West Coast </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/303">Gonzaga</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/304">Loyola Marymount</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/305">Pepperdine</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/306">Portland</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/307">San Diego</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/308">San Francisco</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/309">Santa Clara</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/310">St. Mary's (California)</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+      <div id="conferenceList">
+	    <table width="90%">
+		<tbody><tr>
+		  <th> Western Athletic </th>
+		</tr>
+		
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/311">Boise State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/312">Fresno State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/313">Hawaii</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/100">Idaho</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/314">Louisiana Tech</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/315">Nevada</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/298">New Mexico State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/317">San Jose State</a> </td>
+	        </tr>
+                
+	        <tr>
+	          <td> <a href="http://localhost:3000/team/show/106">Utah State</a> </td>
+	        </tr>
+                             </tbody></table>
+      </div>
+      
+	<div style="clear: left; height: 0pt; line-height: 0pt;">
+	</div>
+      </div>
+    </body></html>

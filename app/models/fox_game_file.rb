@@ -1,0 +1,2 @@
+class FoxGameFile < GameFile
+end

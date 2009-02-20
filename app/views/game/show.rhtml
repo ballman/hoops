@@ -1,0 +1,56 @@
+<div id='gameShow'>
+  <br />
+  <%= link_to "[Games for #{@game.played_on}]", {:action => "list", :id => @game.played_on } %>
+  <br />
+  <br />
+  <center>
+  <table>
+    <tr>
+      <th>Team</th>
+      <th>1</th>
+      <th>2</th>
+      <% (1..@game.get_number_of_overtimes).to_a.each do | i | %>
+        <th>OT<%= i %></th>
+      <%- end %>
+      <th>Total</th>
+    </tr>
+
+    <% [@game.visit_team_game_for_type(@type),
+        @game.home_team_game_for_type(@type)].each do | team_game | %>
+      <tr style="border-bottom: 1px solid black;">
+        <td style="font-weight: bold; background: #<%= team_game.team.color_1 %>;">
+          <%= team_mascot_link(team_game.team) %>
+        </td>
+        <td style="width: 1.5em;"><%= team_game.half1_point %></td>
+        <td style="width: 1.5em;"><%= team_game.half2_point %></td>
+      <% (1..@game.get_number_of_overtimes).to_a.each do |i|
+         attr_name = sprintf("ot%d_point", i)
+       %>
+        <td style="width: 1.5em;"><%= team_game.send(attr_name) %></td>
+      <%- end %>
+      <td style="font-weight: bold; width: 2.5em;" ><%= team_game.total_point %></td>
+    </tr>
+    <%- end %>
+    </table>
+    </center>
+  <br />
+
+  <%= team_box(@game.visit_team_game_for_type(@type), true) %>
+  Validation Errors:
+  <ul>
+    <% @game.visit_team_game_for_type(@type).validate_stats.flatten.each do | valid_error | %>
+      <li><%= valid_error.to_s %></li>
+    <%- end %>
+  </ul>
+  <br />
+  <%= team_box(@game.home_team_game_for_type(@type), true) %>
+  Validation Errors:
+  <ul>
+    <% @game.home_team_game_for_type(@type).validate_stats.flatten.each do | valid_error | %>
+      <li><%= valid_error.to_s %></li>
+    <%- end %>
+  </ul>
+</div>
+<div id="edit_player_game">
+  <%= render :partial => 'edit_player_game' %>
+</div

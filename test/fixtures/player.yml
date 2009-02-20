@@ -1,0 +1,412 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first_player:
+  id: 1
+  number: 11
+  first_name: Foo
+  last_name: Bar
+  suffix_name: Jr.
+  position: F
+  height: 72
+  weight: 175
+  hometown: "Anytown, MN"
+  acad_year: 2
+  year: 2005
+  team_id: 1
+another_player:
+  id: 2
+  number: 23
+  first_name: Jacob
+  last_name: Johnson
+  position: G
+  height: 78
+  weight: 225
+  hometown: "Heidelberg, GER"
+  acad_year: 4
+  year: 2005
+  team_id: 2
+michigan_state_player_1:
+  id:  3266 
+  number: 13
+  first_name: Maurice
+  last_name:  Ager
+  position: G
+  height: 77 
+  weight: 202
+  hometown: Detroit, MI
+  acad_year: 4
+  year: 2005
+  team_id: 90
+michigan_state_player_2:
+  id: 3270
+  number: 3
+  first_name: Shannon
+  last_name: Brown
+  position: G
+  height: 76 
+  weight: 205
+  hometown: Maywood, IL
+  acad_year: 3
+  year: 2005
+  team_id: 90
+michigan_state_player_3:
+  id:  3272
+  number: 40
+  first_name: Paul
+  last_name: Davis
+  position: C
+  height: 83 
+  weight: 270
+  hometown: Rochester, MI
+  acad_year: 4
+  year: 2005
+  team_id: 90
+michigan_state_player_5:
+  id:  3274
+  number: 22
+  first_name: Anthony
+  last_name: Hamo
+  position: G
+  height: 74
+  weight: 210
+  hometown: Flint, MI
+  acad_year: 4
+  year: 2005
+  team_id: 90
+michigan_state_player_6:
+  id: 3279
+  number: 34
+  first_name: Drew
+  last_name: Naymick
+  position: C
+  height: 82
+  weight: 241
+  hometown: Muskegon, MI
+  acad_year: 3 
+  year: 2005
+  team_id: 90
+michigan_state_player_7:
+  id:  3281 
+  number: 50
+  first_name: Delco
+  last_name: Rowley
+  position: F
+  height: 80 
+  weight: 244
+  hometown: Indianapolis, IN
+  acad_year: 3
+  year: 2005
+  team_id: 90
+michigan_state_player_8:
+  id: 5653
+  number: 10
+  first_name: Jason
+  last_name: Aerts
+  position: F
+  height: 78
+  weight: 205
+  hometown: Pentwater, MI
+  acad_year: 4
+  year: 2005
+  team_id: 90
+michigan_state_player_9:
+  id: 5654
+  number: 41
+  first_name: Marquise
+  last_name: Gray
+  position: F
+  height: 80
+  weight: 228
+  hometown: Flint, MI
+  acad_year: 1
+  year: 2005
+  team_id: 90
+michigan_state_player_10:
+  id: 5655
+  number: 0
+  first_name: Idong
+  last_name: Ibok
+  position: C
+  height: 83
+  weight: 255
+  hometown: Lagos, NIG
+  acad_year: 1
+  year: 2005
+  team_id: 90
+michigan_state_player_11:
+  id: 5656
+  number: 11
+  first_name: Drew
+  last_name: Neitzel
+  position: G
+  height: 78
+  weight: 175
+  hometown: Grand Rapids, MI
+  acad_year: 2
+  year: 2005
+  team_id: 90
+michigan_state_player_12:
+  id: 5657
+  number: 14
+  first_name: Goran
+  last_name: Suton
+  position:  C
+  height: 82
+  weight: 238
+  hometown: Lansing, MI
+  acad_year: 1
+  year: 2005
+  team_id: 90
+michigan_state_player_13:
+  id: 7789
+  number: 5
+  first_name: Travis
+  last_name: Walton
+  position:  G
+  height: 74
+  weight: 190
+  hometown:  Lima, OH
+  acad_year: 1
+  year: 2005
+  team_id: 90
+michigan_state_player_14:
+  id: 7790
+  number: 20
+  first_name: Matt
+  last_name: Trannon
+  position: F
+  height: 78
+  weight: 227
+  hometown: Filnt, MI
+  acad_year: 4
+  year: 2005
+  team_id: 90
+michigan_state_player_15:
+  id: 7791
+  number: 23
+  first_name: Maurice
+  last_name: Joseph
+  position: G
+  height: 76
+  weight: 180
+  hometown: Montreal, CAN
+  acad_year: 1
+  year: 2005
+  team_id: 90
+cleveland_state_player_1:
+  id: 3903
+  number: 40
+  first_name: Luke
+  last_name: Murphy
+  position:  F
+  height: 81
+  weight: 217
+  hometown: Hampton, VA
+  acad_year: 2
+  year: 2005
+  team_id: 132
+cleveland_state_player_2:
+  id: 3908
+  number: 21
+  first_name: Patrick
+  last_name: Tatham
+  position: F
+  height: 80
+  weight: 230
+  hometown: Brampton, CAN
+  acad_year: 3
+  year: 2005
+  team_id: 132
+cleveland_state_player_3:
+  id: 4937
+  number: 34
+  first_name: Raheem
+  last_name: Moss
+  position: G
+  height: 77
+  weight: 223
+  hometown: Colombus, OH
+  acad_year: 3
+  year: 2005
+  team_id: 132
+cleveland_state_player_4:
+  id: 5880
+  number: 20
+  first_name: Greg
+  last_name: Vlosich
+  position: G
+  height: 72
+  weight: 160
+  hometown: Lakewood, OH
+  acad_year: 3
+  year: 2005
+  team_id: 132
+cleveland_state_player_5:
+  id: 5882
+  number: 30
+  first_name: Justin
+  last_name: Henderson
+  position: C
+  height: 80
+  weight: 260
+  hometown: Westerville, OH
+  acad_year: 4
+  year: 2005
+  team_id: 132
+cleveland_state_player_6:
+  id: 5883
+  number: 32 
+  first_name: Steve
+  last_name: Gansey
+  position: G
+  height: 75
+  weight: 195
+  hometown: Olmstead Falls, OH
+  acad_year: 2
+  year: 2005
+  team_id: 132
+cleveland_state_player_7:
+  id: 5884
+  number: 33
+  first_name: Frashon
+  last_name: McGee
+  position:  F
+  height: 79
+  weight: 240
+  hometown: Waterloo, IA
+  acad_year: 4
+  year: 2005
+  team_id: 132
+cleveland_state_player_8:
+  id: 8017
+  number: 1
+  first_name: Cory
+  last_name: Rojeck
+  position: G
+  height: 72
+  weight: 172
+  hometown: Wickliffe, OH
+  acad_year: 3 
+  year: 2005
+  team_id: 132
+cleveland_state_player_9:
+  id: 8018
+  number: 3
+  first_name: Carlos
+  last_name: English
+  position: G
+  height: 68
+  weight: 157
+  hometown: Detroit, MI
+  acad_year: 3
+  year: 2005
+  team_id: 132
+cleveland_state_player_10:
+  id: 8019
+  number: 4
+  first_name: Robbie
+  last_name: Clark
+  position: G
+  height: 72
+  weight: 162
+  hometown: Clarkston, MI
+  acad_year: 1
+  year: 2005
+  team_id: 132
+cleveland_state_player_11:
+  id: 8020
+  number: 11
+  first_name: Bahaadar
+  last_name: Russell
+  position: G
+  height: 74
+  weight: 160
+  hometown: Phoenix, AZ
+  acad_year: 1
+  year: 2005
+  team_id: 132
+cleveland_state_player_12:
+  id: 8021
+  number: 12
+  first_name: Ije
+  last_name: Nwankwo
+  position: F
+  height: 79
+  weight: 275
+  hometown: Ann Arbor, MI
+  acad_year: 3
+  year: 2005
+  team_id: 132
+cleveland_state_player_13:
+  id: 8022
+  number: 15
+  first_name: Stephen
+  last_name: Kallman
+  position: G
+  height: 75
+  weight: 166
+  hometown: Lansing, MI
+  acad_year: 3
+  year: 2005
+  team_id: 132
+cleveland_state_player_14:
+  id: 8023
+  number: 24
+  first_name: Jason
+  last_name: Holder
+  position: F
+  height: 76
+  weight: 165
+  hometown: Saginaw, MI
+  acad_year: 2
+  year: 2005
+  team_id: 132
+cleveland_state_player_15:
+  id: 8024
+  number: 35
+  first_name: J'Nathan
+  last_name: Bullock
+  position: F
+  height: 77
+  weight: 240
+  hometown: Flint, MI
+  acad_year: 1
+  year: 2005
+  team_id: 132
+cleveland_state_player_16:
+  id: 8025
+  number: 45
+  first_name: Renard
+  last_name: Fields
+  position: F
+  height: 79
+  weight: 204
+  hometown: Washington DC
+  acad_year: 1
+  year: 2005
+  team_id: 132
+cleveland_state_player_17:
+  id: 8026
+  number: 54
+  first_name: Terry
+  last_name: Walker
+  position: F
+  height: 82
+  weight: 215
+  hometown: Grand Rapids, MI
+  acad_year: 1
+  year: 2005
+  team_id: 132
+cleveland_state_player_18:
+  id: 3902
+  number: 5
+  first_name: Victor
+  last_name: Morris
+  position: G
+  height: 73
+  weight: 188
+  hometown: Inkster, MI
+  acad_year: 3
+  year: 2005
+  team_id: 132
+
+    

@@ -1,0 +1,2 @@
+class SportsNetworkGameFile < GameFile
+end

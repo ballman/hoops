@@ -1,0 +1,175 @@
+<h1>Team comparison</h1>
+<h3><%= @teams[0].name %> <%= link_to "[breakdown]", { :controller => "team", :action => "breakdown", :id => @teams[0]} %> vs. <%= @teams[1].name %> <%= link_to "[breakdown]", { :controller => "team", :action => "breakdown", :id => @teams[1]} %> </h3>
+
+<% form_tag({ :action => 'compare' }, { :method => 'get' }) do %>
+Choose:
+<select name="team1">
+<%= options_from_collection_for_select(@tourney_teams, 'id', 'name', @teams[0].id) %>
+</select>
+vs.
+<select name="team2">
+<%= options_from_collection_for_select(@tourney_teams, 'id', 'name', @teams[1].id) %>
+</select>
+<%= submit_tag 'Compare' %>
+<% end %>
+
+<% if @common_foes.length > 0 -%>
+<h4>Common Foes</h4>
+    <div>
+      <table class="gameList sortable" id="game_unique_id" width="90%">
+      <tr>
+        <th>Date</th>
+        <th>Game</th>
+        <th>Score</th>
+      </tr>
+      <% for game in @common_foes -%>
+        <tr class="game">
+          <td> <%= date_link(game.played_on) -%> </td>
+          <td> <%= team_link(game.visit_team) -%> @ <%= team_link(game.home_team) -%></td>
+          <%
+            tg = TeamGame.find_all_by_game_id_and_type(game.id, 'FoxTeamGame')
+            if tg[0].team_id == game.visit_team.id
+              visit = tg[0]
+              home = tg[1]
+            else
+              visit = tg[1]
+              home = tg[0]
+            end
+          %>
+          <td>
+         <%= game_link(visit.total_point.to_s + '-' + home.total_point.to_s, game) -%></td>
+          <td></td>
+        </tr>
+      <% end -%>
+      </table>
+    </div>
+    <br />
+<% end -%>
+
+
+<% if @mutual_games.length > 0 -%>
+<h4>Mutual Games</h4>
+    <div>
+      <table class="gameList sortable" id="game_unique_id" width="90%">
+      <tr>
+        <th>Date</th>
+        <th>Game</th>
+        <th>Score</th>
+      </tr>
+      <% for game in @mutual_games -%>
+        <tr class="game">
+          <td> <%= date_link(game.played_on) -%> </td>
+          <td> <%= team_link(game.visit_team) -%> @ <%= team_link(game.home_team) -%></td>
+          <%
+            tg = TeamGame.find_all_by_game_id_and_type(game.id, 'FoxTeamGame')
+            if tg[0].team_id == game.visit_team.id
+              visit = tg[0]
+              home = tg[1]
+            else
+              visit = tg[1]
+              home = tg[0]
+            end
+          %>
+          <td>
+         <%= game_link(visit.total_point.to_s + '-' + home.total_point.to_s, game) -%></td>
+          <td></td>
+        </tr>
+      <% end -%>
+      </table>
+    </div>
+    <br />
+<% end -%>
+
+
+
+<h4><%= link_to 'Ranks', { :action => 'list' } %></h4>
+<table class="ranktable">
+<%= stat_header %>
+  <tr>
+    <td><%= team_link(@teams[0]) %></td>
+    <% TeamAverage.stat_columns.each do |col| -%>
+      <td><%= @ranks[0].send(col) %></td>
+    <% end -%>
+  </tr>
+  <tr>
+    <td><%= team_link(@teams[1]) %></td>
+    <% TeamAverage.stat_columns.each do |col| -%>
+      <td><%= @ranks[1].send(col) %></td>
+    <% end -%>
+  </tr>
+</table>
+
+<h4><%= link_to 'Opponent Ranks', { :action => 'list', :foe => '1' } %></h4>
+<table class="ranktable">
+<%= stat_header %>
+  <tr>
+    <td><%= team_link(@teams[0]) %></td>
+    <% TeamAverage.stat_columns.each do |col| -%>
+      <td><%= @foe_ranks[0].send(col) %></td>
+    <% end -%>
+  </tr>
+  <tr>
+    <td><%= team_link(@teams[1]) %></td>
+    <% TeamAverage.stat_columns.each do |col| -%>
+      <td><%= @foe_ranks[1].send(col) %></td>
+    <% end -%>
+  </tr>
+</table>
+
+<h4><%= link_to 'Diff Ranks', { :action => 'list' } %></h4>
+<table class="ranktable">
+<%= stat_header %>
+  <tr>
+    <td><%= team_link(@teams[0]) %></td>
+    <% TeamAverage.stat_columns.each do |col| -%>
+      <td><%= @diff_ranks[0].send(col) %></td>
+    <% end -%>
+  </tr>
+  <tr>
+    <td><%= team_link(@teams[1]) %></td>
+    <% TeamAverage.stat_columns.each do |col| -%>
+      <td><%= @diff_ranks[1].send(col) %></td>
+    <% end -%>
+  </tr>
+</table>
+
+<h4><%= link_to 'Stats', { :action => 'list' } %></h4>
+<table class="ranktable">
+<%= stat_header %>
+  <tr>
+    <td><%= team_link(@teams[0]) %></td>
+    <% TeamAverage.stat_columns.each do |col| -%>
+      <td><%= stat_format(@stats[0].send(col), col) %></td>
+    <% end -%>
+  </tr>
+  <tr>
+    <td><%= team_link(@teams[1]) %></td>
+    <% TeamAverage.stat_columns.each do |col| -%>
+      <td><%= stat_format(@stats[1].send(col), col) %></td>
+    <% end -%>
+  </tr>
+  <tr>
+    <td>Difference</td>
+    <% TeamAverage.stat_columns.each do |col| -%>
+      <td><%= stat_format(@stats[0].send(col) - @stats[1].send(col), col) %></td>
+    <% end -%>
+  </tr>
+</table>
+
+<h4><%= link_to 'Opponent Stats', { :action => 'list', :foe => '1' } %></h4>
+<table class="ranktable">
+<%= stat_header %>
+  <tr>
+    <td><%= team_link(@teams[0]) %></td>
+    <% TeamAverage.stat_columns.each do |col| -%>
+      <td><%= stat_format(@foe_stats[0].send(col), col) %></td>
+    <% end -%>
+  </tr>
+  <tr>
+    <td><%= team_link(@teams[1]) %></td>
+    <% TeamAverage.stat_columns.each do |col| -%>
+      <td><%= stat_format(@foe_stats[1].send(col), col) %></td>
+    <% end -%>
+  </tr>
+</table>
+

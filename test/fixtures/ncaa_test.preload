@@ -1,0 +1,911 @@
+--
+-- PostgreSQL database dump
+--
+
+SET client_encoding = 'SQL_ASCII';
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON SCHEMA public IS 'Standard public schema';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = true;
+
+--
+-- Name: conference; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE conference (
+    id serial NOT NULL,
+    name character varying(64) NOT NULL,
+    short_name character varying(32) NOT NULL,
+    espn_code integer,
+    cnnsi_code character varying(5),
+    fox_code integer
+);
+
+
+ALTER TABLE public.conference OWNER TO ballman;
+
+--
+-- Name: conference_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('conference', 'id'), 2, true);
+
+
+SET default_with_oids = false;
+
+--
+-- Name: conference_membership; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE conference_membership (
+    id serial NOT NULL,
+    conference_id integer NOT NULL,
+    team_id integer NOT NULL,
+    "year" integer NOT NULL
+);
+
+
+ALTER TABLE public.conference_membership OWNER TO ballman;
+
+--
+-- Name: conference_membership_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('conference_membership', 'id'), 6, true);
+
+
+SET default_with_oids = true;
+
+--
+-- Name: game_files; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE game_files (
+    id serial NOT NULL,
+    game_date date NOT NULL,
+    "type" character varying(32) NOT NULL,
+    content text,
+    parse_notes character varying(4000),
+    source_id character varying(32),
+    game_id integer,
+    created_at timestamp without time zone
+);
+
+
+ALTER TABLE public.game_files OWNER TO ballman;
+
+--
+-- Name: game_files_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('game_files', 'id'), 1, false);
+
+
+--
+-- Name: games; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE games (
+    id serial NOT NULL,
+    home_team_id integer,
+    visit_team_id integer,
+    played_on date NOT NULL,
+    neutral_site boolean DEFAULT false NOT NULL
+);
+
+
+ALTER TABLE public.games OWNER TO ballman;
+
+--
+-- Name: games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('games', 'id'), 5, true);
+
+
+--
+-- Name: player; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE player (
+    id serial NOT NULL,
+    number integer NOT NULL,
+    first_name character varying(32) NOT NULL,
+    last_name character varying(32) NOT NULL,
+    suffix_name character(3),
+    "position" character varying(6) NOT NULL,
+    height integer,
+    weight integer,
+    hometown character varying(64),
+    acad_year smallint
+);
+
+
+ALTER TABLE public.player OWNER TO ballman;
+
+--
+-- Name: player_averages; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE player_averages (
+    id integer,
+    player_id integer,
+    games_played bigint,
+    fgm numeric,
+    fga numeric,
+    fgp double precision,
+    tpm numeric,
+    tpa numeric,
+    tpp double precision,
+    ftm numeric,
+    fta numeric,
+    ftp double precision,
+    offense_rebound numeric,
+    total_rebound numeric,
+    assist numeric,
+    steal numeric,
+    block numeric,
+    turnover numeric,
+    foul numeric,
+    total_point numeric
+);
+
+
+ALTER TABLE public.player_averages OWNER TO ballman;
+
+--
+-- Name: player_games; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE player_games (
+    id serial NOT NULL,
+    game_id integer,
+    team_game_id integer,
+    player_id integer,
+    "type" character varying(32),
+    minutes integer DEFAULT 0 NOT NULL,
+    fgm integer DEFAULT 0 NOT NULL,
+    fga integer DEFAULT 0 NOT NULL,
+    tpm integer DEFAULT 0 NOT NULL,
+    tpa integer DEFAULT 0 NOT NULL,
+    fta integer DEFAULT 0 NOT NULL,
+    ftm integer DEFAULT 0 NOT NULL,
+    offense_rebound integer DEFAULT 0 NOT NULL,
+    total_rebound integer DEFAULT 0 NOT NULL,
+    assist integer DEFAULT 0 NOT NULL,
+    steal integer DEFAULT 0 NOT NULL,
+    block integer DEFAULT 0 NOT NULL,
+    turnover integer DEFAULT 0 NOT NULL,
+    foul integer DEFAULT 0 NOT NULL,
+    total_point integer DEFAULT 0 NOT NULL,
+    player_name character varying(32)
+);
+
+
+ALTER TABLE public.player_games OWNER TO ballman;
+
+--
+-- Name: player_games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('player_games', 'id'), 5, true);
+
+
+--
+-- Name: player_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('player', 'id'), 1, false);
+
+
+SET default_with_oids = false;
+
+--
+-- Name: players_2007; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE players_2007 (
+    id serial NOT NULL,
+    number integer,
+    first_name character varying(32),
+    last_name character varying(32),
+    suffix_name character(3),
+    "position" character varying(6),
+    height integer,
+    weight integer,
+    hometown character varying(64),
+    acad_year smallint,
+    team_id integer
+);
+
+
+ALTER TABLE public.players_2007 OWNER TO ballman;
+
+--
+-- Name: players_2007_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('players_2007', 'id'), 1, false);
+
+
+--
+-- Name: roster; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE roster (
+    id serial NOT NULL,
+    team_id integer NOT NULL,
+    player_id integer NOT NULL,
+    "year" integer NOT NULL
+);
+
+
+ALTER TABLE public.roster OWNER TO ballman;
+
+--
+-- Name: roster_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('roster', 'id'), 1, false);
+
+
+SET default_with_oids = true;
+
+--
+-- Name: team; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE team (
+    id serial NOT NULL,
+    name character varying(128) NOT NULL,
+    mascot character varying(64),
+    homepage character varying(256),
+    espn_code integer,
+    yahoo_code character(3),
+    cbs_code character(8),
+    fox_code integer,
+    usatoday_code character varying(128),
+    cnnsi_code character varying(16),
+    color_1 character(6),
+    color_2 character(6),
+    color_3 character(6),
+    cstv_code character varying(32),
+    in_64 boolean
+);
+
+
+ALTER TABLE public.team OWNER TO ballman;
+
+--
+-- Name: team_averages; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE team_averages (
+    id integer,
+    team_id integer,
+    fgm numeric,
+    fga numeric,
+    fgp double precision,
+    tpm numeric,
+    tpa numeric,
+    tpp double precision,
+    ftm numeric,
+    fta numeric,
+    ftp double precision,
+    offense_rebound numeric,
+    total_rebound numeric,
+    assist numeric,
+    steal numeric,
+    block numeric,
+    turnover numeric,
+    foul numeric,
+    half1_point numeric,
+    half2_point numeric,
+    total_point numeric
+);
+
+
+ALTER TABLE public.team_averages OWNER TO ballman;
+
+--
+-- Name: team_diff_ranks; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE team_diff_ranks (
+    id serial NOT NULL,
+    team_id integer,
+    fgm integer,
+    fga integer,
+    fgp integer,
+    tpm integer,
+    tpa integer,
+    tpp integer,
+    ftm integer,
+    fta integer,
+    ftp integer,
+    offense_rebound integer,
+    total_rebound integer,
+    assist integer,
+    steal integer,
+    block integer,
+    turnover integer,
+    foul integer,
+    half1_point integer,
+    half2_point integer,
+    total_point integer
+);
+
+
+ALTER TABLE public.team_diff_ranks OWNER TO ballman;
+
+--
+-- Name: team_diff_ranks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('team_diff_ranks', 'id'), 1, false);
+
+
+--
+-- Name: team_foe_averages; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE team_foe_averages (
+    id integer,
+    team_id integer,
+    fgm numeric,
+    fga numeric,
+    fgp double precision,
+    tpm numeric,
+    tpa numeric,
+    tpp double precision,
+    ftm numeric,
+    fta numeric,
+    ftp double precision,
+    offense_rebound numeric,
+    total_rebound numeric,
+    assist numeric,
+    steal numeric,
+    block numeric,
+    turnover numeric,
+    foul numeric,
+    half1_point numeric,
+    half2_point numeric,
+    total_point numeric
+);
+
+
+ALTER TABLE public.team_foe_averages OWNER TO ballman;
+
+--
+-- Name: team_foe_ranks; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE team_foe_ranks (
+    id serial NOT NULL,
+    team_id integer,
+    fgm integer,
+    fga integer,
+    fgp integer,
+    tpm integer,
+    tpa integer,
+    tpp integer,
+    ftm integer,
+    fta integer,
+    ftp integer,
+    offense_rebound integer,
+    total_rebound integer,
+    assist integer,
+    steal integer,
+    block integer,
+    turnover integer,
+    foul integer,
+    half1_point integer,
+    half2_point integer,
+    total_point integer
+);
+
+
+ALTER TABLE public.team_foe_ranks OWNER TO ballman;
+
+--
+-- Name: team_foe_ranks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('team_foe_ranks', 'id'), 1, false);
+
+
+--
+-- Name: team_games; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE team_games (
+    id serial NOT NULL,
+    game_id integer,
+    team_id integer,
+    "type" character varying(32),
+    minutes integer NOT NULL,
+    fgm integer DEFAULT 0 NOT NULL,
+    fga integer DEFAULT 0 NOT NULL,
+    tpm integer DEFAULT 0 NOT NULL,
+    tpa integer DEFAULT 0 NOT NULL,
+    fta integer DEFAULT 0 NOT NULL,
+    ftm integer DEFAULT 0 NOT NULL,
+    offense_rebound integer DEFAULT 0 NOT NULL,
+    total_rebound integer DEFAULT 0 NOT NULL,
+    team_rebound integer DEFAULT 0 NOT NULL,
+    assist integer DEFAULT 0 NOT NULL,
+    steal integer DEFAULT 0 NOT NULL,
+    block integer DEFAULT 0 NOT NULL,
+    turnover integer DEFAULT 0 NOT NULL,
+    team_turnover integer DEFAULT 0 NOT NULL,
+    foul integer DEFAULT 0 NOT NULL,
+    half1_point integer DEFAULT 0 NOT NULL,
+    half2_point integer DEFAULT 0 NOT NULL,
+    ot1_point integer DEFAULT 0,
+    ot2_point integer DEFAULT 0,
+    ot3_point integer DEFAULT 0,
+    ot4_point integer DEFAULT 0,
+    total_point integer DEFAULT 0 NOT NULL,
+    team_name character varying(32),
+    ot5_point integer DEFAULT 0
+);
+
+
+ALTER TABLE public.team_games OWNER TO ballman;
+
+--
+-- Name: team_games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('team_games', 'id'), 4, true);
+
+
+--
+-- Name: team_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('team', 'id'), 252, true);
+
+
+--
+-- Name: team_ranks; Type: TABLE; Schema: public; Owner: ballman; Tablespace: 
+--
+
+CREATE TABLE team_ranks (
+    id serial NOT NULL,
+    team_id integer,
+    fgm integer,
+    fga integer,
+    fgp integer,
+    tpm integer,
+    tpa integer,
+    tpp integer,
+    ftm integer,
+    fta integer,
+    ftp integer,
+    offense_rebound integer,
+    total_rebound integer,
+    assist integer,
+    steal integer,
+    block integer,
+    turnover integer,
+    foul integer,
+    half1_point integer,
+    half2_point integer,
+    total_point integer
+);
+
+
+ALTER TABLE public.team_ranks OWNER TO ballman;
+
+--
+-- Name: team_ranks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ballman
+--
+
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('team_ranks', 'id'), 1, false);
+
+
+--
+-- Data for Name: conference; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY conference (id, name, short_name, espn_code, cnnsi_code, fox_code) FROM stdin;
+1	Big Ten	big10	2	big10	3
+2	Southeastern	sec	4	sec	5
+\.
+
+
+--
+-- Data for Name: conference_membership; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY conference_membership (id, conference_id, team_id, "year") FROM stdin;
+1	1	90	2006
+2	2	132	2006
+3	2	252	2006
+6	1	2	2006
+4	2	46	2006
+5	2	1	2006
+\.
+
+
+--
+-- Data for Name: game_files; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY game_files (id, game_date, "type", content, parse_notes, source_id, game_id, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY games (id, home_team_id, visit_team_id, played_on, neutral_site) FROM stdin;
+1	90	132	2005-01-01	f
+\.
+
+
+--
+-- Data for Name: player; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY player (id, number, first_name, last_name, suffix_name, "position", height, weight, hometown, acad_year) FROM stdin;
+3270	3	Shannon	Brown	\N	G	76	205	Maywood, IL	3
+3272	40	Paul	Davis	\N	C	83	270	Rochester, MI	4
+3274	22	Anthony	Hamo	\N	G	74	210	Flint, MI	4
+3279	34	Drew	Naymick	\N	C	82	241	Muskegon, MI	3
+3281	50	Delco	Rowley	\N	F	80	244	Indianapolis, IN	3
+5653	10	Jason	Aerts	\N	F	78	205	Pentwater, MI	4
+5654	41	Marquise	Gray	\N	F	80	228	Flint, MI	1
+5655	0	Idong	Ibok	\N	C	83	255	Lagos, NIG	1
+5656	11	Drew	Neitzel	\N	G	78	175	Grand Rapids, MI	2
+5657	14	Goran	Suton	\N	C	82	238	Lansing, MI	1
+7789	5	Travis	Walton	\N	G	74	190	Lima, OH	1
+7790	20	Matt	Trannon	\N	F	78	227	Filnt, MI	4
+7791	23	Maurice	Joseph	\N	G	76	180	Montreal, CAN	1
+3903	40	Luke	Murphy	\N	F	81	217	Hampton, VA	2
+3908	21	Patrick	Tatham	\N	F	80	230	Brampton, CAN	3
+4937	34	Raheem	Moss	\N	G	77	223	Colombus, OH	3
+5880	20	Greg	Vlosich	\N	G	72	160	Lakewood, OH	3
+5882	30	Justin	Henderson	\N	C	80	260	Westerville, OH	4
+5883	32	Steve	Gansey	\N	G	75	195	Olmstead Falls, OH	2
+5884	33	Frashon	McGee	\N	 F	79	240	Waterloo, IA	4
+8017	1	Cory	Rojeck	\N	G	72	172	Wickliffe, OH	3
+8018	3	Carlos	English	\N	G	68	157	Detroit, MI	3
+8019	4	Robbie	Clark	\N	G	72	162	Clarkston, MI	1
+8020	11	Bahaadar	Russell	\N	G	74	160	Phoenix, AZ	1
+8021	12	Ije	Nwankwo	\N	F	79	275	Ann Arbor, MI	3
+8022	15	Stephen	Kallman	\N	G	75	166	Lansing, MI	3
+8023	24	Jason	Holder	\N	F	76	165	Saginaw, MI	2
+8024	35	J'Nathan	Bullock	\N	F	77	240	Flint, MI	1
+8025	45	Renard	Fields	\N	F	79	204	Washington DC	1
+8026	54	Terry	Walker	\N	F	82	215	Grand Rapids, MI	1
+3902	5	Victor	Morris	\N	G	73	188	Inkster, MI	3
+\.
+
+
+--
+-- Data for Name: player_averages; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY player_averages (id, player_id, games_played, fgm, fga, fgp, tpm, tpa, tpp, ftm, fta, ftp, offense_rebound, total_rebound, assist, steal, block, turnover, foul, total_point) FROM stdin;
+\.
+
+
+--
+-- Data for Name: player_games; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY player_games (id, game_id, team_game_id, player_id, "type", minutes, fgm, fga, tpm, tpa, fta, ftm, offense_rebound, total_rebound, assist, steal, block, turnover, foul, total_point, player_name) FROM stdin;
+1	\N	1	3270	FoxPlayerGame	34	8	16	3	7	9	8	1	4	0	4	0	4	3	27	S Brown, G
+2	\N	1	3272	FoxPlayerGame	34	9	11	0	0	7	6	2	11	1	0	1	3	3	24	P Davis, C
+3	\N	2	3908	FoxPlayerGame	27	4	13	2	4	5	2	2	4	3	1	0	2	4	12	P Tatham, F
+4	\N	2	8024	FoxPlayerGame	27	3	7	0	0	0	0	0	0	2	2	1	3	3	6	J Bullock, F
+\.
+
+
+--
+-- Data for Name: players_2007; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY players_2007 (id, number, first_name, last_name, suffix_name, "position", height, weight, hometown, acad_year, team_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: roster; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY roster (id, team_id, player_id, "year") FROM stdin;
+1	90	3270	2006
+2	90	3272	2006
+4	90	3274	2006
+5	90	3279	2006
+6	90	3281	2006
+7	90	5653	2006
+8	90	5654	2006
+9	90	5655	2006
+10	90	5656	2006
+11	90	5657	2006
+12	90	7789	2006
+13	90	7790	2006
+14	90	7791	2006
+15	132	3903	2006
+16	132	3908	2006
+17	132	4937	2006
+18	132	5880	2006
+19	132	5882	2006
+20	132	5883	2006
+21	132	5884	2006
+22	132	8017	2006
+23	132	8018	2006
+24	132	8019	2006
+25	132	8020	2006
+26	132	8021	2006
+27	132	8022	2006
+28	132	8023	2006
+29	132	8024	2006
+30	132	8025	2006
+31	132	8026	2006
+32	132	3902	2006
+\.
+
+
+--
+-- Data for Name: team; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY team (id, name, mascot, homepage, espn_code, yahoo_code, cbs_code, fox_code, usatoday_code, cnnsi_code, color_1, color_2, color_3, cstv_code, in_64) FROM stdin;
+90	Michigan State	Spartans	msuspartans.ocsn.com/sports/m-baskbl/msu-m-baskbl-body.html	127	may	MIST    	358	msu	michiganst	007A5E	000000	FFFFFF	MICHIGAN ST	f
+132	Cleveland State	Vikings	csuvikings.ocsn.com/sports/m-baskbl/clst-m-baskbl-body.html	325	cbh	CLEVST  	121	clevelandst	clevelndst	003300	CCCCCC	FFFFFF	CLEVELAND ST	f
+252	Kentucky	Wildcats	www.ukathletics.com/index.php?s=&url_channel_id=37&change_well_id=1	96	kaf	KY      	292	kentucky	kentucky	003030	000000	FFFFFF	KENTUCKY	f
+1	Foo State	Gold Bars	www.foostate.edu/bball	2	ABC	foostate	3	usa_foostate	cnnsi_foostate	000011	000022	000033	cstv_foostate	f
+2	Bar University	Silver Ignots	www.baru.edu/bball	10	DEF	cbs_baru	11	usa_baruniv	cnnsi_baruniv	000044	000055	000066	cstv_baruniv	f
+46	Kansas	Jayhawks	www.kuathletics.com/mensbasketball	2305	kaa	KS      	287	kansas	kansas	E60D2E	1A75CF	FFFFFF	KANSAS	f
+\.
+
+
+--
+-- Data for Name: team_averages; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY team_averages (id, team_id, fgm, fga, fgp, tpm, tpa, tpp, ftm, fta, ftp, offense_rebound, total_rebound, assist, steal, block, turnover, foul, half1_point, half2_point, total_point) FROM stdin;
+\.
+
+
+--
+-- Data for Name: team_diff_ranks; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY team_diff_ranks (id, team_id, fgm, fga, fgp, tpm, tpa, tpp, ftm, fta, ftp, offense_rebound, total_rebound, assist, steal, block, turnover, foul, half1_point, half2_point, total_point) FROM stdin;
+\.
+
+
+--
+-- Data for Name: team_foe_averages; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY team_foe_averages (id, team_id, fgm, fga, fgp, tpm, tpa, tpp, ftm, fta, ftp, offense_rebound, total_rebound, assist, steal, block, turnover, foul, half1_point, half2_point, total_point) FROM stdin;
+\.
+
+
+--
+-- Data for Name: team_foe_ranks; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY team_foe_ranks (id, team_id, fgm, fga, fgp, tpm, tpa, tpp, ftm, fta, ftp, offense_rebound, total_rebound, assist, steal, block, turnover, foul, half1_point, half2_point, total_point) FROM stdin;
+\.
+
+
+--
+-- Data for Name: team_games; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY team_games (id, game_id, team_id, "type", minutes, fgm, fga, tpm, tpa, fta, ftm, offense_rebound, total_rebound, team_rebound, assist, steal, block, turnover, team_turnover, foul, half1_point, half2_point, ot1_point, ot2_point, ot3_point, ot4_point, total_point, team_name, ot5_point) FROM stdin;
+1	1	90	FoxTeamGame	200	28	53	5	13	29	22	9	42	5	18	10	4	22	3	17	40	43	0	0	0	0	83	Michigan State	0
+2	1	132	FoxTeamGame	200	26	64	14	31	13	9	8	29	2	22	9	1	16	0	27	46	29	0	0	0	0	75	Cleveland State	0
+\.
+
+
+--
+-- Data for Name: team_ranks; Type: TABLE DATA; Schema: public; Owner: ballman
+--
+
+COPY team_ranks (id, team_id, fgm, fga, fgp, tpm, tpa, tpp, ftm, fta, ftp, offense_rebound, total_rebound, assist, steal, block, turnover, foul, half1_point, half2_point, total_point) FROM stdin;
+\.
+
+
+--
+-- Name: conference_membership_pkey; Type: CONSTRAINT; Schema: public; Owner: ballman; Tablespace: 
+--
+
+ALTER TABLE ONLY conference_membership
+    ADD CONSTRAINT conference_membership_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: conference_pkey; Type: CONSTRAINT; Schema: public; Owner: ballman; Tablespace: 
+--
+
+ALTER TABLE ONLY conference
+    ADD CONSTRAINT conference_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: game_files_pkey; Type: CONSTRAINT; Schema: public; Owner: ballman; Tablespace: 
+--
+
+ALTER TABLE ONLY game_files
+    ADD CONSTRAINT game_files_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: games_pkey; Type: CONSTRAINT; Schema: public; Owner: ballman; Tablespace: 
+--
+
+ALTER TABLE ONLY games
+    ADD CONSTRAINT games_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: player_games_pkey; Type: CONSTRAINT; Schema: public; Owner: ballman; Tablespace: 
+--
+
+ALTER TABLE ONLY player_games
+    ADD CONSTRAINT player_games_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: player_pkey; Type: CONSTRAINT; Schema: public; Owner: ballman; Tablespace: 
+--
+
+ALTER TABLE ONLY player
+    ADD CONSTRAINT player_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: players_2007_pkey; Type: CONSTRAINT; Schema: public; Owner: ballman; Tablespace: 
+--
+
+ALTER TABLE ONLY players_2007
+    ADD CONSTRAINT players_2007_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: roster_pkey; Type: CONSTRAINT; Schema: public; Owner: ballman; Tablespace: 
+--
+
+ALTER TABLE ONLY roster
+    ADD CONSTRAINT roster_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: team_games_pkey; Type: CONSTRAINT; Schema: public; Owner: ballman; Tablespace: 
+--
+
+ALTER TABLE ONLY team_games
+    ADD CONSTRAINT team_games_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: team_pkey; Type: CONSTRAINT; Schema: public; Owner: ballman; Tablespace: 
+--
+
+ALTER TABLE ONLY team
+    ADD CONSTRAINT team_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: conference_membership_conference_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ballman
+--
+
+ALTER TABLE ONLY conference_membership
+    ADD CONSTRAINT conference_membership_conference_id_fkey FOREIGN KEY (conference_id) REFERENCES conference(id);
+
+
+--
+-- Name: conference_membership_team_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ballman
+--
+
+ALTER TABLE ONLY conference_membership
+    ADD CONSTRAINT conference_membership_team_id_fkey FOREIGN KEY (team_id) REFERENCES team(id);
+
+
+--
+-- Name: games_home_team_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ballman
+--
+
+ALTER TABLE ONLY games
+    ADD CONSTRAINT games_home_team_id_fkey FOREIGN KEY (home_team_id) REFERENCES team(id);
+
+
+--
+-- Name: games_visit_team_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ballman
+--
+
+ALTER TABLE ONLY games
+    ADD CONSTRAINT games_visit_team_id_fkey FOREIGN KEY (visit_team_id) REFERENCES team(id);
+
+
+--
+-- Name: player_games_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ballman
+--
+
+ALTER TABLE ONLY player_games
+    ADD CONSTRAINT player_games_game_id_fkey FOREIGN KEY (game_id) REFERENCES games(id);
+
+
+--
+-- Name: player_games_player_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ballman
+--
+
+ALTER TABLE ONLY player_games
+    ADD CONSTRAINT player_games_player_id_fkey FOREIGN KEY (player_id) REFERENCES player(id);
+
+
+--
+-- Name: player_games_team_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ballman
+--
+
+ALTER TABLE ONLY player_games
+    ADD CONSTRAINT player_games_team_game_id_fkey FOREIGN KEY (team_game_id) REFERENCES team_games(id);
+
+
+--
+-- Name: roster_player_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ballman
+--
+
+ALTER TABLE ONLY roster
+    ADD CONSTRAINT roster_player_id_fkey FOREIGN KEY (player_id) REFERENCES player(id);
+
+
+--
+-- Name: roster_team_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ballman
+--
+
+ALTER TABLE ONLY roster
+    ADD CONSTRAINT roster_team_id_fkey FOREIGN KEY (team_id) REFERENCES team(id);
+
+
+--
+-- Name: team_games_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ballman
+--
+
+ALTER TABLE ONLY team_games
+    ADD CONSTRAINT team_games_game_id_fkey FOREIGN KEY (game_id) REFERENCES games(id);
+
+
+--
+-- Name: team_games_team_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: ballman
+--
+
+ALTER TABLE ONLY team_games
+    ADD CONSTRAINT team_games_team_id_fkey FOREIGN KEY (team_id) REFERENCES team(id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

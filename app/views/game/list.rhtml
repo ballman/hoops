@@ -1,0 +1,155 @@
+    <br />
+    <div id="gameList">
+      <table border="0">
+        <tr>
+          <th width="3%" style="border-right: 1px solid white;">N</th>
+          <th width="18%" style="border-right: 1px solid white;">Visitor @</th>
+          <th width="7%" style="border-right: 1px solid white;">&nbsp;</th>
+          <th width="25%" colspan="3" style="border-right: 1px solid white;">FOX&nbsp;&nbsp; <%= link_to "master",
+          { :action => "load_master_for_date", :date => @date, :type => 'FoxTeamGame' } %>
+</th>
+          <th width="25%" colspan="3" style="border-right: 1px solid white;">CSTV&nbsp;&nbsp;<%= link_to "master",
+          { :action => "load_master_for_date", :date => @date, :type => 'CstvTeamGame' } %></th>
+          <th width="22%" colspan="3">SportsNetork&nbsp;&nbsp;<%= link_to "master",
+          { :action => "load_master_for_date", :date => @date, :type => 'SportsNetworkTeamGame' } %></th>
+        </tr>
+        <tr>
+          <th width="3%" style="border-right: 1px solid white;">&nbsp;</th>
+          <th width="18%" style="border-right: 1px solid white;">Home</th>
+          <th width="7%" style="border-right: 1px solid white;"></th>
+          <th width="15%">Source Id</th>
+          <th width="5%">Valid</th>
+          <th width="5%" style="border-right: 1px solid white;">Loaded</th>
+          <th width="15%">Source Id</th>
+          <th width="5%">Valid</th>
+          <th width="5%" style="border-right: 1px solid white;">Loaded</th>
+          <th width="12%">Source Id</th>
+          <th width="5%">Valid</th>
+          <th width="5%">Loaded</th>
+        </tr>
+        <% count = 0
+           @games.each do | game |
+             count = (count + 1) % 2
+        %>
+        <tr id="row_<%= count %>" >
+          <td style="border-right: 1px solid black;">
+            <%= (game.neutral_site?) ? "*" : "&nbsp;" %>
+          </td>
+          <td style="border-right: 1px solid black;">
+            <%= game.visit_team.name %><br /><%= game.home_team.name %>
+          </td>
+          <td style="border-right: 1px solid black;">&nbsp;
+            <%= link_to "#{game.id}",
+                        { :action => "edit_master", :id => game }  if game.has_games_of_type?(MasterTeamGame) %>
+          </td>
+          <td>
+            <%= link_to "#{game.game_file_for_type(FoxGameFile).source_id}",
+                        { :action => "show", :id => game, :type => 'FoxTeamGame' }  unless game.has_file_for_type?(FoxGameFile) %>
+          </td>
+          <td align="center">
+            <% if (game.has_games_of_type?(FoxTeamGame) && @validate) %>
+              <img src="<%= (game.valid_stats_for_type?(FoxTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+            <% elsif (game.has_games_of_type?(FoxTeamGame))%>
+              <img src='/images/question.gif' />
+            <% else %>
+              &nbsp;
+            <%- end %>
+          </td>
+          <td style="border-right: 1px solid black;">
+            <% if (game.has_games_of_type?(FoxTeamGame) &&
+                   game.has_games_of_type?(MasterTeamGame) && @validate) %>
+              <img src="<%= (game.different_from_master_for_type?(FoxTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+            <% elsif (game.has_games_of_type?(FoxTeamGame) &&
+                   game.has_games_of_type?(MasterTeamGame)) %>
+              <img src='/images/question.gif' />
+            <% else %>
+              &nbsp;
+            <%- end %>
+          </td>
+          <td>
+            <%= link_to "#{game.game_file_for_type(CstvGameFile).source_id}",
+                        { :action => "show", :id => game, :type => 'CstvTeamGame' }  unless game.has_file_for_type?(CstvGameFile) %>
+          </td>
+          <td align="center">
+            <% if (game.has_games_of_type?(CstvTeamGame) && @validate) %>
+              <img src="<%= (game.valid_stats_for_type?(CstvTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+            <% elsif (game.has_games_of_type?(CstvTeamGame))%>
+              <img src='/images/question.gif' />
+            <%- else %>
+              &nbsp;
+            <%- end %>
+          </td>
+          <td style="border-right: 1px solid black;">
+            <% if (game.has_games_of_type?(CstvTeamGame) &&
+                   game.has_games_of_type?(MasterTeamGame) && @validate) %>
+              <img src="<%= (game.different_from_master_for_type?(CstvTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+            <% elsif (game.has_games_of_type?(CstvTeamGame) &&
+                   game.has_games_of_type?(MasterTeamGame)) %>
+              <img src='/images/question.gif' />
+            <% else %>
+              &nbsp;
+            <%- end %>
+</td>
+          <td>
+            <%=link_to "#{game.game_file_for_type(SportsNetworkGameFile).source_id}",
+                       { :action => "show", :id => game, :type => 'SportsNetworkTeamGame' }  unless game.has_file_for_type?(SportsNetworkGameFile) %>
+          </td>
+          <td align="center">
+            <% if (game.has_games_of_type?(SportsNetworkTeamGame) && @validate) %>
+              <img src="<%= (game.valid_stats_for_type?(SportsNetworkTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+            <% elsif (game.has_games_of_type?(SportsNetworkTeamGame))%>
+              <img src='/images/question.gif' />
+            <%- else %>
+              &nbsp;
+            <%- end %>
+          </td>
+          <td>
+            <% if (game.has_games_of_type?(SportsNetworkTeamGame) &&
+                   game.has_games_of_type?(MasterTeamGame) && @validate) %>
+              <img src="<%= (game.different_from_master_for_type?(SportsNetworkTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+            <% elsif (game.has_games_of_type?(SportsNetworkTeamGame) &&
+                   game.has_games_of_type?(MasterTeamGame)) %>
+              <img src='/images/question.gif' />
+            <% else %>
+              &nbsp;
+            <%- end %>
+          </td>
+        </tr>
+        <%- end %>
+      </table>
+      <br />
+      <%= link_to "Load Fox", { :action => "fox_loader", :date => @date } %>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= link_to "Load Cstv", { :action => "cstv_loader", :date => @date } %>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= link_to "Load SN", { :action => "sports_network_loader", :date => @date } %>
+
+      <br />
+      <table>
+        <tr>
+          <th>Source</th>
+          <th>Id</th>
+          <th>length</th>
+          <th>Parse All: &nbsp;&nbsp;<%= link_to(image_tag("/images/fox.ico"), {:action => "parse_all", :date => @date, :type => "FoxGameFile"}) %>&nbsp;&nbsp;<%= link_to(image_tag("/images/cstv.ico"), {:action => "parse_all", :date => @date, :type => "CstvGameFile"}) %>&nbsp;&nbsp;<%= link_to(image_tag("/images/sports_network.ico"), {:action => "parse_all", :date => @date, :type => "SportsNetworkGameFile"})%></th>
+        </tr>
+        <% count = 0
+           @unloaded_files.each do | file |
+             count = (count + 1) % 2
+        %>
+        <tr id="row_<%= count %>" >
+          <td><% if (file.instance_of?(FoxGameFile)) %>
+              <%= image_tag("/images/fox.ico") %>
+            <% elsif (file.instance_of?(CstvGameFile)) %>
+              <%= image_tag("/images/cstv.ico") %>
+            <% elsif (file.instance_of?(SportsNetworkGameFile)) %>
+              <%= image_tag("/images/sports_network.ico") %>
+            <%- end %>
+          </td>
+          <td><%= file.source_id %></td>
+          <td><%= file.content.length %></td>
+          <td><%= link_to "parse", { :action => "parse", :id => file.source_id, :type => file.type} %></td>
+        </tr>
+        <%- end %>
+      </table>
+    </div>
+

@@ -1,0 +1,416 @@
+
+/home/ballman/work/hoops/app/helpers/application_helper.rb,308
+module ApplicationHelperApplicationHelper2,90
+  def team_link(team)team_link3,115
+  def team_mascot_link(team)team_mascot_link8,279
+  def game_link(text, game)game_link13,509
+  def date_link(date)date_link17,623
+  def stat_headerstat_header21,727
+  def stat_format(value, col)stat_format29,957
+
+/home/ballman/work/hoops/app/helpers/team_stats_helper.rb,43
+module TeamStatsHelperTeamStatsHelper1,0
+
+/home/ballman/work/hoops/app/helpers/team_helper.rb,272
+module TeamHelperTeamHelper1,0
+  def team_breakdown_row(team_game)team_breakdown_row2,18
+  def team_breakdown_diff_row(team_game, average, label)team_breakdown_diff_row11,412
+  def breakdown_statsbreakdown_stats20,873
+  def percentage_statpercentage_stat25,1029
+
+/home/ballman/work/hoops/app/helpers/conference_helper.rb,45
+module ConferenceHelperConferenceHelper1,0
+
+/home/ballman/work/hoops/app/helpers/calendar_helper.rb,886
+module CalendarHelperCalendarHelper64,2144
+  def popup_calendar(object, method, html_options = {}, calendar_options = {})popup_calendar82,2614
+  def calendar(object, method, html_options = {}, calendar_options = {})calendar98,3052
+  def calendar_field(object, method, html_options = {}, calendar_options = {})calendar_field118,3670
+  def _calendar(object, method, show_field = true, popup = true, html_options = {}, calendar_options = {})_calendar124,3841
+  def value(object_name, method_name)value171,5310
+  def add_mandatories(options, mandatories)add_mandatories179,5475
+  def add_defaults(options, defaults)add_defaults183,5558
+  def remove_option(options, key)remove_option187,5668
+  def rename_option(options, old_key, new_key)rename_option191,5733
+  def format_js_hash(options)format_js_hash198,5889
+  def calendar2(options = {}, &block)calendar2249,9512
+
+/home/ballman/work/hoops/app/helpers/game_helper.rb,367
+module GameHelperGameHelper1,0
+  def stats_row(stats, klass=nil)stats_row2,18
+  def stats_headerstats_header17,970
+  def team_box(team_game, edit_player_line_flag)team_box25,1342
+  def team_box_header(team)team_box_header39,1904
+  def players_boxes(player_games, edit_flag)players_boxes44,2080
+  def edit_player_line(player_game)edit_player_line60,2565
+
+/home/ballman/work/hoops/app/helpers/player_helper.rb,37
+module PlayerHelperPlayerHelper1,0
+
+/home/ballman/work/hoops/app/models/team_foe_ranks.rb,57
+class TeamFoeRanks < ActiveRecord::BaseTeamFoeRanks1,0
+
+/home/ballman/work/hoops/app/models/cstv_team_game.rb,126
+class CstvTeamGame < TeamGameCstvTeamGame1,0
+  def validate_player_total_for_stat(stat)validate_player_total_for_stat2,30
+
+/home/ballman/work/hoops/app/models/team_game.rb,759
+class TeamGame < ActiveRecord::BaseTeamGame1,0
+  def to_sto_s7,135
+  def fgpfgp16,715
+  def ftpftp20,772
+  def tpptpp24,829
+  def set_nil_ots_to_zeroset_nil_ots_to_zero28,886
+  def different_stats(other)different_stats35,1103
+  def validate_statsvalidate_stats46,1403
+  def validate_score_breakdownvalidate_score_breakdown56,1763
+  def validate_score_by_madesvalidate_score_by_mades60,2032
+  def validate_player_totalsvalidate_player_totals66,2210
+  def validate_unique_playersvalidate_unique_players73,2488
+  def map_player_gamesmap_player_games85,2830
+  def find_player(players, name)find_player92,3014
+  def split_name(name)split_name111,3616
+  def validate_player_total_for_stat(stat)validate_player_total_for_stat118,3773
+
+/home/ballman/work/hoops/app/models/team_average.rb,140
+class TeamAverage < ActiveRecord::BaseTeamAverage1,0
+  def self.stat_columnsstat_columns4,59
+  def self.percent_hashpercent_hash8,240
+
+/home/ballman/work/hoops/app/models/fox_game_file.rb,45
+class FoxGameFile < GameFileFoxGameFile1,0
+
+/home/ballman/work/hoops/app/models/cstv_player_game.rb,261
+class CstvPlayerGame < PlayerGameCstvPlayerGame1,0
+  def validate_correct_playervalidate_correct_player2,34
+  def match_two_name(first_name, last_name)match_two_name18,649
+  def match_three_name(first_name, last_name, suffix_name)match_three_name22,844
+
+/home/ballman/work/hoops/app/models/team_ranks.rb,51
+class TeamRanks < ActiveRecord::BaseTeamRanks1,0
+
+/home/ballman/work/hoops/app/models/player_game.rb,540
+class PlayerGame < ActiveRecord::BasePlayerGame1,0
+  def to_sto_s6,103
+  def different_stats(other)different_stats13,454
+  def validate_statsvalidate_stats23,730
+  def validate_scoringvalidate_scoring35,1103
+  def validate_ft_shootingvalidate_ft_shooting40,1302
+  def validate_fg_shootingvalidate_fg_shooting45,1464
+  def validate_tp_shootingvalidate_tp_shooting50,1626
+  def validate_reboundsvalidate_rebounds55,1788
+  def validate_foulvalidate_foul60,2008
+  def validate_correct_playervalidate_correct_player65,2159
+
+/home/ballman/work/hoops/app/models/team.rb,121
+class Team < ActiveRecord::BaseTeam1,0
+  def self.table_name() "team" endtable_name8,180
+  def <=>(other)<=>10,216
+
+/home/ballman/work/hoops/app/models/player_average.rb,59
+class PlayerAverage < ActiveRecord::BasePlayerAverage1,0
+
+/home/ballman/work/hoops/app/models/fox_team_game.rb,45
+class FoxTeamGame < TeamGameFoxTeamGame1,0
+
+/home/ballman/work/hoops/app/models/player.rb,334
+class Player < ActiveRecord::BasePlayer4,50
+  def self.table_name()  "player" endtable_name9,199
+  def year_string()year_string11,240
+  def namename22,432
+  def last_name_closeness(other) last_name_closeness26,541
+  def first_name_closeness(other)first_name_closeness30,621
+  def closeness(string, other)closeness35,710
+
+/home/ballman/work/hoops/app/models/item.rb,101
+class ItemItem1,0
+  def initialize(body)initialize7,81
+  def self.find_recentfind_recent13,186
+
+/home/ballman/work/hoops/app/models/fox_player_game.rb,259
+class FoxPlayerGame < PlayerGameFoxPlayerGame1,0
+  def validate_correct_playervalidate_correct_player3,34
+  def match_two_name(first_name, last_name)match_two_name21,683
+  def match_three_name(first_name, last_name, suffix_name)match_three_name26,879
+
+/home/ballman/work/hoops/app/models/cstv_game_file.rb,47
+class CstvGameFile < GameFileCstvGameFile1,0
+
+/home/ballman/work/hoops/app/models/conference.rb,110
+class Conference < ActiveRecord::BaseConference1,0
+  def self.table_name() "conference" endtable_name4,57
+
+/home/ballman/work/hoops/app/models/game_file.rb,49
+class GameFile < ActiveRecord::BaseGameFile1,0
+
+/home/ballman/work/hoops/app/models/cstv_game.rb,168
+class CstvGame < GameCstvGame1,0
+  def home_team_gamehome_team_game2,22
+  def visit_team_gamevisit_team_game6,87
+  def cstv_team_game(team)cstv_team_game11,162
+
+/home/ballman/work/hoops/app/models/game.rb,1056
+class Game < ActiveRecord::BaseGame1,0
+  def self.find_or_create(played_on, visit_team, home_team)find_or_create7,242
+  def home_team_game home_team_game22,690
+  def visit_team_game visit_team_game26,738
+  def home_team_game=(team_game)home_team_game=30,787
+  def visit_team_game=(team_game)visit_team_game=34,859
+  def get_number_of_overtimesget_number_of_overtimes38,935
+  def home_team_game_for_type(klass)home_team_game_for_type46,1331
+  def visit_team_game_for_type(klass)visit_team_game_for_type50,1416
+  def team_game_for_team_and_type(team, klass)team_game_for_team_and_type54,1503
+  def opp_team_game_for_team_and_type(team, klass)opp_team_game_for_team_and_type58,1600
+  def game_file_for_type(klass)game_file_for_type63,1765
+  def has_file_for_type?(klass)has_file_for_type?67,1860
+  def has_games_of_type?(klass)has_games_of_type?71,1936
+  def valid_stats_for_type?(klass)valid_stats_for_type?75,2038
+  def win?(team, type=FoxTeamGame)win?81,2218
+  def team_game_for_type(klass, team)team_game_for_type98,2657
+
+/home/ballman/work/hoops/app/models/team_foe_average.rb,146
+class TeamFoeAverage < ActiveRecord::BaseTeamFoeAverage1,0
+  def self.stat_columnsstat_columns4,62
+  def self.percent_hashpercent_hash8,123
+
+/home/ballman/work/hoops/app/models/team_diff_ranks.rb,59
+class TeamDiffRanks < ActiveRecord::BaseTeamDiffRanks1,0
+
+/home/ballman/work/hoops/app/controllers/list_no_ajax_controller.rb,129
+class ListNoAjaxController < ApplicationControllerListNoAjaxController1,0
+  def indexindex2,51
+  def add_itemadd_item6,100
+
+/home/ballman/work/hoops/app/controllers/player_controller.rb,279
+class PlayerController < ApplicationControllerPlayerController1,0
+  def list list3,48
+  def addadd7,103
+  def move_into_editmove_into_edit14,340
+  def save save19,441
+  def updateupdate27,529
+  def createcreate37,802
+  def remove_from_teamremove_from_team47,1047
+
+/home/ballman/work/hoops/app/controllers/application.rb,139
+class ApplicationController < ActionController::BaseApplicationController3,163
+  def authorizeauthorize11,500
+  def loginlogin15,574
+
+/home/ballman/work/hoops/app/controllers/team_stats_controller.rb,124
+class TeamStatsController < ApplicationControllerTeamStatsController1,0
+  def listlist2,50
+  def comparecompare17,612
+
+/home/ballman/work/hoops/app/controllers/team_controller.rb,248
+class TeamController < ApplicationControllerTeamController1,0
+  def listlist2,45
+  def tourneytourney6,102
+  def showshow10,187
+  def breakdownbreakdown20,536
+  def save save27,728
+  def updateupdate35,816
+  def createcreate43,1035
+
+/home/ballman/work/hoops/app/controllers/conference_controller.rb,97
+class ConferenceController < ApplicationControllerConferenceController1,0
+  def listlist2,51
+
+/home/ballman/work/hoops/app/controllers/game_controller.rb,496
+class GameController < ApplicationControllerGameController1,0
+  def listlist2,45
+  def fox_loaderfox_loader10,331
+  def cstv_loadercstv_loader14,407
+  def loader(fetcher, url)loader18,486
+  def showshow24,682
+  def parseparse29,798
+  def parse_allparse_all35,992
+  def move_player_line_into_editmove_player_line_into_edit46,1415
+  def save_player_gamesave_player_game53,1668
+  def update_player_gameupdate_player_game61,1790
+  def _parse_game(game_file)_parse_game74,2266
+
+/home/ballman/work/hoops/app/views/game/cal.html,0
+
+/home/ballman/work/hoops/app/views/list_no_ajax/_item.html,0
+
+/home/ballman/work/hoops/test/unit/cstv_game_parser_test.rb,1107
+class CstvGameParserTest < Test::Unit::TestCaseCstvGameParserTest3,52
+  def setupsetup5,175
+  def test_get_game_goodtest_get_game_good11,361
+  def test_get_game_badtest_get_game_bad18,537
+  def test_get_teams_goodtest_get_teams_good30,924
+  def test_get_teams_badtest_get_teams_bad38,1121
+  def test_get_team_from_score_line_goodtest_get_team_from_score_line_good50,1457
+  def test_get_team_from_score_line_badtest_get_team_from_score_line_bad56,1645
+  def test_get_scores_from_score_linetest_get_scores_from_score_line64,1883
+  def test_get_stats_from_linetest_get_stats_from_line89,2692
+  def test_get_turnoverstest_get_turnovers106,3227
+  def test_get_blockstest_get_blocks116,3500
+  def test_get_stealstest_get_steals124,3709
+  def test_get_tpmtest_get_tpm133,3958
+  def test_get_tpatest_get_tpa142,4180
+  def test_get_team_reboundstest_get_team_rebounds150,4379
+  def test_get_box_extrastest_get_box_extras155,4525
+  def test_build_team_gametest_build_team_game159,4606
+  def test_get_player_gamestest_get_player_games165,4786
+  def test_parsetest_parse169,4874
+
+/home/ballman/work/hoops/test/unit/team_game_test.rb,546
+class TeamGameTest < Test::Unit::TestCaseTeamGameTest3,52
+  def setup setup6,158
+  def test_validate_score_breakdowntest_validate_score_breakdown10,212
+  def test_validate_score_by_madestest_validate_score_by_mades17,397
+  def test_validate_player_totals_goodtest_validate_player_totals_good24,570
+  def test_validate_player_totals_badtest_validate_player_totals_bad31,775
+  def test_validate_unique_players_badtest_validate_unique_players_bad38,981
+  def test_validate_unique_players_goodtest_validate_unique_players_good45,1187
+
+/home/ballman/work/hoops/test/unit/fox_game_fetcher_test.rb,258
+class FoxGameFetcherTest < Test::Unit::TestCaseFoxGameFetcherTest3,52
+  def setupsetup5,123
+   def test_get_game_list_htmltest_get_game_list_html9,185
+   def test_create_game_listtest_create_game_list15,378
+  def test_get_gamestest_get_games24,828
+
+/home/ballman/work/hoops/test/unit/team_ranks_test.rb,96
+class TeamRanksTest < Test::Unit::TestCaseTeamRanksTest3,52
+  def test_truthtest_truth7,158
+
+/home/ballman/work/hoops/test/unit/player_game_test.rb,900
+class PlayerGameTest < Test::Unit::TestCasePlayerGameTest3,52
+  def test_validate_scoring_goodtest_validate_scoring_good6,160
+  def test_validate_scoring_badtest_validate_scoring_bad11,283
+  def test_validate_ft_shooting_goodtest_validate_ft_shooting_good16,408
+  def test_validate_ft_shooting_badtest_validate_ft_shooting_bad21,543
+  def test_validate_fg_shooting_goodtest_validate_fg_shooting_good26,680
+  def test_validate_fg_shooting_badtest_validate_fg_shooting_bad31,815
+  def test_validate_tp_shooting_goodtest_validate_tp_shooting_good36,952
+  def test_validate_tp_shooting_badtest_validate_tp_shooting_bad41,1087
+  def test_validate_rebounds_goodtest_validate_rebounds_good46,1224
+  def test_validate_rebounds_badtest_validate_rebounds_bad51,1353
+  def test_validate_foul_goodtest_validate_foul_good56,1484
+  def test_validate_foul_badtest_validate_foul_bad61,1605
+
+/home/ballman/work/hoops/test/unit/game_parser_test.rb,361
+class GameParserTest < Test::Unit::TestCaseGameParserTest3,52
+  def setupsetup5,171
+  def test_truthtest_truth10,292
+  def test_xmlizetest_xmlize14,363
+  def test_team_from_linktest_team_from_link18,412
+  def test_no_team_from_linktest_no_team_from_link25,601
+  def test_good_parsetest_good_parse31,767
+  def test_bad_parsetest_bad_parse61,2307
+
+/home/ballman/work/hoops/test/unit/player_test.rb,243
+class PlayerTest < Test::Unit::TestCasePlayerTest3,52
+  def setupsetup6,156
+  def test_truthtest_truth11,243
+  def test_last_name_closenesstest_last_name_closeness15,303
+  def test_first_name_closenesstest_first_name_closeness23,607
+
+/home/ballman/work/hoops/test/unit/team_test.rb,111
+class TeamTest < Test::Unit::TestCaseTeamTest3,52
+  def setupsetup6,154
+  def test_truthtest_truth11,237
+
+/home/ballman/work/hoops/test/unit/game_test.rb,201
+class GameTest < Test::Unit::TestCaseGameTest3,52
+  def test_find_or_create_does_not_existtest_find_or_create_does_not_exist6,154
+  def test_find_or_create_existstest_find_or_create_exists23,735
+
+/home/ballman/work/hoops/test/unit/team_foe_averages_test.rb,108
+class TeamFoeAveragesTest < Test::Unit::TestCaseTeamFoeAveragesTest3,52
+  def test_truthtest_truth7,171
+
+/home/ballman/work/hoops/test/unit/fox_player_game_test.rb,350
+class FoxPlayerGameTest < Test::Unit::TestCaseFoxPlayerGameTest3,52
+  def test_validate_correct_player_bad_first_nametest_validate_correct_player_bad_first_name6,163
+  def test_validate_correct_player_bad_last_nametest_validate_correct_player_bad_last_name11,316
+  def test_validate_correct_player_goodtest_validate_correct_player_good17,512
+
+/home/ballman/work/hoops/test/unit/cstv_game_fetcher_test.rb,446
+class FoxGameFetcherTest < Test::Unit::TestCaseFoxGameFetcherTest3,52
+  def setupsetup5,123
+  def test_get_game_list_htmltest_get_game_list_html9,187
+  def test_create_game_listtest_create_game_list16,386
+  def test_get_game_source_id_goodtest_get_game_source_id_good24,876
+  def test_get_game_source_id_badtest_get_game_source_id_bad29,1064
+  def test_loaded_gametest_loaded_game33,1197
+  def test_get_gamestest_get_games40,1407
+
+/home/ballman/work/hoops/test/unit/team_averages_test.rb,102
+class TeamAveragesTest < Test::Unit::TestCaseTeamAveragesTest3,52
+  def test_truthtest_truth7,164
+
+/home/ballman/work/hoops/test/unit/conference_test.rb,123
+class ConferenceTest < Test::Unit::TestCaseConferenceTest3,52
+  def setupsetup6,173
+  def test_truthtest_truth11,299
+
+/home/ballman/work/hoops/test/unit/game_file_test.rb,119
+class GameFileTest < Test::Unit::TestCaseGameFileTest3,52
+  def setupsetup6,118
+  def test_truthtest_truth11,212
+
+/home/ballman/work/hoops/test/unit/player_averages_test.rb,106
+class PlayerAveragesTest < Test::Unit::TestCasePlayerAveragesTest3,52
+  def test_truthtest_truth7,168
+
+/home/ballman/work/hoops/test/unit/team_foe_ranks_test.rb,102
+class TeamFoeRanksTest < Test::Unit::TestCaseTeamFoeRanksTest3,52
+  def test_truthtest_truth7,165
+
+/home/ballman/work/hoops/test/functional/team_stats_controller_test.rb,233
+class TeamStatsController; def rescue_action(e) raise e end; endTeamStatsController5,128
+class TeamStatsControllerTest < Test::Unit::TestCaseTeamStatsControllerTest7,194
+  def setupsetup8,247
+  def test_truthtest_truth15,452
+
+/home/ballman/work/hoops/test/functional/conference_controller_test.rb,237
+class ConferenceController; def rescue_action(e) raise e end; endConferenceController5,128
+class ConferenceControllerTest < Test::Unit::TestCaseConferenceControllerTest7,195
+  def setupsetup8,249
+  def test_truthtest_truth15,455
+
+/home/ballman/work/hoops/test/fixtures/cstv_boxscore_parse_test.html,0
+
+/home/ballman/work/hoops/test/fixtures/cstv_boxscore.html,254
+function dropper(form,operation) {dropper18,2067
+   function fanslive_dropper(link) {fanslive_dropper26,2285
+function addBookmark() {addBookmark237,13704
+function addbookmark()addbookmark422,29847
+function checkOptVal(val){checkOptVal471,32338
+
+/home/ballman/work/hoops/test/fixtures/boxscore.html,363
+  function checkCookie(cookieName, length) {checkCookie21,329
+  function _hbxStrip(a){_hbxStrip70,2282
+  function generateLoginUrl() {generateLoginUrl258,9350
+    function changeH (){changeH373,15459
+function ShowLayer(el){return;}ShowLayer445,20050
+function Outm(){return;}Outm446,20082
+function shortenString(stringValue) {shortenString1110,60901
+
+/home/ballman/work/hoops/test/fixtures/cstv_scores.html,243
+function MM_swapImgRestore() { //v3.0MM_swapImgRestore541,31561
+function MM_preloadImages() { //v3.0MM_preloadImages545,31689
+function MM_findObj(n, d) { //v4.01MM_findObj551,31951
+function MM_swapImage() { //v3.0MM_swapImage559,32375
+
+/home/ballman/work/hoops/test/fixtures/fox_scores.html,500
+  function checkCookie(cookieName, length) {checkCookie31,337
+  function _hbxStrip(a){_hbxStrip78,2058
+  function generateLoginUrl() {generateLoginUrl217,8402
+    function changeH (){changeH303,13561
+function ShowLayer(el){return;}ShowLayer375,18179
+function Outm(){return;}Outm376,18211
+              function show() {show661,31408
+              function showCal() {showCal664,31533
+              function hide() {hide668,31675
+              function hideCal() {hideCal671,31799
+
+/home/ballman/work/hoops/test/test_helper.rb,38
+class Test::Unit::TestCaseTest5,123
+
+/home/ballman/work/hoops/db/fix_same_game.sql,0
+
+/home/ballman/work/hoops/db/compute_averages.sql,0

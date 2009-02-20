@@ -1,0 +1,28 @@
+    <% content_for("page_scripts") do -%>
+      function item_added() {
+        var item = $('items').firstChild;
+        new Effect.Highlight(item);
+        Element.hide('busy');
+        $('form-submit-button').disabled = false;
+        $('item-body-field');
+      }
+
+      function item_loading() {
+        $('form-submit-button').disabled = true;
+        Element.show('busy');
+      }
+    <% end -%>
+
+    <ul id="items">
+      <%= render(:partial => 'item', :collection => @items) %>
+    </ul>
+
+    <% form_remote_tag(:url      => { :action => "add_item"},
+                        :update   => "items",
+                        :position => :top,
+                        :loading  => 'item_loading()',
+                        :complete => 'item_added()') do %>
+      <%= text_field_tag('item_body', '', :id => 'item-body-field') %>
+      <%= submit_tag("Add Item", :id => 'form-submit-button') %>
+      <span id='busy' style="display: none">Adding...</span>
+    <% end %>

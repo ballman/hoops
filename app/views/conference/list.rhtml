@@ -1,0 +1,10 @@
+    <br />
+    <div id="conferenceList">
+      <table border="0">
+          <% @conferences.each do |conference|%>
+            <tr>
+              <td><%= conference.name %></td>
+            </tr>
+          <% end %>
+      </table>
+    </div>

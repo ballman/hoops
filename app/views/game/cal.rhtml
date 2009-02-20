@@ -1,0 +1,8 @@
+<%=
+calendar2({:year => 2006, :month => 1,  :table_class       => "calendar2"  }) do |d|
+      # The class for the <table> tag.
+  cell_text = "#{d.mday}<br />" 
+  cell_attrs = {:class => 'day'}
+  [cell_text, cell_attrs]
+end
+%>

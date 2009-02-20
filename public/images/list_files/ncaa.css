@@ -1,0 +1,46 @@
+#banner { 
+  background: #99c;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid;
+  font: small-caps 40px/40px "Times New Roman", serif;
+  color: #228;
+  text-align: center;
+}
+
+#side { 
+  float: left;
+  height: 98%;
+  background: #001260;
+  width: 6em;
+}
+
+#main { 
+  margin-left: 1em;
+  margin-top: 1em;
+  width: auto;
+  background: white;
+  width: auto;
+  height: 95%;
+  overflow: auto;
+}
+
+#notice { 
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}
+
+/* Conference list page styles */
+#conferenceList { 
+  float: left;
+  height: 25em;
+  width:  20em;
+}
+
+#conferenceList table tr th { 
+  text-align: left;
+  background: #DDEDFF;
+ }

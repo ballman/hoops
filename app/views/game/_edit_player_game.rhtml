@@ -1,0 +1,59 @@
+    <% form_tag(:action => "save_player_game", :id => @player_game) do %>
+      <% if (!@player_game.nil?) %>
+        <h3>Editing game of <%= @player_game.player_name %> on <%= @player_game.team_game.team.name %> </h3>
+      <%- end %>
+      <table >
+        <%= stats_header %>
+        <tr>
+          <td style='width:150px;'>
+            <% if (!@players.nil?) %>
+              <%= collection_select('player', 'id', @players, 'id', 'name_and_number') %>
+            <%- end %>
+          </td>
+          <td>
+            <%= text_field 'player_game', 'minutes', :maxlength => "2" %>
+          </td>
+          <td style='width: 2em; text-align: right;'>
+            <%= text_field 'player_game', 'fgm', :maxlength => "2" %><%= text_field 'player_game', 'fga', :maxlength => "2" %>
+          </td>
+          <td style='width: 2em;'>
+            <%= text_field 'player_game', 'ftm', :maxlength => "2" %><%= text_field 'player_game', 'fta', :maxlength => "2" %>
+          </td>
+          <td style='width: 2em;'>
+            <%= text_field 'player_game', 'tpm', :maxlength => "2" %><%= text_field 'player_game', 'tpa', :maxlength => "2" %>
+          </td>
+          <td style='width: 2em;'>
+            <%= text_field 'player_game', 'offense_rebound', :maxlength => "2" %>
+          </td>
+          <td style='width: 2em;'>
+            <%= text_field 'player_game', 'total_rebound', :maxlength => "2" %>
+          </td>
+          <td style='width: 2em;'>
+            <%= text_field 'player_game', 'assist', :maxlength => "2" %>
+          </td>
+          <td style='width: 2em;'>
+            <%= text_field 'player_game', 'steal', :maxlength => "2" %>
+          </td>
+          <td style='width: 2em;'>
+            <%= text_field 'player_game', 'block', :maxlength => "2" %>
+          </td>
+          <td style='width: 2em;'>
+            <%= text_field 'player_game', 'turnover', :maxlength => "2" %>
+          </td>
+          <td style='width: 2em;'>
+            <%= text_field 'player_game', 'foul', :maxlength => "2" %>
+          </td>
+          <td style='width: 2em;'>
+            <%= text_field 'player_game', 'total_point', :maxlength => "2" %>
+          </td>
+        </tr>
+      </table>
+      <p> Name in box: <%= text_field 'player_game','player_name', :maxlength => "33" %>
+      <% if (!@player_game.nil?) %>
+	    id: <%= @player_game.player.id %>
+      <% end %>
+
+      <p style="clear:left;"><br/><%= submit_tag "Save" %></p>
+      <div style="clear:left;height:0;line-height:0">&nbsp;</div>
+    <% end %>
+    <!--[eoform:player_game]-->

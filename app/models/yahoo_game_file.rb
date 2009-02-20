@@ -1,0 +1,2 @@
+class YahooGameFile < GameFile
+end

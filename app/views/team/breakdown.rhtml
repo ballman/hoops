@@ -1,0 +1,52 @@
+<%= render(:partial => 'team_header', :locals => { :team => @team }) -%>
+    <br />
+    <div id="breakdown">
+      <% @games.each do | game | 
+        this_team_game = game.team_game_for_team_and_type(@team, FoxTeamGame)
+        opp_team_game = game.opp_team_game_for_team_and_type(@team, FoxTeamGame)
+        opp = opp_team_game.team
+      %>
+      <table>
+	<tr>
+	  <th style="width: 17em; background-color: <%= game.win?(@team) ? 'green' : 'red' %> "> <%= this_team_game.total_point %> - <%= opp_team_game.total_point %></th>
+	  <th>fgm</th>
+	  <th>fga</th>
+	  <th>fg%</th>
+	  <th>3pm</th>
+	  <th>3pa</th>
+	  <th>3p%</th>
+	  <th>ftm</th>
+	  <th>fta</th>
+	  <th>ft%</th>
+	  <th>oreb</th>
+	  <th>treb</th>
+	  <th>ast</th>
+	  <th>stl</th> 
+	  <th>blk</th>
+	  <th>tv</th>
+	  <th>foul</th>
+	  <th>TP</th>
+	</tr>
+	<tr>
+	  <%= team_breakdown_row(this_team_game) %>
+	</tr>
+	<tr>
+	  <%= team_breakdown_diff_row(this_team_game, @team.stats, "&nbsp;&nbsp;vs. avg") %>
+	</tr>
+	<tr>
+	  <%= team_breakdown_diff_row(this_team_game, opp.opp_stats, "&nbsp;&nbsp;vs. opp foe avg") %>
+	</tr>
+	<tr>
+	  <%= team_breakdown_row(opp_team_game) %>
+	</tr>
+	<tr>
+	  <%= team_breakdown_diff_row(opp_team_game, opp.stats, "&nbsp;&nbsp;vs. avg") %>
+	</tr>
+	<tr>
+	  <%= team_breakdown_diff_row(opp_team_game, @team.opp_stats, 
+	                              "&nbsp;&nbsp;vs. opp foe avg") %>
+	</tr>
+	<br />
+      </table>
+      <% end -%>
+    </div>

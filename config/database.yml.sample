@@ -1,0 +1,19 @@
+development:
+  adapter: postgresql
+  database: ncaa_development
+  host: localhost
+  username: XXXXXX
+  password: XXXXXX
+test:
+  adapter: postgresql
+  database: ncaa_test
+  host: localhost
+  username: XXXXXX
+  password: XXXXXX
+
+production:
+  adapter: postgresql
+  database: ncaa_development
+  host: localhost
+  username: XXXXXX
+  password: XXXXXX

@@ -1,0 +1,115 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+michigan_state_team:
+  id: 90
+  name: Michigan State
+  mascot: Spartans
+  homepage: msuspartans.ocsn.com/sports/m-baskbl/msu-m-baskbl-body.html
+  espn_code: 127
+  yahoo_code: may
+  cbs_code: MIST
+  fox_code: 358
+  usatoday_code: msu
+  cnnsi_code: michiganst
+  color_1: 007A5E
+  color_2: 000000
+  color_3: FFFFFF
+  year: 2005
+  in_64: 0
+  cstv_code: MICHIGAN ST
+  conference_id: 2
+
+cleveland_state_team:
+  id: 132
+  name: Cleveland State
+  mascot: Vikings
+  homepage: csuvikings.ocsn.com/sports/m-baskbl/clst-m-baskbl-body.html
+  espn_code: 325
+  yahoo_code: cbh
+  cbs_code: CLEVST
+  fox_code: 121
+  usatoday_code: clevelandst
+  cnnsi_code: clevelndst
+  color_1: 003300
+  color_2: CCCCCC
+  color_3: FFFFFF
+  year: 2005
+  in_64: 0
+  cstv_code: CLEVELAND ST
+  conference_id: 2
+
+kentucky_team:
+  id: 252
+  name: Kentucky
+  mascot: Wildcats
+  homepage: www.ukathletics.com/index.php?s=&url_channel_id=37&change_well_id=1
+  espn_code: 96
+  yahoo_code: kaf
+  cbs_code: KY
+  fox_code: 292
+  usatoday_code: kentucky
+  cnnsi_code: kentucky
+  color_1: 003030
+  color_2: 000000
+  color_3: FFFFFF
+  year: 2005
+  in_64: 0
+  cstv_code: KENTUCKY
+  conference_id: 2
+
+kansas_team:
+  id: 46
+  name: Kansas
+  mascot: Jayhawks
+  homepage: www.kuathletics.com/mensbasketball
+  espn_code: 2305
+  yahoo_code: kaa
+  cbs_code: KS
+  fox_code: 287
+  usatoday_code: kansas
+  cnnsi_code: kansas
+  color_1: E60D2E
+  color_2: 1A75CF
+  color_3: FFFFFF
+  year: 2005
+  in_64: 0
+  cstv_code: KANSAS
+  conference_id: 2
+
+foo_state_team:
+  id: 1
+  name: Foo State
+  mascot: Gold Bars
+  homepage: http://www.foostate.edu/bball
+  espn_code: 2
+  yahoo_code: ABC
+  cbs_code: foostate
+  fox_code: 3
+  usatoday_code: usa_foostate
+  cnnsi_code: cnnsi_foostate
+  color_1: 000011
+  color_2: 000022
+  color_3: 000033
+  year: 2005
+  in_64: 0
+  cstv_code: cstv_foostate
+  conference_id: 2
+
+bar_univ_team:
+  id: 2
+  name: Bar University
+  mascot: Silver Ignots
+  homepage: http://www.baru.edu/bball
+  espn_code: 10
+  yahoo_code: DEF
+  cbs_code: cbs_baru
+  fox_code: 11
+  usatoday_code: usa_baruniv
+  cnnsi_code: cnnsi_baruniv
+  color_1: 000044
+  color_2: 000055
+  color_3: 000066
+  year: 2005
+  in_64: 0
+  cstv_code: cstv_baruniv
+  conference_id: 1
+  

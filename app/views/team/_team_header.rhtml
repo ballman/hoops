@@ -1,0 +1,18 @@
+    <a style="float: left;" href="http://<%= team.homepage %>"><img src="/images/logos/team_<%= sprintf("%03d", team.id) %>.gif"  height="124" width="200" /></a>
+    <div style="height: 90px; width:90%; margin-left: 50px; background:#<%= team.color_1 %>; color: #<%= team.color_2 %>" >
+      <div style="padding-top: 10px; padding-left: 160px; font-variant: small-caps; font-weight: bold; font-size: xx-large">
+	<%= team_mascot_link(team) %> 
+      </div>
+      <div class="conference" style="padding-left: 160px; color: <%= team.color_3 %>"><%= team.conference.name%></div>
+      <div class="in_tourney" style="color: <%= team.color_3 %>">
+        <%= team.in_64 ? 'In Tournament' : '' %>
+      </div>
+  </div>
+  <div style="height: 6px; width:90%; margin-left: 50px; background:#<%= team.color_3 %>" >
+  </div>
+  <div style="height: 28px; width:90%; margin-left: 50px; background:#<%= team.color_2 %>" >
+      <div style="padding-top: 6px; padding-left: 160px; font-variant: small-caps; font-weight: bold; color: #<%= team.color_3; %>">
+      Links:&nbsp;&nbsp;<a style="color: #<%= team.color_1 %>; " href="http://sports.espn.go.com/ncb/clubhouse?teamId=<%= team.espn_code %>">ESPN</a>&nbsp;&nbsp;	    <a style="color: #<%= team.color_1 %>" href="http://sports.yahoo.com/ncaab/teams/<%= team.yahoo_code%>"> Yahoo</a>&nbsp;&nbsp;<a style="color: #<%= team.color_1 %>" href="http://www.sportsline.com/collegebasketball/teams/page/<%= team.cbs_code%>">CBS</a>
+      </div>
+    </div>
+

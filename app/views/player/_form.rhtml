@@ -1,0 +1,40 @@
+<% form_tag(:action => "save", :id => @player) do %>
+<!--[form:player]-->
+    <p style="width: 5em;">
+      <label for="player_number">Number</label><br />
+      <%= text_field 'player', 'number', :maxlength => "2" %>
+    </p>
+    <p style= "width: 14em;">
+      <label for="player_last_name">Last Name</label><br />
+      <%= text_field 'player', 'last_name', :maxlength => "20" %>
+    </p>
+    <p style="width: 17em;">
+      <label for="player_first_name">First Name</label><br/>
+      <%= text_field 'player', 'first_name', :maxlength => "20" %>
+      <%= select('player', 'suffix_name', ['', 'Jr.', 'III']) %>
+    </p>
+    <p style="clear: left; width: 5em;">
+      <label for="player_position">Position</label><br/>
+      <%= text_field 'player', 'position', :maxlength => "4" %>
+    </p>
+    <p style="width: 5em;">
+      <label for="player_height">Height</label><br/>
+      <%= text_field 'player', 'height', :maxlength => "2" %>
+    </p>
+    <p style="width: 5em;">
+      <label for="player_weight">Weight</label><br/>
+      <%= text_field 'player', 'weight', :maxlength => "3" %>
+    </p>
+    <p style="width: 20em;"><label for="player_hometown">Hometown</label><br/>
+      <%= text_field 'player', 'hometown' %>
+    </p>
+    <p style="width: 5em;"><label for="player_acad_year">acad_year</label><br/>
+      <%= select('player', 'acad_year', [['Fr.',1], ['So.',2],['Jr.',3],['Sr.',4],['5th',5]]) %>
+    </p>
+
+    <%= hidden_field_tag 'team_id', @team.id %>
+
+    <p style="clear:left;"><br/><%= submit_tag "Save" %></p>
+    <div style="clear:left;height:0;line-height:0">&nbsp;</div>
+    <% end %>
+    <!--[eoform:player]-->

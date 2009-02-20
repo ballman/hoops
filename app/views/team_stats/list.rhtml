@@ -1,0 +1,21 @@
+<h1>Team <%= @foe == '1' ? 'Opponent' : @foe == 'diff' ? 'Difference' : '' %> statistics overview</h1>
+
+<table class="sortable" id="statidunique">
+  <%= stat_header %>
+<% @team_stats.each do |s| -%>
+<%   team = @teams[s.team_id] -%>
+  <tr class="<%= team.in_64 ? 'in64' : '' %>stat">
+    <td><%= team_link(team) %></td>
+<%      count = 0 %>
+    <% @columns.each do |c| -%>
+ <%     count += 1 %>
+ <% if 'diff' == @foe %>
+    <% x = s.send(c)-@foe_stats[s.team_id].send(c) %>
+    <td style="color: <%= x < 0 ? 'red' : 'black'%>;" class="stat<%= 0 == count % 2 ? 'even' : 'odd' %>"><%= stat_format(x, c) %></td>
+ <% else %>
+    <td class="stat<%= 0 == count % 2 ? 'even' : 'odd' %>"><%= stat_format(s.send(c), c) %></td>
+ <% end %>
+    <% end -%>
+  </tr>
+<% end -%>
+</table>

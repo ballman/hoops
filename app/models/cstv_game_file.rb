@@ -1,0 +1,2 @@
+class CstvGameFile < GameFile
+end

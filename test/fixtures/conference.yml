@@ -1,0 +1,18 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+big_ten_conference:
+  id: 1
+  name: Big Ten
+  short_name: big10
+  espn_code: 2
+  cnnsi_code: big10
+  fox_code: 3
+  year: 2005
+sec_conference:
+  id: 2
+  name: Southeastern
+  short_name: sec
+  espn_code: 4
+  cnnsi_code: sec
+  fox_code: 5
+  year: 2005
+

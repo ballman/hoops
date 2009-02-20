@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+fake_fox_game_file:
+  id: 1
+  game_date: 2005-11-11
+  type: FoxGameFile
+  content: This is a game file
+  source_id: 2
+  game_id: 1
+  created_at: <%= Time.now %>
+
+fake_cstv_game_file:
+  id: 2
+  game_date: 2005-11-11
+  type: CstvGameFile
+  content: This is a game file.
+  source_id: ivy_20051111_harv
+  game_id: 1
+  created_at: <%= Time.now %>

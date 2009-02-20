@@ -1,0 +1,11 @@
+<div id='playerDiff'>
+  <table>
+    <h1>Stats for game <%= @player_games[0].team_game.game.id %> for <%= @player_games[0].player.first_name %> <%= @player_games[0].player.last_name %>
+    <%= stats_header %>
+    <%= players_boxes(@player_games,true,true) %>
+  </table>
+    <div id="edit_player_game">
+      <%= render :partial => 'edit_player_game' %>
+    </div
+</div>
+

@@ -1,0 +1,65 @@
+<% form_tag(:action => "save", :id => @team) do %>
+<!--[form:team]-->
+    <p style="width: 64em;">
+      <label for="name">Name</label><br />
+      <%= text_field 'team', 'name', :size => '64', :maxlength => "128" %>
+    </p>
+    <p style="width: 24em;">
+      <label for="mascot">Mascot</label><br />
+      <%= text_field 'team', 'mascot', :size => '24', :maxlength => "64" %>
+    </p>
+    <p style="width: 32em;">
+      <label for="homepage">Home Page</label><br />
+      <%= text_field 'team', 'homepage', :size => '32', :maxlength => "256" %>
+    </p>
+    <p style="width: 10em;">
+      <label for="cstv_code">CSTV Code</label><br />
+      <%= text_field 'team', 'cstv_code', :size => '10', :maxlength => "10" %>
+    </p>
+    <p style="width: 10em;">
+      <label for="fox_code">Fox Code</label><br />
+      <%= text_field 'team', 'fox_code', :size => '10', :maxlength => "10" %>
+    </p>
+    <p style="width: 10em;">
+      <label for="espn_code">ESPN Code</label><br />
+      <%= text_field 'team', 'espn_code', :size => '10', :maxlength => "10" %>
+    </p>
+    <p style="width: 10em;">
+      <label for="yahoo_code">Yahoo Code</label><br />
+      <%= text_field 'team', 'yahoo_code', :size => '10', :maxlength => "10" %>
+    </p>
+    <p style="width: 10em;">
+      <label for="cbs_code">CBS Code</label><br />
+      <%= text_field 'team', 'cbs_code', :size => '10', :maxlength => "10" %>
+    </p>
+    <p style="width: 10em;">
+      <label for="usatoday_code">USA Today Code</label><br />
+      <%= text_field 'team', 'usatoday_code', :size => '10', :maxlength => "10" %>
+    </p>
+    <p style="width: 10em;">
+      <label for="cnnsi_code">CNNSI Code</label><br />
+      <%= text_field 'team', 'cnnsi_code', :size => '10', :maxlength => "10" %>
+    </p>
+    <p style="width: 6em;">
+      <label for="color_1">Color 1</label><br />
+      <%= text_field 'team', 'color_1', :size => '6', :maxlength => "6" %>
+    </p>
+    <p style="width: 6em;">
+      <label for="color_2">Color 2</label><br />
+      <%= text_field 'team', 'color_2', :size => '6', :maxlength => "6" %>
+    </p>
+    <p style="width: 6em;">
+      <label for="color_3">Color 3</label><br />
+      <%= text_field 'team', 'color_3', :size => '6', :maxlength => "6" %>
+    </p>
+    <p style="width: 1em;">
+      <label for="in_64">In 64?</label><br />
+      <%= check_box 'team', 'in_64' %>
+    </p>
+    <br/>
+    <%= hidden_field "team", "year" , :value => '#{CURRENT_YEAR}' %>
+    <%= hidden_field "team", "conference.id" , :value => @team.conference.id %>
+    <p style="clear:left;"><br/><%= submit_tag "Save" %></p>
+    <div style="clear:left;height:0;line-height:0">&nbsp;</div>
+    <% end %>
+    <!--[eoform:team]-->

@@ -1,0 +1,336 @@
+/* three-panes */
+#banner {
+  margin-top: -10px;
+  margin-left: -10px;
+  margin-right: 0px;
+  background: #DDD;
+  border-bottom: 2px solid;
+  width: 101%;
+  height: 5%;
+  padding-top: 10px;
+  font: small-caps 40px/40px "Times New Roman", serif;
+  color: #222;
+  text-align: center;
+}
+
+#side {
+  margin-left: -10px;
+  border-right: 2px solid;
+  float: left;
+  height: 95%;
+  background: #999;
+  width: 10em;
+}
+
+#main {
+  margin-left: 1em;
+  margin-top: 1em;
+  width: auto;
+  width: auto;
+  height: 92%;
+  overflow: auto;
+  font-family: sans-serif;
+}
+
+/* General styles */
+input {
+  background-color: #ffffff;
+  border: 1px solid #666666;
+  font-size: 1em;
+ }
+
+select {
+  background-color: #ffffff;
+  border: 1px solid #666666;
+  font-size: 1em;
+ }
+
+a:visited {
+  color: #003366;
+}
+
+a {
+  text-decoration: none;
+  line-height: .9em;
+  color: #003366;
+}
+
+a img {
+  border: none;
+ }
+
+/* General classes */
+#notice {
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}
+
+#row_0 {
+  background: #ffffff;
+  line-height: .95em;
+}
+#row_1 {
+  background: #F0F0F0;
+  line-height: .95fromem;
+}
+
+/* Roster */
+#roster {
+  border: 1px #404040 solid;
+  width: 88%;
+}
+
+#roster table {
+  width: 100%;
+}
+
+#roster table th {
+  background: #cceecc;
+  color: white;
+  text-align: right;
+}
+#roster table td {
+  text-align: right;
+}
+
+#add {
+  background-color: #eeeee0;
+  border: 1px solid #666666;
+  width: 86%;
+  padding: 5px;
+}
+
+#add p {
+  float: left;
+  width: 20%;
+  height: 40px;
+  height: 38px;
+  margin: 0px;
+}
+
+/* Team Schedule breakdowns */
+#breakdown table {
+  width: 90%;
+  border: 1px solid black;
+}
+#breakdown table td {
+  text-align: right;
+}
+#breakdown table td.team {
+  font-weight: bold;
+}
+#breakdown table td.diff {
+  text-align: right;
+  background-color: #ddd;
+}
+#breakdown table td.diffnegative {
+  background-color: #ddd;
+  color: red;
+}
+#breakdown table td.bottom {
+  border: 1px solid black;
+}
+
+/* Conference list page styles */
+#conferenceList {
+  float: left;
+  height: 22em;
+  width:  15em;
+}
+
+#conferenceList table tr th {
+  text-align: left;
+  background: #DDEDFF;
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  border-color: #000044;
+}
+
+/* game list */
+#gameList {
+}
+
+#gameList table {
+  width: 90%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+#gameList table {
+  width: 90%;
+}
+
+#gameList table th {
+  background-color: #606080;
+  color: white;
+}
+
+/* game list */
+#gameShow {
+}
+
+.gameconference {
+  background-color: #cfeff3;
+}
+
+.gamenonconference {
+  background-color: #f9e2de;
+}
+
+.in64 {
+  font-weight: bold;
+}
+
+.in_tourney {
+  text-align: right;
+  padding: 1em;
+  font-weight: bold;
+}
+
+.non64{
+}
+
+#gameShow table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+#gameShow table caption {
+  font-size: 1.5em;
+  font-variant: small-caps;
+  font-weight: bold;
+  line-height: 1.5em;
+}
+
+#gameShow table td {
+  padding: 0px 5px;
+  border-right: 1px solid black;
+  text-align: right;
+}
+
+#gameShow table th {
+  border: 1px solid black;
+  background-color: #CCCCCC;
+  padding: 0px;
+  color: black;
+}
+
+#gameShow td.total {
+  background: #CCCCCC;
+  border-top: 2px solid black;
+  font-weight: bold;
+}
+
+#edit_player_game {
+  background-color: #eeeee0;
+  border: 1px solid #666666;
+  width: 86%;
+  padding: 5px;
+}
+
+#edit_player_game table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+#edit_player_game td {
+  padding: 0px 5px;
+  border-right: 1px solid black;
+  text-align: right;
+}
+
+#edit_player_game th {
+  background: #C0C0C0;
+  text-align: left;
+}
+
+
+/* stats */
+.in64stat {
+  background-color: #cceeff;
+  font-weight: bold;
+}
+
+.stat {
+  background-color: #eeeeee;
+  font-style: italic;
+}
+
+.stateven {
+  background-color: #fff;
+}
+.statodd {
+  background-color: #fec;
+}
+
+.ranktable {
+  border: 1px solid black;
+  margin-top: 1ex;
+  margin-bottom: 1ex;
+  padding: 0px;
+}
+
+.ranktable tr {
+  border-bottom: 1px solid black;
+}
+
+.ranktable th {
+  background-color: #fee;
+  padding: 0px;
+}
+
+.ranktable td {
+  text-align: right;
+}
+
+
+#editMaster table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+#editMaster table caption {
+  font-size: 1.5em;
+  font-variant: small-caps;
+  font-weight: bold;
+  line-height: 1.5em;
+}
+
+#editMaster table td {
+  padding: 0px 5px;
+  border-right: 1px solid black;
+  text-align: right;
+}
+
+#editMaster table th {
+  border: 1px solid black;
+  background-color: #CCCCCC;
+  padding: 0px;
+  color: black;
+}
+.difference {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+
+  }
+
+
+#masterTotalLine td {
+  border-bottom: 2px solid black;
+}
+
+.editor_field {
+  background-color: #ffffff;
+  border: 1px solid #0000ff;
+  font-size: 1em;
+}
+
+.master_edit_field {
+  padding: 0.0em;
+  margin: 0.0em;
+
+}
