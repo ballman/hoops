@@ -41,14 +41,12 @@ over' => 't/o'}
 
     # team stats
     @tourney_teams = Team.find_all_by_in_64(true).sort_by {|t| t.name }
-    @stats = @teams.collect {|t| TeamAverage.find_by_team_id(t.id) }
-    @foe_stats = @teams.collect {|t| TeamFoeAverage.find_by_team_id(t.id) }
+    @stats = @teams.collect {|t| t.stats }
+    @foe_stats = @teams.collect {|t| t.opp_stats }
     @ranks = @teams.collect {|t| TeamRanks.find_by_team_id(t.id) }
     @foe_ranks = @teams.collect {|t| TeamFoeRanks.find_by_team_id(t.id) }
     @diff_ranks = @teams.collect {|t| TeamDiffRanks.find_by_team_id(t.id) }
 
     @columns = TeamAverage.stat_columns
   end
-
-
 end
