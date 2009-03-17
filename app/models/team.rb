@@ -6,8 +6,10 @@ class Team < ActiveRecord::Base
   has_many :rosters
   has_many :players, :through => :rosters, :conditions => [ "year = #{CURRENT_YEAR}" ]
 
-  has_one :stats, :class_name => 'TeamAverage'
-  has_one :opp_stats, :class_name => 'TeamFoeAverage'
+  has_many :team_averages
+  has_many :team_foe_averages
+  has_one :stats, :class_name => 'TeamAverage', :order => 'as_of DESC'
+  has_one :opp_stats, :class_name => 'TeamFoeAverage', :order => 'as_of DESC'
 
 
   def <=>(other)
