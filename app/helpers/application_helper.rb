@@ -18,10 +18,11 @@ module ApplicationHelper
     link_to date, { :controller => 'game', :action => 'list', :id => date}
   end
 
-  def stat_header
+  def stat_header(name_map = {})
     result = %{<tr>\n<th class="statheadcell">Team</th>\n}
     for column in TeamAverage.stat_columns do
-      result += %{<th class="statheadcell">#{column.humanize}</th>}
+      name = name_map[column] ? name_map[column] : column.humanize
+      result += %{<th class="statheadcell">#{name}</th>}
     end
     result += "</tr>\n"
   end

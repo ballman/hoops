@@ -1,7 +1,7 @@
 <h1>Team <%= @foe == '1' ? 'Opponent' : @foe == 'diff' ? 'Difference' : '' %> statistics overview</h1>
 
 <table class="sortable" id="statidunique">
-  <%= stat_header %>
+  <%= stat_header(@name_map) %>
 <% @team_stats.each do |s| -%>
 <%   team = @teams[s.team_id] -%>
   <tr class="<%= team.in_64 ? 'in64' : '' %>stat">
