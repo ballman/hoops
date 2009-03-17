@@ -45,3 +45,12 @@ Spec::Runner.configure do |config|
   # 
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
 end
+
+# provide a helper for characterization testing
+module Spec::Example::ExampleGroupMethods
+  def currently(name, &block)
+    it("*** CURRENTLY *** #{name}", &block)
+  end
+end
+
+
