@@ -8,8 +8,8 @@
           <th width="25%" colspan="3" style="border-right: 1px solid white;">FOX&nbsp;&nbsp; <%= link_to "master",
           { :action => "load_master_for_date", :date => @date, :type => 'FoxTeamGame' } %>
 </th>
-          <th width="25%" colspan="3" style="border-right: 1px solid white;">CSTV&nbsp;&nbsp;<%= link_to "master",
-          { :action => "load_master_for_date", :date => @date, :type => 'CstvTeamGame' } %></th>
+          <th width="25%" colspan="3" style="border-right: 1px solid white;">Yahoo&nbsp;&nbsp;<%= link_to "master",
+          { :action => "load_master_for_date", :date => @date, :type => 'YahooTeamGame' } %></th>
           <th width="22%" colspan="3">SportsNetork&nbsp;&nbsp;<%= link_to "master",
           { :action => "load_master_for_date", :date => @date, :type => 'SportsNetworkTeamGame' } %></th>
         </tr>
@@ -36,7 +36,7 @@
             <%= (game.neutral_site?) ? "*" : "&nbsp;" %>
           </td>
           <td style="border-right: 1px solid black;">
-            <%= game.visit_team.name %><br /><%= game.home_team.name %>
+            <%= game.away_team.name %><br /><%= game.home_team.name %>
           </td>
           <td style="border-right: 1px solid black;">&nbsp;
             <%= link_to "#{game.id}",
@@ -67,23 +67,23 @@
             <%- end %>
           </td>
           <td>
-            <%= link_to "#{game.game_file_for_type(CstvGameFile).source_id}",
-                        { :action => "show", :id => game, :type => 'CstvTeamGame' }  unless game.has_file_for_type?(CstvGameFile) %>
+            <%= link_to "#{game.game_file_for_type(YahooGameFile).source_id}",
+                        { :action => "show", :id => game, :type => 'YahooTeamGame' }  unless game.has_file_for_type?(YahooGameFile) %>
           </td>
           <td align="center">
-            <% if (game.has_games_of_type?(CstvTeamGame) && @validate) %>
-              <img src="<%= (game.valid_stats_for_type?(CstvTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
-            <% elsif (game.has_games_of_type?(CstvTeamGame))%>
+            <% if (game.has_games_of_type?(YahooTeamGame) && @validate) %>
+              <img src="<%= (game.valid_stats_for_type?(YahooTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+            <% elsif (game.has_games_of_type?(YahooTeamGame))%>
               <img src='/images/question.gif' />
             <%- else %>
               &nbsp;
             <%- end %>
           </td>
           <td style="border-right: 1px solid black;">
-            <% if (game.has_games_of_type?(CstvTeamGame) &&
+            <% if (game.has_games_of_type?(YahooTeamGame) &&
                    game.has_games_of_type?(MasterTeamGame) && @validate) %>
-              <img src="<%= (game.different_from_master_for_type?(CstvTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
-            <% elsif (game.has_games_of_type?(CstvTeamGame) &&
+              <img src="<%= (game.different_from_master_for_type?(YahooTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+            <% elsif (game.has_games_of_type?(YahooTeamGame) &&
                    game.has_games_of_type?(MasterTeamGame)) %>
               <img src='/images/question.gif' />
             <% else %>
@@ -120,7 +120,7 @@
       <br />
       <%= link_to "Load Fox", { :action => "fox_loader", :date => @date } %>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <%= link_to "Load Cstv", { :action => "cstv_loader", :date => @date } %>
+      <%= link_to "Load Yahoo", { :action => "yahoo_loader", :date => @date } %>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <%= link_to "Load SN", { :action => "sports_network_loader", :date => @date } %>
 
@@ -130,7 +130,7 @@
           <th>Source</th>
           <th>Id</th>
           <th>length</th>
-          <th>Parse All: &nbsp;&nbsp;<%= link_to(image_tag("/images/fox.ico"), {:action => "parse_all", :date => @date, :type => "FoxGameFile"}) %>&nbsp;&nbsp;<%= link_to(image_tag("/images/cstv.ico"), {:action => "parse_all", :date => @date, :type => "CstvGameFile"}) %>&nbsp;&nbsp;<%= link_to(image_tag("/images/sports_network.ico"), {:action => "parse_all", :date => @date, :type => "SportsNetworkGameFile"})%></th>
+          <th>Parse All: &nbsp;&nbsp;<%= link_to(image_tag("/images/fox.ico"), {:action => "parse_all", :date => @date, :type => "FoxGameFile"}) %>&nbsp;&nbsp;<%= link_to(image_tag("/images/yahoo.ico"), {:action => "parse_all", :date => @date, :type => "YahooGameFile"}) %>&nbsp;&nbsp;<%= link_to(image_tag("/images/sports_network.ico"), {:action => "parse_all", :date => @date, :type => "SportsNetworkGameFile"})%></th>
         </tr>
         <% count = 0
            @unloaded_files.each do | file |
@@ -139,8 +139,8 @@
         <tr id="row_<%= count %>" >
           <td><% if (file.instance_of?(FoxGameFile)) %>
               <%= image_tag("/images/fox.ico") %>
-            <% elsif (file.instance_of?(CstvGameFile)) %>
-              <%= image_tag("/images/cstv.ico") %>
+            <% elsif (file.instance_of?(YahooGameFile)) %>
+              <%= image_tag("/images/yahoo.ico") %>
             <% elsif (file.instance_of?(SportsNetworkGameFile)) %>
               <%= image_tag("/images/sports_network.ico") %>
             <%- end %>

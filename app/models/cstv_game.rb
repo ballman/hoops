@@ -3,8 +3,8 @@ class CstvGame < Game
     cstv_team_game(game.home_team)
   end
   
-  def visit_team_game
-    cstv_team_game(game.visit_team)
+  def away_team_game
+    cstv_team_game(game.away_team)
   end
 
   private

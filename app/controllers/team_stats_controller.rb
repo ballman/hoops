@@ -1,4 +1,4 @@
-class TeamStatsController < ApplicationController
+ class TeamStatsController < ApplicationController
   def list
     @foe = params[:foe]
     @teams = Team.find(:all).inject({}) {|h,t| h[t.id] = t; h}
@@ -23,19 +23,17 @@ class TeamStatsController < ApplicationController
 
     # common foes
     games_1 = [ Game.find_all_by_home_team_id(@teams[0].id),
-                Game.find_all_by_visit_team_id(@teams[0].id) ].flatten
+                Game.find_all_by_away_team_id(@teams[0].id) ].flatten
     games_2 = [ Game.find_all_by_home_team_id(@teams[1].id),
-                Game.find_all_by_visit_team_id(@teams[1].id) ].flatten
+                Game.find_all_by_away_team_id(@teams[1].id) ].flatten
 
-    common_ids = games_1.collect {|g| (g.home_team_id == @teams[0].id) ? g.visit_team_id : g.home_team_id } &
-                 games_2.collect {|g| (g.home_team_id == @teams[1].id) ? g.visit_team_id : g.home_team_id }
+    common_ids = games_1.collect {|g| (g.home_team_id == @teams[0].id) ? g.away_team_id : g.home_team_id } & games_2.collect {|g| (g.home_team_id == @teams[1].id) ? g.away_team_id : g.home_team_id }
 
-    @common_foes = [ games_1.select {|g| common_ids.include?(g.home_team_id) or common_ids.include?(g.visit_team_id) } ,
-                    games_2.select {|g| common_ids.include?(g.home_team_id) or common_ids.include?(g.visit_team_id) } ].flatten
+    @common_foes = [ games_1.select {|g| common_ids.include?(g.home_team_id) or common_ids.include?(g.away_team_id) } ,games_2.select {|g| common_ids.include?(g.home_team_id) or common_ids.include?(g.away_team_id) } ].flatten
 
     # played each other
-    @mutual_games = games_1.find[:all] do |g|
-       g.home_team_id == @teams[1].id or g.visit_team_id == @teams[1].id
+    @mutual_games = games_1.select do |g|
+       g.home_team_id == @teams[1].id or g.away_team_id == @teams[1].id
     end
 
     # team stats
@@ -48,5 +46,6 @@ class TeamStatsController < ApplicationController
 
     @columns = TeamAverage.stat_columns
   end
+
 
 end

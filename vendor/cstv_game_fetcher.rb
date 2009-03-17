@@ -1,9 +1,9 @@
 class CstvGameFetcher < GameFetcher
-  URL = 'www.cstv.com'
+  URL = 'www.cbssports.com'
 
   def get_game_list_html(game_date, url)
-    path = sprintf('/teams/m-baskbl/scoreboards/all/all-scoreboard-%s.html',
-          game_date.strftime("%m-%d-%Y"))
+    path = sprintf('/collegebasketball/scoreboard/div1/%s',
+          game_date.strftime("%Y%m%d"))
     Net::HTTP.start(URL) { | http | http.get(path).body }
   end
 

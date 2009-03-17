@@ -1,9 +1,10 @@
 class YahooGameFetcher < GameFetcher
-  URL = 'sports.yahoo.com'
+  URL = 'rivals.yahoo.com'
 
   def get_game_list_html(game_date, url)
-    path = sprintf('/ncaab/scoreboard?d=%s&c=all',
+    path = sprintf('/ncaa/basketball/scoreboard?d=%s&c=all',
                   game_date.strftime("%Y-%m-%d"))
+    puts "ARB {PATH} ::: #{path}"
     Net::HTTP.start(URL) do | http |
 #      http.timeout = 300
       http.read_timeout = 300
@@ -14,6 +15,8 @@ class YahooGameFetcher < GameFetcher
   def create_game_list(html)
     games = Array.new
     html.grep(/<a href=\"([^\"]*)?\"[^>]*>Box Score/m) { | match | games << $1 } unless (html.nil?)
+    games.each { |g| g.sub!(/^\/ncaab/, "/ncaa/basketball") }
+    games.each { |g| puts "ARB ::: #{g}" }
     return games
   end
 

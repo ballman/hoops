@@ -28,7 +28,7 @@ select tg.team_id as id,
   into team_averages
   from team_games tg, games g
  where tg.type = 'MasterTeamGame'
-   and g.played_on > '2007-11-1'
+   and g.played_on > '2008-11-1'
    and g.id = tg.game_id
  group by tg.team_id;
 
@@ -45,7 +45,7 @@ select  tg1.team_id,
        games g
  where tg1.game_id = g.id
    and tg2.game_id = g.id
-   and g.played_on > '2007-11-1'
+   and g.played_on > '2008-11-1'
    and tg1.id != tg2.id
    and tg1.type = 'MasterTeamGame'
    and tg1.type = tg2.type
@@ -97,7 +97,7 @@ select tg1.team_id as id,
   from games g, team_games tg1, team_games tg2
  where tg1.game_id = g.id
    and tg2.game_id = g.id
-   and g.played_on > '2007-11-1'
+   and g.played_on > '2008-11-1'
    and tg1.id != tg2.id
    and tg1.type = 'MasterTeamGame'
    and tg1.type = tg2.type
@@ -141,12 +141,12 @@ select pg.player_id as id,
    and tg.type = 'MasterTeamGame'
    and pg.team_game_id = tg.id
    and tg.game_id = g.id
-   and g.played_on > '2007-11-1'
+   and g.played_on > '2008-11-1'
  group by player_id;
 
 
 insert into player_averages
 select id, id, 0,
        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
-  from player
+  from players
  where id not in (select id from player_averages);

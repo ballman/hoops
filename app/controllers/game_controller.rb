@@ -19,6 +19,10 @@ class GameController < ApplicationController
     loader(SportsNetworkGameFetcher.new, SportsNetworkGameFetcher::URL)
   end
 
+  def yahoo_loader
+    loader(YahooGameFetcher.new, YahooGameFetcher::URL)
+  end
+
   def show
     @game = Game.find(params[:id])
     @type = Object.const_get(params[:type] || 'FoxTeamGame')
@@ -26,7 +30,8 @@ class GameController < ApplicationController
 
   def parse
     game_file = GameFile.find(:first,
-                              :conditions => ["source_id = ?", params[:id]])
+                              :conditions => ["source_id = ? and type = ?",
+                                              params[:id], params[:type]])
     _parse_game(game_file)
     redirect_to :action => 'list', :id => game_file.game_date
   end
@@ -129,8 +134,8 @@ class GameController < ApplicationController
   def _parse_game(game_file)
     parser = if (game_file.is_a?(FoxGameFile))
                GameParser.new(game_file.content, game_file.game_date)
-             elsif (game_file.is_a?(CstvGameFile))
-               CstvGameParser.new(game_file.content, game_file.game_date)
+             elsif (game_file.is_a?(YahooGameFile))
+               YahooGameParser.new(game_file.content, game_file.game_date)
              elsif (game_file.is_a?(SportsNetworkGameFile))
                SportsNetworkGameParser.new(game_file.content,
                                            game_file.game_date)

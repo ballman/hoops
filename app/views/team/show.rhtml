@@ -107,23 +107,23 @@
       </tr>
       <% wins = losses = conf_wins = conf_losses = wins_64 = loss_64 =0 -%>
       <% for game in @games -%>
-        <% conference = (game.visit_team.conference.id == game.home_team.conference.id) -%>
-	<% opponent = (game.home_team.id == @team.id ? game.visit_team : game.home_team) %>
+        <% conference = (game.away_team.conference.id == game.home_team.conference.id) -%>
+	<% opponent = (game.home_team.id == @team.id ? game.away_team : game.home_team) %>
 	<tr class="game<%= conference ? '' : 'non' -%>conference"> 
 	  <td> <%= date_link(game.played_on) -%> </td>
-	  <td> <%= team_link(game.visit_team) -%> @ <%= team_link(game.home_team) -%></td>
+	  <td> <%= team_link(game.away_team) -%> @ <%= team_link(game.home_team) -%></td>
 	  <% 
 	    tg = TeamGame.find_all_by_game_id_and_type(game.id, 'MasterTeamGame')
-            if tg[0].team_id == game.visit_team.id
-	      visit = tg[0]
+            if tg[0].team_id == game.away_team.id
+	      away = tg[0]
 	      home = tg[1]
 	    else
-	      visit = tg[1] 
+	      away = tg[1] 
 	      home = tg[0]
 	    end
 	  %> 
 	  <td>
-	 <%= game_link(visit.total_point.to_s + '-' + home.total_point.to_s, game) -%></td>
+	 <%= game_link(away.total_point.to_s + '-' + home.total_point.to_s, game) -%></td>
 	  <td> <%= (win = game.win?(@team)) ? 'W' : 'L' -%></td>
 	  <% win ? (wins += 1) : (losses += 1) -%>
 	  <% win ? (wins_64 += 1) : (loss_64 += 1) if opponent.in_64 -%>

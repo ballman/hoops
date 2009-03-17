@@ -2,8 +2,8 @@
     <br />
     <div id="breakdown">
       <% @games.each do | game | 
-        this_team_game = game.team_game_for_team_and_type(@team, FoxTeamGame)
-        opp_team_game = game.opp_team_game_for_team_and_type(@team, FoxTeamGame)
+        this_team_game = game.team_game_for_team_and_type(@team, MasterTeamGame)
+        opp_team_game = game.opp_team_game_for_team_and_type(@team, MasterTeamGame)
         opp = opp_team_game.team
       %>
       <table>

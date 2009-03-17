@@ -34,6 +34,8 @@ class TeamGame < ActiveRecord::Base
   end
 
   def different_stats(other)
+#    puts "#{self.team.name}   -> game: #{self.game.id}"
+    raise "bitches" if !other
     different = Array.new
     attribute_names.each do | attr |
       if (self.class == CstvTeamGame) && (attr =~ /rebound/)
@@ -42,7 +44,7 @@ class TeamGame < ActiveRecord::Base
         different << sprintf("[%s]  This: %s  other: %s", attr, self[attr], other[attr])
       end
     end
-    puts different
+#    puts different
     return different
   end
 

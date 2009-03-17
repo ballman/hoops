@@ -4,15 +4,15 @@ require 'diff/lcs/string'
 
 class Player < ActiveRecord::Base
   has_many :rosters
-  has_many :teams, :through => :rosters, :conditions => [ "roster.year = #{CURRENT_YEAR}" ]
+  has_many :teams, :through => :rosters, :conditions => [ "rosters.year = #{CURRENT_YEAR}" ]
 
   has_one :player_average
 
-  before_create :create_cstv_bs_name, :create_fox_bs_name, :create_sn_bs_name
+  before_create :create_cstv_bs_name, :create_fox_bs_name, :create_sn_bs_name,
+                :create_yahoo_bs_name
 
 
   #  validates_presence_of :number, :last_name, :first_name, :position
-  def self.table_name()  "player" end
 
   def year_string()
     case self.acad_year
@@ -52,6 +52,11 @@ class Player < ActiveRecord::Base
   private
   def closeness(string, other)
     string.downcase.lcs(other.downcase).length/string.length.to_f
+  end
+
+  def create_yahoo_bs_name
+    self.yahoo_bs_name = "#{self.first_name[0].chr}. #{self.last_name}"
+    self.yahoo_bs_name += " #{self.suffix_name}" if self.suffix_name != ''
   end
 
   def create_cstv_bs_name

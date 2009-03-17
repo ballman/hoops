@@ -15,7 +15,7 @@
       <th>Total</th>
     </tr>
 
-    <% [@game.visit_team_game_for_type(@type),
+    <% [@game.away_team_game_for_type(@type),
         @game.home_team_game_for_type(@type)].each do | team_game | %>
       <tr style="border-bottom: 1px solid black;">
         <td style="font-weight: bold; background: #<%= team_game.team.color_1 %>;">
@@ -35,10 +35,10 @@
     </center>
   <br />
 
-  <%= team_box(@game.visit_team_game_for_type(@type), true) %>
+  <%= team_box(@game.away_team_game_for_type(@type), true) %>
   Validation Errors:
   <ul>
-    <% @game.visit_team_game_for_type(@type).validate_stats.flatten.each do | valid_error | %>
+    <% @game.away_team_game_for_type(@type).validate_stats.flatten.each do | valid_error | %>
       <li><%= valid_error.to_s %></li>
     <%- end %>
   </ul>

@@ -1,17 +1,17 @@
 class Game < ActiveRecord::Base
   belongs_to :home_team, :class_name => "Team", :foreign_key => "home_team_id"
-  belongs_to :visit_team, :class_name => "Team", :foreign_key => "visit_team_id"
+  belongs_to :away_team, :class_name => "Team", :foreign_key => "away_team_id"
   has_many   :team_games
   has_many  :game_files
 
-  def self.find_or_create(played_on, visit_team, home_team)
+  def self.find_or_create(played_on, away_team, home_team)
     game = Game.find(:first,
-                     :conditions => [ 'played_on = ? and visit_team_id = ? and home_team_id = ?',
-                                      played_on, visit_team.id, home_team.id ])
+                     :conditions => [ 'played_on = ? and away_team_id = ? and home_team_id = ?',
+                                      played_on, away_team.id, home_team.id ])
     if (game.nil?)
       game = Game.new
       game.played_on = played_on
-      game.visit_team = visit_team
+      game.away_team = away_team
       game.home_team = home_team
       game.team_games = Array.new
     end
@@ -23,7 +23,7 @@ class Game < ActiveRecord::Base
     team_games[1]
   end
 
-  def visit_team_game
+  def away_team_game
     team_games[0]
   end
 
@@ -31,7 +31,7 @@ class Game < ActiveRecord::Base
     team_games[1] = team_game
   end
 
-  def visit_team_game=(team_game)
+  def away_team_game=(team_game)
     team_games[0] = team_game
   end
 
@@ -48,8 +48,8 @@ class Game < ActiveRecord::Base
     team_game_for_type(klass, home_team)
   end
 
-  def visit_team_game_for_type(klass)
-    team_game_for_type(klass, visit_team)
+  def away_team_game_for_type(klass)
+    team_game_for_type(klass, away_team)
   end
 
   def team_game_for_team_and_type(team, klass)
@@ -63,7 +63,7 @@ class Game < ActiveRecord::Base
   end
 
   def opp_team_game_for_team_and_type(team, klass)
-    opp_team = (team == home_team) ? visit_team : home_team
+    opp_team = (team == home_team) ? away_team : home_team
     return team_game_for_type(klass, opp_team)
   end
 
@@ -95,14 +95,14 @@ class Game < ActiveRecord::Base
 
   def win?(team, type=MasterTeamGame)
     home_team_game = home_team_game_for_type(type)
-    visit_team_game = visit_team_game_for_type(type)
+    away_team_game = away_team_game_for_type(type)
     if (team == home_team_game.team &&
-        home_team_game.total_point > visit_team_game.total_point)
+        home_team_game.total_point > away_team_game.total_point)
         return true
     end
 
-    if (team == visit_team_game.team  &&
-        home_team_game.total_point < visit_team_game.total_point)
+    if (team == away_team_game.team  &&
+        home_team_game.total_point < away_team_game.total_point)
         return true
     end
     return false

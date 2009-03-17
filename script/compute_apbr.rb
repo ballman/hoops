@@ -8,7 +8,7 @@ average_off_eff = TeamAverage.average(:ppp)
 puts "avereage_off_eff: #{average_off_eff}"
 games = Game.find(:all,
 :include => :team_games,
-:conditions => ['played_on > \'2007-11-1\' and team_games.type = \'MasterTeamGame\' and (home_team_id = 89 or visit_team_id = 89)'])
+:conditions => ['played_on > \'2008-11-1\' and team_games.type = \'MasterTeamGame\' and (home_team_id = 89 or away_team_id = 89)'])
 
 total_ppp = games.inject(0.0) do | ppp, game |
   tg = game.team_games.collect { |tg| tg }
@@ -37,7 +37,7 @@ puts "Number of games: #{games.length}"
 #teams.each do |team|
 #  games = Game.find(:all,
 #                     :include => :team_games,
-#                     :conditions => ['played_on > \'2007-11-1\' and team_games.type = \'MasterTeamGame\' and (home_team_id = ? or visit_team_id = ?)', team.id, team.id])
+#                     :conditions => ['played_on > \'2008-11-1\' and team_games.type = \'MasterTeamGame\' and (home_team_id = ? or visit_team_id = ?)', team.id, team.id])
 
 #  games.each do |game|
 #    my_game = (game.team_games[0].team_id == team.id) ? game.team_games[0] :

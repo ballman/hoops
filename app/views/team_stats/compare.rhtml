@@ -25,19 +25,19 @@ vs.
       <% for game in @common_foes -%>
         <tr class="game">
           <td> <%= date_link(game.played_on) -%> </td>
-          <td> <%= team_link(game.visit_team) -%> @ <%= team_link(game.home_team) -%></td>
+          <td> <%= team_link(game.away_team) -%> @ <%= team_link(game.home_team) -%></td>
           <%
-            tg = TeamGame.find_all_by_game_id_and_type(game.id, 'FoxTeamGame')
-            if tg[0].team_id == game.visit_team.id
-              visit = tg[0]
+            tg = TeamGame.find_all_by_game_id_and_type(game.id, 'MasterTeamGame')
+            if tg[0].team_id == game.away_team.id
+              away = tg[0]
               home = tg[1]
             else
-              visit = tg[1]
+              away = tg[1]
               home = tg[0]
             end
           %>
           <td>
-         <%= game_link(visit.total_point.to_s + '-' + home.total_point.to_s, game) -%></td>
+         <%= game_link(away.total_point.to_s + '-' + home.total_point.to_s, game) -%></td>
           <td></td>
         </tr>
       <% end -%>
@@ -59,19 +59,19 @@ vs.
       <% for game in @mutual_games -%>
         <tr class="game">
           <td> <%= date_link(game.played_on) -%> </td>
-          <td> <%= team_link(game.visit_team) -%> @ <%= team_link(game.home_team) -%></td>
+          <td> <%= team_link(game.away_team) -%> @ <%= team_link(game.home_team) -%></td>
           <%
-            tg = TeamGame.find_all_by_game_id_and_type(game.id, 'FoxTeamGame')
-            if tg[0].team_id == game.visit_team.id
-              visit = tg[0]
+            tg = TeamGame.find_all_by_game_id_and_type(game.id, 'MasterTeamGame')
+            if tg[0].team_id == game.away_team.id
+              away = tg[0]
               home = tg[1]
             else
-              visit = tg[1]
+              away = tg[1]
               home = tg[0]
             end
           %>
           <td>
-         <%= game_link(visit.total_point.to_s + '-' + home.total_point.to_s, game) -%></td>
+         <%= game_link(away.total_point.to_s + '-' + home.total_point.to_s, game) -%></td>
           <td></td>
         </tr>
       <% end -%>

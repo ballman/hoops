@@ -11,23 +11,26 @@ class YahooGameParser
     teams = get_teams
 
     @game = Game.find_or_create(@played_on, teams[0][1], teams[1][1])
-    @game.visit_team_game = visit_team_game(@game.visit_team)
+    @game.away_team_game = away_team_game(@game.away_team)
     @game.home_team_game = home_team_game(@game.home_team)
-    @game.visit_team_game.team_name = teams[0][0]
+    @game.away_team_game.team_name = teams[0][0]
     @game.home_team_game.team_name = teams[1][0]
 
-    @game.visit_team_game.player_games = build_player_games(0)
+    @game.away_team_game.player_games = build_player_games(0)
     @game.home_team_game.player_games = build_player_games(1)
 
-    @game.visit_team_game.map_player_games
+    @game.away_team_game.map_player_games
     @game.home_team_game.map_player_games
     @game
   end
 
   def get_teams
     (@doc/"td.yspscores/b/a").collect do | team_link |
-      [team_link.inner_text,
-      team_from_link(team_link.get_attribute('href'))]
+      team = team_from_link(team_link.get_attribute('href'))
+      raise ArgumentError, "Unable to find team: #{team_link.inner_text}" if (team.nil?)
+
+      [team_link.inner_text, team]
+#      team_from_link(team_link.get_attribute('href'))]
     end
   end
 
@@ -64,31 +67,31 @@ class YahooGameParser
                   home_team_turnover, home_team_rebound)
   end
 
-  def visit_scores_by_period
+  def away_scores_by_period
     all_scores = scores_by_period
     all_scores[0 ... all_scores.length/2]
   end
 
-  def visit_final_score
+  def away_final_score
     final_scores[0]
   end
 
-  def visit_total_line
+  def away_total_line
     team_total_lines(0)
   end
 
-  def visit_team_rebound
+  def away_team_rebound
     team_rebounds(0)
   end
 
-  def visit_team_turnover
+  def away_team_turnover
     0
   end
 
-  def visit_team_game(team)
-    new_team_game(team, visit_total_line,
-                  visit_scores_by_period, visit_final_score,
-                  visit_team_turnover, visit_team_rebound)
+  def away_team_game(team)
+    new_team_game(team, away_total_line,
+                  away_scores_by_period, away_final_score,
+                  away_team_turnover, away_team_rebound)
   end
 
   def new_team_game(team, team_line, scores, total_score, team_turnover, team_rebound)
@@ -197,6 +200,6 @@ class YahooGameParser
   def player_stats(index)
     t = team_score_tables[index]
     p = (t/"tr").select { | tr | tr.get_attribute('class') =~ /ysprow[12]/ }
-    p.collect { |r| (r/"td").collect { |td| td.inner_text.gsub(/&nbsp;/,'')}}
+    p.collect { |r| (r/"td").collect { |td| td.inner_text.gsub(/\? */,'')}}
   end
 end

@@ -2,7 +2,7 @@
   <%= javascript_include_tag 'edit_master' %>
 <% end -%>
 <div id='editMaster'>
-  <%= master_edit_box(@game.visit_team_game_for_type(MasterTeamGame)) %>
+  <%= master_edit_box(@game.away_team_game_for_type(MasterTeamGame)) %>
   <br />
   <br />
 
@@ -10,7 +10,7 @@
 </div>
 <br />
 <script type="text/javascript">
-  <%= edit_scripts(@game.get_number_of_overtimes, @game.visit_team_game_for_type(MasterTeamGame)) %>
+  <%= edit_scripts(@game.get_number_of_overtimes, @game.away_team_game_for_type(MasterTeamGame)) %>
 
   <%= edit_scripts(@game.get_number_of_overtimes, @game.home_team_game_for_type(MasterTeamGame)) %>
 </script>
