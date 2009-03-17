@@ -25,10 +25,10 @@ over' => 't/o'}
     end
 
     # common foes
-    games_1 = [ Game.find_all_by_home_team_id(@teams[0].id),
-                Game.find_all_by_away_team_id(@teams[0].id) ].flatten
-    games_2 = [ Game.find_all_by_home_team_id(@teams[1].id),
-                Game.find_all_by_away_team_id(@teams[1].id) ].flatten
+    games_1 = [ Game.current.find_all_by_home_team_id(@teams[0].id),
+                Game.current.find_all_by_away_team_id(@teams[0].id) ].flatten
+    games_2 = [ Game.current.find_all_by_home_team_id(@teams[1].id),
+                Game.current.find_all_by_away_team_id(@teams[1].id) ].flatten
 
     common_ids = games_1.collect {|g| (g.home_team_id == @teams[0].id) ? g.away_team_id : g.home_team_id } & games_2.collect {|g| (g.home_team_id == @teams[1].id) ? g.away_team_id : g.home_team_id }
 

@@ -12,15 +12,15 @@ class TeamController < ApplicationController
     @rank = TeamRanks.find_by_team_id(@team.id)
     @opp_rank = TeamFoeRanks.find_by_team_id(@team.id)
     @diff_rank = TeamDiffRanks.find_by_team_id(@team.id)
-    @games = Game.find(:all,
-:conditions => ['(home_team_id = ? or away_team_id = ?) and played_on > ?', @team.id, @team.id, Date.new(2008, 11, 1)],
+    @games = Game.current.find(:all,
+:conditions => ['(home_team_id = ? or away_team_id = ?)', @team.id, @team.id],
     :order => :played_on )
   end
 
   def breakdown
     @team = Team.find(params[:id])
-    @games = Game.find(:all,
-    :conditions => ['(home_team_id = ? or away_team_id = ?) and played_on > ?', @team.id, @team.id, Date.new(2008,11,1)],
+    @games = Game.current.find(:all,
+    :conditions => ['(home_team_id = ? or away_team_id = ?)', @team.id, @team.id],
     :order => :played_on )
   end
 
