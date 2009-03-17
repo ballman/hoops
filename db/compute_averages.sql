@@ -37,10 +37,11 @@ alter table team_averages add column to_rate double precision;
 alter table team_averages add column poss double precision;
 
 select  tg1.team_id,
-        cast(sum(tg1.offense_rebound) as double precision) / (cast(sum(tg1.offense_rebound) as double precision) + cast(sum(tg2.total_rebound) as double precision) - cast(sum(tg2.offense_rebound) as double precision)) as orp,
-        cast(sum(tg1.fga) as double precision) - (cast(sum(tg1.offense_rebound) as double precision) / (cast(sum(tg1.offense_rebound) as double precision) + cast(sum(tg2.total_rebound) as double precision) - cast(sum(tg2.offense_rebound) as double precision))) * (cast(sum(tg1.fga) as double precision) - cast(sum(tg1.fgm) as double precision)) * 1.07 + cast(sum(tg1.turnover) as double precision) + 0.4 * cast(sum(tg1.fta) as double precision) as poss
-  into temporary orp_table
-  from team_games tg1,
+    sum(cast(tg1.offense_rebound as double precision) / (cast(tg1.offense_rebound as double precision) + cast(tg2.total_rebound as double precision) - cast(tg2.offense_rebound as double precision))) as orp,
+     sum(cast(tg1.fga as double precision) - (cast(tg1.offense_rebound as double precision) / (cast(tg1.offense_rebound as double precision) + cast(tg2.total_rebound as double precision) - cast(tg2.offense_rebound as double precision)) * 1.07 * (tg1.fga - tg1.fgm)) + cast(tg1.turnover as double precision) + 0.4 * cast(tg1.fta as double precision)) as poss,
+    sum(cast(tg1.total_point as double precision) / (cast(tg1.fga as double precision) - (cast(tg1.offense_rebound as double precision) / (cast(tg1.offense_rebound as double precision) + cast(tg2.total_rebound as double precision) - cast(tg2.offense_rebound as double precision)) * 1.07 * (tg1.fga - tg1.fgm)) + cast(tg1.turnover as double precision) + 0.4 * cast(tg1.fta as double precision))) as ppp
+ into temporary table orp_table
+from team_games tg1,
        team_games tg2,
        games g
  where tg1.game_id = g.id
@@ -52,14 +53,14 @@ select  tg1.team_id,
  group by tg1.team_id;
 
 update team_averages
-   set orp = orp.orp,
-       poss = orp.poss
+   set orp = orp.orp/games,
+       poss = orp.poss,
+       ppp = orp.ppp/games
   from orp_table orp
  where id = orp.team_id;
 
 update team_averages
-   set to_rate =  total_to / poss,
-       ppp = ppp/poss;
+   set to_rate =  total_to / poss;
 
 update team_averages
    set poss = poss / games;
@@ -79,8 +80,9 @@ select tg1.team_id as id,
         cast(sum(tg2.ftm) as double precision)/cast(sum(tg2.fta) as double precision) as ftp,
         (cast(sum(tg2.fgm) as double precision) + 0.5 * cast(sum(tg2.tpm) as double precision))/cast(sum(tg2.fga) as double precision) as eff_fgp,
         avg(tg2.offense_rebound) as  offense_rebound,
-        cast(sum(tg2.offense_rebound) as double precision) / (cast(sum(tg2.offense_rebound) as double precision) + cast(sum(tg1.total_rebound) as double precision) - cast(sum(tg1.offense_rebound) as double precision)) as orp,
-        cast(sum(tg2.fga) as double precision) - (cast(sum(tg2.offense_rebound) as double precision) / (cast(sum(tg2.offense_rebound) as double precision) + cast(sum(tg1.total_rebound) as double precision) - cast(sum(tg1.offense_rebound) as double precision))) * (cast(sum(tg2.fga) as double precision) - cast(sum(tg2.fgm) as double precision)) * 1.07 + cast(sum(tg2.turnover) as double precision) + 0.4 * cast(sum(tg2.fta) as double precision) as poss,
+         sum(cast(tg2.offense_rebound as double precision) / (cast(tg2.offense_rebound as double precision) + cast(tg1.total_rebound as double precision) - cast(tg1.offense_rebound as double precision))) as orp,
+        sum(cast(tg2.fga as double precision) - (cast(tg2.offense_rebound as double precision) / (cast(tg2.offense_rebound as double precision) + cast(tg1.total_rebound as double precision) - cast(tg1.offense_rebound as double precision))) * (cast(tg2.fga as double precision) - cast(tg2.fgm as double precision)) * 1.07 + cast(tg2.turnover as double precision) + 0.4 * cast(tg2.fta as double precision)) as poss,
+        sum(tg2.total_point / (cast(tg2.fga as double precision) - (cast(tg2.offense_rebound as double precision) / (cast(tg2.offense_rebound as double precision) + cast(tg1.total_rebound as double precision) - cast(tg1.offense_rebound as double precision))) * (cast(tg2.fga as double precision) - cast(tg2.fgm as double precision)) * 1.07 + cast(tg2.turnover as double precision) + 0.4 * cast(tg2.fta as double precision))) as ppp,
         cast(sum(tg2.turnover) as double precision) as total_to,
         avg(tg2.total_rebound) as total_rebound,
         avg(tg2.assist) as assist,
@@ -91,7 +93,6 @@ select tg1.team_id as id,
         avg(tg2.half1_point) as half1_point,
         avg(tg2.half2_point) as half2_point,
         avg(tg2.total_point) as total_point,
-        cast(sum(tg2.total_point) as double precision) as ppp,
         cast(sum(tg2.fta) as double precision) / cast(sum(tg2.fga) as double precision) as get_ft
   into team_foe_averages
   from games g, team_games tg1, team_games tg2
@@ -106,11 +107,11 @@ select tg1.team_id as id,
 alter table team_foe_averages add column to_rate double precision;
 
 update team_foe_averages
-   set to_rate = total_to/poss,
-       ppp = ppp/poss;
+   set to_rate = total_to/poss;
 
 update team_foe_averages
-   set poss = poss/games;
+   set poss = poss/games,
+       ppp = ppp/games;
 
 drop table player_averages;
 select pg.player_id as id,
