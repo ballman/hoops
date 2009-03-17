@@ -72240,3 +72240,185 @@ Processing TeamStatsController#compare (for 192.168.18.35 at 2009-03-16 21:52:42
 Rendering template within layouts/application
 Rendering team_stats/compare
 Completed in 142ms (View: 74, DB: 28) | 200 OK [http://lastdog/team_stats/compare]
+
+
+Processing TeamStatsController#compare (for 192.168.18.35 at 2009-03-16 22:30:02) [GET]
+Rendering template within layouts/application
+Rendering team_stats/compare
+Completed in 505ms (View: 386, DB: 34) | 200 OK [http://lastdog/team_stats/compare]
+
+
+Processing TeamStatsController#list (for 192.168.18.35 at 2009-03-16 22:30:11) [GET]
+Rendering template within layouts/application
+Rendering team_stats/list
+Completed in 702ms (View: 571, DB: 12) | 200 OK [http://lastdog/team_stats/list]
+
+
+Processing TeamStatsController#list (for 192.168.18.35 at 2009-03-16 22:30:38) [GET]
+Rendering template within layouts/application
+Rendering team_stats/list
+
+
+ActionView::TemplateError (undefined method `[]' for nil:NilClass) on line #4 of app/views/team_stats/list.rhtml:
+1: <h1>Team <%= @foe == '1' ? 'Opponent' : @foe == 'diff' ? 'Difference' : '' %> statistics overview</h1>
+2: 
+3: <table class="sortable" id="statidunique">
+4:   <%= stat_header(@name_map) %>
+5: <% @team_stats.each do |s| -%>
+6: <%   team = @teams[s.team_id] -%>
+7:   <tr class="<%= team.in_64 ? 'in64' : '' %>stat">
+
+    app/helpers/application_helper.rb:24:in `stat_header'
+    app/helpers/application_helper.rb:23:in `each'
+    app/helpers/application_helper.rb:23:in `stat_header'
+    app/views/team_stats/list.rhtml:4
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:367:in `_render_with_layout'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:254:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:896:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:868:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1248:in `default_render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1254:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `passenger_orig_perform_action'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `passenger_orig_perform_action'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/railz/request_handler.rb:53:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/railz/request_handler.rb:38:in `process_request'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_request_handler.rb:197:in `main_loop'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/railz/application_spawner.rb:340:in `start_request_handler'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/railz/application_spawner.rb:298:in `handle_spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/utils.rb:176:in `safe_fork'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/railz/application_spawner.rb:296:in `handle_spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:332:in `__send__'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:332:in `main_loop'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:182:in `start_synchronously'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:149:in `start'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/railz/application_spawner.rb:192:in `start'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/spawn_manager.rb:260:in `spawn_rails_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server_collection.rb:121:in `lookup_or_add'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/spawn_manager.rb:254:in `spawn_rails_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server_collection.rb:75:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server_collection.rb:74:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/spawn_manager.rb:253:in `spawn_rails_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/spawn_manager.rb:148:in `spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/spawn_manager.rb:285:in `handle_spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:332:in `__send__'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:332:in `main_loop'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:182:in `start_synchronously'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/bin/passenger-spawn-server:50
+
+Rendering /home/ballman/project/hoops/public/500.html (500 Internal Server Error)
+
+
+Processing TeamStatsController#list (for 192.168.18.35 at 2009-03-16 22:31:06) [GET]
+Rendering template within layouts/application
+Rendering team_stats/list
+
+
+ActionView::TemplateError (undefined method `[]' for nil:NilClass) on line #4 of app/views/team_stats/list.rhtml:
+1: <h1>Team <%= @foe == '1' ? 'Opponent' : @foe == 'diff' ? 'Difference' : '' %> statistics overview</h1>
+2: 
+3: <table class="sortable" id="statidunique">
+4:   <%= stat_header(@name_map) %>
+5: <% @team_stats.each do |s| -%>
+6: <%   team = @teams[s.team_id] -%>
+7:   <tr class="<%= team.in_64 ? 'in64' : '' %>stat">
+
+    app/helpers/application_helper.rb:24:in `stat_header'
+    app/helpers/application_helper.rb:23:in `each'
+    app/helpers/application_helper.rb:23:in `stat_header'
+    app/views/team_stats/list.rhtml:4
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:367:in `_render_with_layout'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:254:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:896:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:868:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1248:in `default_render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1254:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `passenger_orig_perform_action'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `passenger_orig_perform_action'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/railz/request_handler.rb:53:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/railz/request_handler.rb:38:in `process_request'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_request_handler.rb:197:in `main_loop'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/railz/application_spawner.rb:340:in `start_request_handler'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/railz/application_spawner.rb:298:in `handle_spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/utils.rb:176:in `safe_fork'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/railz/application_spawner.rb:296:in `handle_spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:332:in `__send__'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:332:in `main_loop'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:182:in `start_synchronously'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:149:in `start'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/railz/application_spawner.rb:192:in `start'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/spawn_manager.rb:260:in `spawn_rails_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server_collection.rb:121:in `lookup_or_add'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/spawn_manager.rb:254:in `spawn_rails_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server_collection.rb:75:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server_collection.rb:74:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/spawn_manager.rb:253:in `spawn_rails_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/spawn_manager.rb:148:in `spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/spawn_manager.rb:285:in `handle_spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:332:in `__send__'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:332:in `main_loop'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/lib/phusion_passenger/abstract_server.rb:182:in `start_synchronously'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.1.2/bin/passenger-spawn-server:50
+
+Rendering /home/ballman/project/hoops/public/500.html (500 Internal Server Error)

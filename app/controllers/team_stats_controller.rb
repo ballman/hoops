@@ -12,6 +12,9 @@
         @team_stats = TeamAverage.find(:all).sort_by {|t| @teams[t.id].name }
     end
     @columns = TeamAverage.stat_columns
+    @name_map = { 'offense_rebound' => 'oreb', 'total_rebound' => 'treb', 'turn
+over' => 't/o'}
+
   end
 
   def compare
