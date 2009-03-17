@@ -1,4 +1,17 @@
 module TeamHelper
+  def draw_graph(params)
+    %Q#
+     <script type="text/javascript">
+          var g = new Bluff.Line('offensive_efficiency', 400);
+          g.title = 'Efficiency';
+          g.data('Offensive', [1, 2, 3, 4, 4, 3]);
+          g.data('Defensive', [5, 3, 4, 2, 1, 3, 5, 1, 2, 4 ]);
+          g.labels = {0: '11/1', 1:'11/2', 2:'11/3', 3:'11/4'};
+          g.draw();
+    </script>
+    #
+  end
+  
   def team_breakdown_row(team_game)
     return_string = "<tr><td class='team' style='width: 17em;'>#{team_link(team_game.team)}</td>"
     return_string += breakdown_stats.collect do | stat |
