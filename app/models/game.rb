@@ -2,8 +2,10 @@ class Game < ActiveRecord::Base
   belongs_to :home_team, :class_name => "Team", :foreign_key => "home_team_id"
   belongs_to :away_team, :class_name => "Team", :foreign_key => "away_team_id"
   has_many   :team_games
-  has_many  :game_files
+  has_many   :game_files
 
+  named_scope :current, lambda { { :conditions => [ 'played_on > ?', Date.new(2008, 11, 1)] }}
+  
   def self.find_or_create(played_on, away_team, home_team)
     game = Game.find(:first,
                      :conditions => [ 'played_on = ? and away_team_id = ? and home_team_id = ?',
