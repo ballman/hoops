@@ -4,17 +4,15 @@
     @teams = Team.find(:all).inject({}) {|h,t| h[t.id] = t; h}
     case @foe
       when '1'
-        @team_stats = TeamFoeAverage.find(:all).sort_by {|t| @teams[t.id].name }
+        @team_stats = Team.all.collect(&:opp_stats).compact.sort_by { |s| s.team.name }
       when 'diff'
-        @team_stats = TeamAverage.find(:all).sort_by {|t| @teams[t.id].name }
-        @foe_stats = TeamFoeAverage.find(:all).sort_by {|t| @teams[t.id].name }.inject({}) {|h,s| h[s.id] = s; h}
+        @team_stats = Team.all.collect(&:stats).compact.sort_by { |s| s.team.name }
+        @foe_stats = Team.all.collect(&:opp_stats).compact.sort_by { |s| s.team.name }.inject({}) {|h,s| h[s.id] = s; h}
       else
-        @team_stats = TeamAverage.find(:all).sort_by {|t| @teams[t.id].name }
+        @team_stats = Team.all.collect(&:stats).compact.sort_by { |s| s.team.name }
     end
     @columns = TeamAverage.stat_columns
-    @name_map = { 'offense_rebound' => 'oreb', 'total_rebound' => 'treb', 'turn
-over' => 't/o'}
-
+    @name_map = { 'offense_rebound' => 'oreb', 'total_rebound' => 'treb', 'turnover' => 't/o'}
   end
 
   def compare
