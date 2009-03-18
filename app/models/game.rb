@@ -2,7 +2,8 @@ class Game < ActiveRecord::Base
   belongs_to :home_team, :class_name => "Team", :foreign_key => "home_team_id"
   belongs_to :away_team, :class_name => "Team", :foreign_key => "away_team_id"
   has_many   :team_games
-  has_many   :game_files
+  has_many   :master_team_games
+  has_many  :game_files
 
   named_scope :current, lambda { { :conditions => [ 'played_on > ?', Date.new(2008, 11, 1)] }}
   

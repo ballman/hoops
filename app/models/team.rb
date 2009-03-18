@@ -11,7 +11,8 @@ class Team < ActiveRecord::Base
   has_one :stats, :class_name => 'TeamAverage', :order => 'as_of DESC'
   has_one :opp_stats, :class_name => 'TeamFoeAverage', :order => 'as_of DESC'
 
-
+  has_many :team_games, :conditions => ["type = 'MasterTeamGame'" ]
+  has_many :games, :through => :team_games
   def <=>(other)
       return self.name <=> other.name
   end
