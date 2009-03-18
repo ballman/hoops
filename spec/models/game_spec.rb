@@ -13,4 +13,58 @@ describe Game do
       end
     end
   end
+
+  before :each do
+    @team = Team.generate!
+    @other = Team.generate!
+    @game = Game.generate!
+  end
+  
+  it 'should be able to identify a home game for a team' do
+    @game.should respond_to(:home?)
+  end
+  
+  describe 'home game for a team' do
+    it 'should accept a team' do
+      lambda { @game.home?(@team) }.should_not raise_error(ArgumentError)
+    end
+    
+    it 'should require a team' do
+      lambda { @game.home? }.should raise_error(ArgumentError)
+    end
+    
+    it 'should return true if the game is a home game for the team' do
+      @game.home_team = @team
+      @game.home?(@team).should be_true
+    end
+    
+    it 'should return false if the game is an away game for the team' do
+      @game.away_team = @team
+      @game.home?(@team).should be_false
+    end
+  end
+  
+  it 'should be able to identify an away game for a team' do
+    @game.should respond_to(:away?)
+  end
+  
+  describe 'away game for a team' do
+    it 'should accept a team' do
+      lambda { @game.away?(@team) }.should_not raise_error(ArgumentError)
+    end
+    
+    it 'should require a team' do
+      lambda { @game.away? }.should raise_error(ArgumentError)
+    end
+    
+    it 'should return true if the game is an away game for the team' do
+      @game.away_team = @team
+      @game.away?(@team).should be_true
+    end
+    
+    it 'should return false if the game is a home game for the team' do
+      @game.home_team = @team
+      @game.away?(@team).should be_false
+    end
+  end
 end

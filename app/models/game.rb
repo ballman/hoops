@@ -22,6 +22,14 @@ class Game < ActiveRecord::Base
     return game
   end
 
+  def home?(team)
+    home_team == team
+  end
+  
+  def away?(team)
+    away_team == team
+  end
+  
   def home_team_game
     team_games[1]
   end

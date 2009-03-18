@@ -106,8 +106,10 @@
 	<th>Record</th> 
 	<th>Conf.</th> 
 	<th>64</th> 
+	<th>home</th> 
+	<th>away</th> 
       </tr>
-      <% wins = losses = conf_wins = conf_losses = wins_64 = loss_64 =0 -%>
+      <% wins = losses = conf_wins = conf_losses = wins_64 = loss_64 = home_wins = home_losses = away_wins = away_losses = 0 -%>
       <% for game in @games -%>
         <% conference = (game.away_team.conference.id == game.home_team.conference.id) -%>
 	<% opponent = (game.home_team.id == @team.id ? game.away_team : game.home_team) %>
@@ -130,9 +132,13 @@
 	  <% win ? (wins += 1) : (losses += 1) -%>
 	  <% win ? (wins_64 += 1) : (loss_64 += 1) if opponent.in_64 -%>
 	  <% win ? (conf_wins += 1) : (conf_losses += 1) if conference -%>
+          <% win ? (game.away?(@team) ? (away_wins += 1) : (home_wins += 1) ) : 
+                   (game.away?(@team) ? (away_losses +=1): (home_losses += 1)) -%>
 	  <td> <%= wins -%>-<%= losses -%></td>
 	  <td> <%= conf_wins -%>-<%= conf_losses -%></td>
 	  <td> <%= wins_64 -%>-<%= loss_64 -%></td>
+          <td><%= home_wins -%>-<%= home_losses -%></td>
+          <td><%= away_wins -%>-<%= away_losses -%></td>
 	</tr>
       <% end -%>
       </table>
