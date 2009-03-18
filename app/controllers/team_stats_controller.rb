@@ -32,7 +32,16 @@
 
     common_ids = games_1.collect {|g| (g.home_team_id == @teams[0].id) ? g.away_team_id : g.home_team_id } & games_2.collect {|g| (g.home_team_id == @teams[1].id) ? g.away_team_id : g.home_team_id }
 
-    @common_foes = [ games_1.select {|g| common_ids.include?(g.home_team_id) or common_ids.include?(g.away_team_id) } ,games_2.select {|g| common_ids.include?(g.home_team_id) or common_ids.include?(g.away_team_id) } ].flatten.sort_by(&:played_on)
+    @common_foes = [ games_1.select {|g| common_ids.include?(g.home_team_id) or common_ids.include?(g.away_team_id) } ,games_2.select {|g| common_ids.include?(g.home_team_id) or
+                       common_ids.include?(g.away_team_id) } ].flatten.sort_by(&:played_on)
+
+    @grouped_common_foes = @common_foes.inject({ }) do |h,g|
+      name = ((g.home_team.name == @teams[1].name or g.home_team.name == @teams[0].name) ? g.away_team.name : g.home_team.name)
+
+      h[name] ||= []
+      h[name] << g
+      h
+    end
 
     # played each other
     @mutual_games = games_1.select {|g|

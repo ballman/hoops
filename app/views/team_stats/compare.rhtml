@@ -26,7 +26,7 @@ vs.
    </tr>
  </table>
 
-<% if @common_foes.length > 0 -%>
+<% unless @grouped_common_foes.keys.empty? -%>
 <h4>Common Foes</h4>
     <div>
       <table class="gameList sortable" id="game_unique_id" width="90%">
@@ -35,7 +35,8 @@ vs.
         <th>Game</th>
         <th>Score</th>
       </tr>
-      <% for game in @common_foes -%>
+      <% @grouped_common_foes.keys.sort.each do |name| -%>
+        <% for game in @grouped_common_foes[name] -%>
         <tr class="game">
           <td> <%= date_link(game.played_on) -%> </td>
           <td> <%= team_link(game.away_team) -%> @ <%= team_link(game.home_team) -%></td>
@@ -53,6 +54,8 @@ vs.
          <%= game_link(away.total_point.to_s + '-' + home.total_point.to_s, game) -%></td>
           <td></td>
         </tr>
+        <% end -%>
+      <tr><td>&nbsp;</td></tr>
       <% end -%>
       </table>
     </div>
