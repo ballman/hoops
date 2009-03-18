@@ -1,15 +1,13 @@
 module TeamHelper
   def team_stats_graph(team, title, column, dom_id)
+    stats = Team.all.collect(&:stats).compact.collect(&column)
     draw_stats_graph(dom_id, title,
                      { team.name => team.team_averages.collect(&column).zip(team.team_averages.collect(&:as_of)),
                        '* Opponent' => team.team_foe_averages.collect(&column).zip(team.team_foe_averages.collect(&:as_of).compact.collect {|d| d.strftime("%m/%d") }) },
                      {
-                       :minimum_value => "%0.3f" % [ TeamAverage.minimum(column),
-                                           TeamFoeAverage.minimum(column)].min,
-                       :maximum_value => "%0.3f" % [ TeamAverage.maximum(column),
-                                           TeamFoeAverage.maximum(column)].max,
+                       :minimum_value => "%0.3f" % (stats.min || 0), 
+                       :maximum_value => "%0.3f" % (stats.max || 0)
                      }) 
-
   end
   
   def draw_stats_graph(dom_id, title, series, options = { })
