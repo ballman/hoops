@@ -3,7 +3,7 @@
     <canvas id="offensive_efficiency"></canvas>
     <%= draw_stats_graph('Efficiency', {
       @team.name => @team.team_averages.collect(&:ppp).zip(@team.team_averages.collect(&:as_of)),
-      '* Opponent' => @team.team_foe_averages.collect(&:ppp).zip(@team.team_foe_averages.collect(&:as_of)) 
+      '* Opponent' => @team.team_foe_averages.collect(&:ppp).zip(@team.team_foe_averages.collect(&:as_of).compact.collect {|d| d.strftime("%m/%d") }) 
       })
     %>
     <table class="ranktable">
