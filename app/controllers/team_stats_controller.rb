@@ -35,9 +35,9 @@
     @common_foes = [ games_1.select {|g| common_ids.include?(g.home_team_id) or common_ids.include?(g.away_team_id) } ,games_2.select {|g| common_ids.include?(g.home_team_id) or common_ids.include?(g.away_team_id) } ].flatten.sort_by(&:played_on)
 
     # played each other
-    @mutual_games = games_1.select do |g|
+    @mutual_games = games_1.select {|g|
        g.home_team_id == @teams[1].id or g.away_team_id == @teams[1].id
-    end
+    }.sort_by(&:played_on)
 
     # team stats
     @tourney_teams = Team.find_all_by_in_64(true).sort_by {|t| t.name }
