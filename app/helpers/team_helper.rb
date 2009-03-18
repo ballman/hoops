@@ -1,6 +1,6 @@
 module TeamHelper
-  def team_stats_graph(team, title, column)
-    draw_stats_graph(title,
+  def team_stats_graph(team, title, column, dom_id)
+    draw_stats_graph(dom_id, title,
                      { team.name => team.team_averages.collect(&column).zip(team.team_averages.collect(&:as_of)),
                        '* Opponent' => team.team_foe_averages.collect(&column).zip(team.team_foe_averages.collect(&:as_of).compact.collect {|d| d.strftime("%m/%d") }) },
                      {
@@ -12,10 +12,10 @@ module TeamHelper
 
   end
   
-  def draw_stats_graph(title, series, options = { })
+  def draw_stats_graph(dom_id, title, series, options = { })
     # create script with Bluff graph initialization
     result = %Q[<script type="text/javascript">
-          var g = new Bluff.Line('offensive_efficiency', 400);
+          var g = new Bluff.Line('#{dom_id}', 400);
           g.title = '#{title}';\n]
 
     # set data series

@@ -1,7 +1,7 @@
 <%= render(:partial => 'team_header', :locals => { :team => @team }) -%>
     <br />
-    <canvas id="offensive_efficiency"></canvas>
-    <%= team_stats_graph(@team, 'Efficiency', :ppp) %>
+    <canvas id="efficiency"></canvas>
+    <%= team_stats_graph(@team, 'Efficiency', :ppp, 'efficiency') %>
     <table class="ranktable">
     <%= stat_header %>
     <tr>

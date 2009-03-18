@@ -1,4 +1,6 @@
  class TeamStatsController < ApplicationController
+  helper :team
+
   def list
     @foe = params[:foe]
     @teams = Team.find(:all).inject({}) {|h,t| h[t.id] = t; h}

@@ -17,7 +17,7 @@ describe 'team/show' do
   it 'should include a region for an offensive efficiency graph' do
     template.stubs(:team_stats_graph)
     do_render
-    response.should have_tag('canvas[id=?]', 'offensive_efficiency')
+    response.should have_tag('canvas[id=?]', 'efficiency')
   end
 
   it 'should generate an offensive efficiency graph' do

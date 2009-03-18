@@ -13,6 +13,19 @@ vs.
 <%= submit_tag 'Compare' %>
 <% end %>
 
+  <table>
+    <tr>
+      <td>
+        <canvas id="team1"></canvas>
+        <%= team_stats_graph(@teams[0], 'Efficiency', :ppp, 'team1') %>
+      </td>
+      <td>
+       <canvas id="team2"></canvas>
+       <%= team_stats_graph(@teams[1], 'Efficiency', :ppp, 'team2') %>
+     </td>
+   </tr>
+ </table>
+
 <% if @common_foes.length > 0 -%>
 <h4>Common Foes</h4>
     <div>
