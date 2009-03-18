@@ -15,8 +15,8 @@ teams = Team.find(:all).inject({}) {|h,t| h[t.id] = t; h }
 [false, true].each do |foe|
   puts "Computing #{foe ? 'foe' : 'normal'} rankings..."
   puts "Reading team statistics..."
-  ave = (foe ? TeamFoeAverage : TeamAverage).find(:all)
 
+  ave = (foe ? Team.all.collect(&:opp_stats) : Team.all.collect(&:stats)).compact
   puts "Initializing rankings store..."
   grid = teams.keys.inject({}) {|h,t| h[t] = {}; h } # grid of ranks, by team_id
 

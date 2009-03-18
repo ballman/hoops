@@ -12,9 +12,10 @@ puts "Reading team list..."
 @teams = Team.find(:all).inject({}) {|h,t| h[t.id] = t; h}
 
 puts "Reading team statistics..."
-@team_stats = TeamAverage.find(:all).sort_by {|t| @teams[t.id].name }
-@foe_stats = TeamFoeAverage.find(:all).sort_by {|t| @teams[t.id].name }.inject({}) {|h,s| h[s.id] = s; h}
-
+# @team_stats = TeamAverage.find(:all).sort_by {|t| @teams[t.id].name }
+@team_stats = Team.all.collect(&:stats).compact.sort_by {|t| t.team.name }
+# @foe_stats = TeamFoeAverage.find(:all).sort_by {|t| @teams[t.id].name }.inject({}) {|h,s| h[s.id] = s; h}
+@foe_stats = Team.all.collect(&:opp_stats).compact.sort_by {|t| t.team.name}.inject({}) {|h,s| h[s.id] = s; h}
 puts "Initializing rankings store..."
 grid = @teams.keys.inject({}) {|h,t| h[t] = {}; h } # grid of ranks, by team_id
 
