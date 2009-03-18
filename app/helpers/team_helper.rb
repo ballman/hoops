@@ -1,15 +1,25 @@
 module TeamHelper
-  def draw_graph(params)
-    %Q#
-     <script type="text/javascript">
+  def draw_stats_graph(title, series)
+    result = %Q[<script type="text/javascript">
           var g = new Bluff.Line('offensive_efficiency', 400);
-          g.title = 'Efficiency';
-          g.data('Offensive', [1, 2, 3, 4, 4, 3]);
-          g.data('Defensive', [5, 3, 4, 2, 1, 3, 5, 1, 2, 4 ]);
-          g.labels = {0: '11/1', 1:'11/2', 2:'11/3', 3:'11/4'};
-          g.draw();
+          g.title = '#{title}';\n]
+    
+    series.keys.sort.each do |key|
+      result << "g.data('#{key}', #{series[key].collect(&:first).inspect});\n"
+    end
+    
+    #    g.labels = {0: '11/1', 1:'11/2', 2:'11/3', 3:'11/4'};>
+    labels = []
+    series.values.first.collect(&:last).each_with_index do |label, i|
+      labels << "#{i}: '#{label}'"
+    end
+
+    result << %Q!   g.labels = {#{labels.join(', ')}};
+              g.draw();
     </script>
-    #
+    !
+
+    result
   end
   
   def team_breakdown_row(team_game)

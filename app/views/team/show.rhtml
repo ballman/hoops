@@ -1,7 +1,11 @@
 <%= render(:partial => 'team_header', :locals => { :team => @team }) -%>
     <br />
     <canvas id="offensive_efficiency"></canvas>
-    <%= draw_graph(:params) %>
+    <%= draw_stats_graph('Efficiency', {
+      @team.name => @team.team_averages.collect(&:ppp).zip(@team.team_averages.collect(&:as_of)),
+      '* Opponent' => @team.team_foe_averages.collect(&:ppp).zip(@team.team_foe_averages.collect(&:as_of)) 
+      })
+    %>
     <table class="ranktable">
     <%= stat_header %>
     <tr>
