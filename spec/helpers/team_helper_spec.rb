@@ -1,6 +1,39 @@
 require File.expand_path(File.join(File.dirname(__FILE__), *%w[.. spec_helper]))
 
 describe TeamHelper do
+  it 'should provide a means of drawing a team graph' do
+    helper.should respond_to(:team_stats_graph)
+  end
+
+  describe 'when drawing a team graph' do
+    before :each do
+      @team = Team.generate!
+      @title = 'Test Title'
+      @column = :ppp
+    end
+    
+    it 'should allow a team, a title and an averages column name' do
+      lambda { helper.team_stats_graph(@team, @title, @column)}.should_not raise_error(ArgumentError)
+    end
+
+    it 'should require an averages column name' do
+      lambda { helper.team_stats_graph(@team, @title) }.should raise_error(ArgumentError)
+    end
+
+    it 'should require a title' do
+      lambda { helper.team_stats_graph(@team) }.should raise_error(ArgumentError)
+    end
+
+    it 'should require a team' do
+      lambda { helper.team_stats_graph }.should raise_error(ArgumentError)
+    end
+
+    it 'should call draw_graph' do
+      helper.expects(:draw_stats_graph)
+      helper.team_stats_graph(@team, @title, @column)
+    end
+  end
+  
   it 'should provide a means of drawing a graph' do
     helper.should respond_to(:draw_stats_graph)
   end

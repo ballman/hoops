@@ -1,4 +1,11 @@
 module TeamHelper
+  def team_stats_graph(team, title, column)
+    draw_stats_graph(title,
+                     { team.name => team.team_averages.collect(&column).zip(team.team_averages.collect(&:as_of)),
+                       '* Opponent' => team.team_foe_averages.collect(&column).zip(team.team_foe_averages.collect(&:as_of).compact.collect {|d| d.strftime("%m/%d") }) }) 
+
+  end
+  
   def draw_stats_graph(title, series)
     result = %Q[<script type="text/javascript">
           var g = new Bluff.Line('offensive_efficiency', 400);
