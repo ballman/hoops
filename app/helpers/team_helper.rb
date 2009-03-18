@@ -2,29 +2,34 @@ module TeamHelper
   def team_stats_graph(team, title, column)
     draw_stats_graph(title,
                      { team.name => team.team_averages.collect(&column).zip(team.team_averages.collect(&:as_of)),
-                       '* Opponent' => team.team_foe_averages.collect(&column).zip(team.team_foe_averages.collect(&:as_of).compact.collect {|d| d.strftime("%m/%d") }) }) 
+                       '* Opponent' => team.team_foe_averages.collect(&column).zip(team.team_foe_averages.collect(&:as_of).compact.collect {|d| d.strftime("%m/%d") }) },
+                     {
+                       :minimum_value => "%0.3f" % [ TeamAverage.minimum(column),
+                                           TeamFoeAverage.minimum(column)].min,
+                       :maximum_value => "%0.3f" % [ TeamAverage.maximum(column),
+                                           TeamFoeAverage.maximum(column)].max,
+                     }) 
 
   end
   
-  def draw_stats_graph(title, series)
+  def draw_stats_graph(title, series, options = { })
+    # create script with Bluff graph initialization
     result = %Q[<script type="text/javascript">
           var g = new Bluff.Line('offensive_efficiency', 400);
           g.title = '#{title}';\n]
-    
+
+    # set data series
     series.keys.sort.each do |key|
       result << "g.data('#{key}', #{series[key].collect(&:first).inspect});\n"
     end
-    
-    #    g.labels = {0: '11/1', 1:'11/2', 2:'11/3', 3:'11/4'};>
-    labels = []
-    series.values.first.collect(&:last).each_with_index do |label, i|
-      labels << "#{i}: '#{label}'"
+
+    # set options
+    options.each_pair do |key, value|
+      result << "g.#{key} = #{value};\n"
     end
 
-    result << %Q!   g.labels = {#{labels.join(', ')}};
-              g.draw();
-    </script>
-    !
+    # draw graph and close script
+    result << %Q!g.draw();\n</script>\n!
 
     result
   end

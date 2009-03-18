@@ -10,6 +10,12 @@ describe TeamHelper do
       @team = Team.generate!
       @title = 'Test Title'
       @column = :ppp
+
+      helper.stubs(:draw_stats_graph)
+      TeamAverage.stubs(:minimum).returns(0)
+      TeamAverage.stubs(:maximum).returns(0)
+      TeamFoeAverage.stubs(:minimum).returns(0)
+      TeamFoeAverage.stubs(:maximum).returns(0)
     end
     
     it 'should allow a team, a title and an averages column name' do
@@ -45,10 +51,11 @@ describe TeamHelper do
       @dates = ['11/1', '11/2', '11/3', '11/4', '11/5']
       @hash = { 'offense' => values_1.zip(@dates), 'defense' => values_2.zip(@dates)}
       @title = 'Test Title'
+      @options = { :minimum_value => 0, :maximum_value => 3 }
     end
 
-    it 'should allow a title and a series hash' do
-      lambda { helper.draw_stats_graph(@title, @hash)}.should_not raise_error(ArgumentError)
+    it 'should allow a title, a series hash, and an options hash' do
+      lambda { helper.draw_stats_graph(@title, @hash, @options)}.should_not raise_error(ArgumentError)
     end
 
     it 'should require a series hash' do
@@ -59,19 +66,23 @@ describe TeamHelper do
       lambda { helper.draw_stats_graph }.should raise_error(ArgumentError)
     end
 
+    it 'should allow options to be, um, optional' do
+      lambda { helper.draw_stats_graph(@title, @hash) }.should_not raise_error(ArgumentError)
+    end
+
     it 'should return a javascript graph specification' do
-      helper.draw_stats_graph(@title, @hash).should match(%r{<script})
+      helper.draw_stats_graph(@title, @hash, @options).should match(%r{<script})
     end
 
     describe 'the returned graph' do
       it 'should include the graph title' do
-        helper.draw_stats_graph(@title, @hash).should match(Regexp.new(Regexp.escape(@title)))
+        helper.draw_stats_graph(@title, @hash, @options).should match(Regexp.new(Regexp.escape(@title)))
       end
 
       it 'should escape the graph title'
 
       it 'should include each hash key as a graph label' do
-        result = helper.draw_stats_graph(@title, @hash)
+        result = helper.draw_stats_graph(@title, @hash, @options)
         @hash.keys.each do |key|
           result.should match(Regexp.new(Regexp.escape(key)))
         end
@@ -80,26 +91,18 @@ describe TeamHelper do
       it 'should escape the hash keys'
 
       it 'should include the data points in each hash value' do
-        result = helper.draw_stats_graph(@title, @hash)
+        result = helper.draw_stats_graph(@title, @hash, @options)
         @hash.each_pair do |key,value|
           result.should match(Regexp.new("#{key}.*#{Regexp.escape(value.collect(&:first).inspect)}"))
         end
       end
 
-      it 'should include the x-axis data for each hash value' do
-        result = helper.draw_stats_graph(@title, @hash)
-        @dates.each do |date|
-          result.should match(Regexp.new(Regexp.escape(date)))
+      it 'should set any options provided' do
+        result = helper.draw_stats_graph(@title, @hash, @options)
+        @options.each_pair do |key, value|
+          result.should match(Regexp.new("#{key}.*=.*#{value}"))
         end
       end
     end
   end
 end
-
-__END__
-
-'Efficiency',
-{
-  'Offensive' => [[ '11/01', 12], ['11/02', 13']]
-  'Defensive' => [[ '11/01', 1], ['11/02', 2]]
-}
