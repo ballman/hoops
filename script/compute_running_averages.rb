@@ -66,11 +66,11 @@ def add_averages(games, team, foe=false)
     sum_ppp += ppp
     
     average_klass.create(:team_id => team.id, :games => count,
-                         :fgm => sum_fgm.to_f/count, :fga => sum_fga/count,
+                         :fgm => sum_fgm.to_f/count, :fga => sum_fga.to_f/count,
                          :fgp => sum_fgm.to_f/sum_fga.to_f,
-                         :ftm => sum_ftm.to_f/count, :fta => sum_fta/count,
+                         :ftm => sum_ftm.to_f/count, :fta => sum_fta.to_f/count,
                          :ftp => sum_ftm.to_f/sum_fta.to_f,
-                         :tpm => sum_tpm.to_f/count, :tpa => sum_tpa/count,
+                         :tpm => sum_tpm.to_f/count, :tpa => sum_tpa.to_f/count,
                          :tpp => sum_tpm.to_f/sum_tpa.to_f,
                          :eff_fgp => (sum_fgm + 0.5 * sum_tpm)/sum_fga,
                          :offense_rebound => sum_offense_rebound.to_f/count,
