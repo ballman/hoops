@@ -4,40 +4,56 @@ Feature: implicit docstrings
   I want examples to generate their own names
   So that I can reduce duplication between example names and example code
 
-  Scenario: run passing examples with ruby
-    Given the file ../../examples/passing/implicit_docstrings_example.rb
+  Scenario Outline: run passing examples
+    Given a file named "implicit_docstrings_example.rb" with:
+    """
+    require 'spec/autorun'
+    describe "Examples with no docstrings generate their own:" do
 
-    When I run it with the ruby interpreter -fs
+      specify { 3.should be < 5 }
 
-    And the stdout should match /should be < 5/
-    And the stdout should match /should include "a"/
-    And the stdout should match /should respond to #size/
+      specify { ["a"].should include("a") }
 
-  Scenario: run failing examples with ruby
-    Given the file ../../examples/failing/failing_implicit_docstrings_example.rb
+      specify { [1,2,3].should respond_to(:size) }
 
-    When I run it with the ruby interpreter -fs
+    end
+    """
 
-    Then the stdout should match /should equal 2/
-    And the stdout should match /should be > 5/
-    And the stdout should match /should include "b"/
-    And the stdout should match /should not respond to #size/
+    When I run "<Command> implicit_docstrings_example.rb -fs"
 
-  Scenario: run passing examples with spec
-    Given the file ../../examples/passing/implicit_docstrings_example.rb
+    Then the stdout should include /should be < 5/
+    And the stdout should include /should include "a"/
+    And the stdout should include /should respond to #size/
 
-    When I run it with the spec command -fs
+  Scenarios: Run with ruby and spec
+    | Command |
+    | ruby    |
+    | spec    |
 
-    And the stdout should match /should be < 5/
-    And the stdout should match /should include "a"/
-    And the stdout should match /should respond to #size/
+  Scenario Outline: run failing examples
+    Given a file named "failing_implicit_docstrings_example.rb" with:
+    """
+    require 'spec/autorun'
+    describe "Failing examples with no descriptions" do
 
-  Scenario: run failing examples with spec
-    Given the file ../../examples/failing/failing_implicit_docstrings_example.rb
+      # description is auto-generated as "should equal(5)" based on the last #should
+      it do
+        3.should equal(2)
+        5.should equal(5)
+      end
 
-    When I run it with the spec command -fs
+      it { 3.should be > 5 }
 
-    Then the stdout should match /should equal 2/
-    And the stdout should match /should be > 5/
-    And the stdout should match /should include "b"/
-    And the stdout should match /should not respond to #size/
+      it { ["a"].should include("b") }
+
+      it { [1,2,3].should_not respond_to(:size) }
+
+    end
+    """
+
+    When I run "<Command> failing_implicit_docstrings_example.rb -fs"
+
+    Then the stdout should include /should equal 2/
+    And the stdout should include /should be > 5/
+    And the stdout should include /should include "b"/
+    And the stdout should include /should not respond to #size/

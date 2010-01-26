@@ -1,10 +1,13 @@
-require File.dirname(__FILE__) + '/../../../spec_helper.rb'
+require 'spec_helper'
 require 'spec/runner/formatter/progress_bar_formatter'
 
 module Spec
   module Runner
     module Formatter
       describe ProgressBarFormatter do
+        
+        treats_method_missing_as_private
+
         before(:each) do
           @io = StringIO.new
           @options = mock('options')
@@ -30,7 +33,7 @@ module Spec
             end
           end
           example = example_group.examples.first
-          @formatter.add_example_group(example_group)
+          @formatter.example_group_started(Spec::Example::ExampleGroupProxy.new(example_group))
           @formatter.example_pending(example, "message", "#{__FILE__}:#{__LINE__}")
           @io.rewind
           @formatter.dump_summary(3, 2, 1, 1)
@@ -42,29 +45,33 @@ Finished in 3 seconds
         end
 
         it "should push green dot for passing spec" do
-          @io.should_receive(:tty?).and_return(true)
-          @options.should_receive(:colour).and_return(true)
+          @formatter.stub(:output_to_file?) {false}
+          @io.stub(:tty?)                   {true}
+          @options.stub(:colour)            {true}
           @formatter.example_passed("spec")
           @io.string.should == "\e[32m.\e[0m"
         end
 
         it "should push red F for failure spec" do
-          @io.should_receive(:tty?).and_return(true)
-          @options.should_receive(:colour).and_return(true)
+          @formatter.stub(:output_to_file?) {false}
+          @io.stub(:tty?)                   {true}
+          @options.stub(:colour)            {true}
           @formatter.example_failed("spec", 98, Spec::Runner::Reporter::Failure.new("g", "c s", Spec::Expectations::ExpectationNotMetError.new))
           @io.string.should eql("\e[31mF\e[0m")
         end
 
         it "should push red F for error spec" do
-          @io.should_receive(:tty?).and_return(true)
-          @options.should_receive(:colour).and_return(true)
+          @formatter.stub(:output_to_file?) {false}
+          @io.stub(:tty?)                   {true}
+          @options.stub(:colour)            {true}
           @formatter.example_failed("spec", 98, Spec::Runner::Reporter::Failure.new("g", "c s", RuntimeError.new))
           @io.string.should eql("\e[31mF\e[0m")
         end
 
         it "should push blue F for fixed pending spec" do
-          @io.should_receive(:tty?).and_return(true)
-          @options.should_receive(:colour).and_return(true)
+          @formatter.stub(:output_to_file?) {false}
+          @io.stub(:tty?)                   {true}
+          @options.stub(:colour)            {true}
           @formatter.example_failed("spec", 98, Spec::Runner::Reporter::Failure.new("g", "c s", Spec::Example::PendingExampleFixedError.new))
           @io.string.should eql("\e[34mF\e[0m")
         end
@@ -97,17 +104,11 @@ EOE
           end
           example = example_group.examples.first
           file = __FILE__
-          line = __LINE__ + 2
-          @formatter.add_example_group(example_group)
+          line = __LINE__ - 5
+          @formatter.example_group_started(Spec::Example::ExampleGroupProxy.new(example_group))
           @formatter.example_pending(example, "message", "#{__FILE__}:#{__LINE__}")
           @formatter.dump_pending
-          @io.string.should ==(<<-HERE)
-*
-Pending:
-
-example_group example (message)
-#{file}:#{line}
-HERE
+          @io.string.should =~ /Pending:\n\nexample_group example \(message\)\n#{file}:#{line}/m
         end
       end
       

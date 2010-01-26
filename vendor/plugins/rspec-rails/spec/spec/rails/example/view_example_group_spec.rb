@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../../spec_helper'
+require 'spec_helper'
 
 describe "A template with an implicit helper", :type => :view do
   before(:each) do
@@ -312,7 +312,7 @@ module Spec
 
         it "should clear ActionView::Base.base_view_path on teardown" do
           group = describe("base_view_path_cleared flag", :type => :view) {}
-          example = group.new("example",{}) {}
+          example = group.new(Spec::Example::ExampleProxy.new) {}
           
           ActionView::Base.should_receive(:base_view_path=).with(nil)
           example.run_after_each
@@ -330,6 +330,20 @@ describe "bug http://rspec.lighthouseapp.com/projects/5645/tickets/510", :type =
       assigns[:obj] = obj
       template.should_not_receive(:render).with(:partial => 'some_partial')
       render "view_spec/should_not_receive"
+    end
+  end
+end
+
+describe "bug https://rspec.lighthouseapp.com/projects/5645/tickets/787", :type => :view do
+  describe "a view example checking a link" do
+    it "should have access to link_to" do
+      render "view_spec/view_helpers"
+      response.body.should include(link_to("edit", "this_is_the_link"))
+    end
+
+    it "should use link_to within have_tag" do
+      render "view_spec/view_helpers"
+      response.body.should have_tag("span", :html => link_to("edit", "this_is_the_link"))
     end
   end
 end

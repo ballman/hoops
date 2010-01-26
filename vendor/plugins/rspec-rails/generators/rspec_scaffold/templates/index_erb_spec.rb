@@ -1,9 +1,9 @@
-require File.expand_path(File.dirname(__FILE__) + '<%= '/..' * class_nesting_depth %>/../../spec_helper')
+require 'spec_helper'
 
 <% output_attributes = attributes.reject{|attribute| [:datetime, :timestamp, :time, :date].index(attribute.type) } -%>
 describe "/<%= table_name %>/index.<%= default_file_extension %>" do
   include <%= controller_class_name %>Helper
-  
+
   before(:each) do
     assigns[:<%= table_name %>] = [
 <% [1,2].each_with_index do |id, model_index| -%>
@@ -25,4 +25,3 @@ describe "/<%= table_name %>/index.<%= default_file_extension %>" do
 <% end -%>
   end
 end
-

@@ -14,7 +14,9 @@ module Spec
                       response_or_controller.response :
                       response_or_controller
 
-          if response.respond_to?(:rendered_file)
+          if response.respond_to?(:redirect?) && response.redirect?
+            @redirect_url = response.redirect_url
+          elsif response.respond_to?(:rendered_file)
             @actual = response.rendered_file
           elsif response.respond_to?(:rendered)
             case template = response.rendered[:template]
@@ -33,11 +35,24 @@ module Spec
           return false if @actual.blank?
           given_controller_path, given_file = path_and_file(@actual)
           expected_controller_path, expected_file = path_and_file(@expected)
-          given_controller_path == expected_controller_path && given_file.match(expected_file)
+          given_controller_path == expected_controller_path && match_files(given_file, expected_file)
+        end
+        
+        def match_files(actual, expected)
+          actual_parts = actual.split('.')
+          expected_parts = expected.split('.')
+          expected_parts.each_with_index do |expected_part, index|
+            return false unless expected_part == actual_parts[index]
+          end
+          true
         end
         
         def failure_message_for_should
-          "expected #{@expected.inspect}, got #{@actual.inspect}"
+          if @redirect_url
+            "expected #{@expected.inspect}, got redirected to #{@redirect_url.inspect}"
+          else
+            "expected #{@expected.inspect}, got #{@actual.inspect}"
+          end
         end
         
         def failure_message_for_should_not

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../../spec_helper'
+require 'spec_helper'
 
 begin # See rescue all the way at the bottom
 
@@ -38,8 +38,8 @@ module Spec
           end          
         end
 
-        # # Uncomment this spec temporarily in order to overwrite the expected with actual.
-        # # Use with care!!!
+        # Uncomment this spec temporarily in order to overwrite the expected with actual.
+        # Use with care!!!
         # describe "functional spec file generator" do
         #   it "generates a new comparison file" do
         #     Dir.chdir(root) do
@@ -49,10 +49,10 @@ module Spec
         #       Spec::Runner::CommandLine.run(
         #         ::Spec::Runner::OptionParser.parse(args, err, out)
         #       )
-        #
+        # 
         #       seconds = /\d+\.\d+ seconds/
         #       html = out.string.gsub seconds, 'x seconds'
-        #
+        # 
         #       File.open(expected_file, 'w') {|io| io.write(html)}
         #     end
         #   end

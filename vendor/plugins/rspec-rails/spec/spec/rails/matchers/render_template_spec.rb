@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../../spec_helper'
+require 'spec_helper'
 
 [:response, :controller].each do |subject_method|
   ['isolation','integration'].each do |mode|
@@ -16,10 +16,20 @@ require File.dirname(__FILE__) + '/../../../spec_helper'
         should render_template('some_action')
       end
 
+      it "does not match an action that is a truncated version of the actual action" do
+        post 'some_action'
+        should_not render_template('some_actio')
+      end
+
       if ::Rails::VERSION::STRING >= '2.3'
-        it "matches an action with specified extenstions" do
+        it "matches an action with specified extenstions (implicit format)" do
           post 'some_action'
           should render_template('some_action.html.erb')
+        end
+
+        it "matches an action with specified extenstions (explicit format)" do
+          post 'some_action', :format => 'js'
+          should render_template('some_action.js.rjs')
         end
       end
 
@@ -58,6 +68,13 @@ require File.dirname(__FILE__) + '/../../../spec_helper'
         lambda do
           should render_template('non_existent_template')
         end.should fail_with(/expected \"non_existent_template\", got \"render_spec\/some_action(\.html\.erb)?\"/)
+      end
+
+      it "fails when redirected" do
+        post :action_with_redirect
+        lambda do
+          should render_template(:some_action)
+        end.should fail_with(/expected \"some_action\", got redirected to \"http:\/\/test.host\/render_spec\/some_action\"/)
       end
     
       it "fails when template is associated with a different controller but controller is not specified" do

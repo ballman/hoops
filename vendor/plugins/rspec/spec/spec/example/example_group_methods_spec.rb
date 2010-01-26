@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../spec_helper'
+require 'spec_helper'
 
 module Spec
   module Example
@@ -44,7 +44,15 @@ module Spec
               end
               
               it "records the spec path" do
-                @child_example_group.spec_path.should =~ /#{__FILE__}:#{__LINE__ - 15}/
+                @child_example_group.location.should =~ /#{__FILE__}:#{__LINE__ - 15}/
+              end
+            end
+            
+            describe "when creating an example group with no description" do
+              it "raises an ArgumentError" do
+                lambda do
+                  Class.new(ExampleGroupDouble).describe
+                end.should raise_error(Spec::Example::NoDescriptionError, /No description supplied for example group declared on #{__FILE__}:#{__LINE__ - 1}/)
               end
             end
 
@@ -74,24 +82,52 @@ module Spec
               }.should change { @example_group.examples.length }.by(1)
             end
             
-            describe "creates an ExampleDescription" do
-              before(:all) do
-                @example_group = Class.new(ExampleGroupDouble).describe("bar")
-                @example_description = @example_group.__send__(method, "foo", {:this => :that}, "the backtrace") {}
-              end
-              
-              specify "with a description" do
-                @example_description.description.should == "foo"
-              end
+            describe "with no location supplied" do
+              describe "creates an ExampleProxy" do
+                before(:all) do
+                  @example_group = Class.new(ExampleGroupDouble).describe("bar")
+                  @example_proxy = @example_group.__send__(method, "foo", {:this => :that}) {}
+                  @location = "#{__FILE__}:#{__LINE__ - 1}"
+                end
 
-              specify "with options" do
-                @example_description.options.should == {:this => :that}
-              end
-              
-              specify "with a backtrace" do
-                @example_description.backtrace.should == "the backtrace"
+                specify "with a description" do
+                  @example_proxy.description.should == "foo"
+                end
+
+                specify "with options" do
+                  @example_proxy.options.should == {:this => :that}
+                end
+
+                specify "with a default backtrace (DEPRECATED)" do
+                  Spec.stub!(:deprecate)
+                  @example_proxy.backtrace.should =~ /#{@location}/
+                end
+
+                specify "with a default location" do
+                  @example_proxy.location.should =~ /#{@location}/
+                end
               end
             end
+            
+            describe "with a location supplied" do
+              describe "creates an ExampleProxy" do
+                before(:all) do
+                  @example_group = Class.new(ExampleGroupDouble).describe("bar")
+                  @example_proxy = @example_group.__send__(method, "foo", {:this => :that}, "the location") {}
+                end
+
+                specify "with the supplied location as #backtrace (DEPRECATED)" do
+                  Spec.stub!(:deprecate)
+                  @example_proxy.backtrace.should == "the location"
+                end
+
+                specify "with the supplied location as #location" do
+                  @example_proxy.location.should == "the location"
+                end
+              end
+            end
+          
+            
           end
         end
         
@@ -334,15 +370,15 @@ module Spec
 
           describe "#set_description(Hash representing options)" do
             before(:each) do
-              example_group.set_description(:a => "b", :spec_path => "blah")
+              example_group.set_description(:a => "b", :location => "blah")
             end
 
-            it ".spec_path should expand the passed in :spec_path option passed into the constructor" do
-              example_group.spec_path.should == File.expand_path("blah")
+            it ".location should expand the passed in :location option passed into the constructor" do
+              example_group.location.should == File.expand_path("blah")
             end
 
             it ".options should return all the options passed in" do
-              example_group.options.should == {:a => "b", :spec_path => "blah"}
+              example_group.options.should == {:a => "b", :location => "blah"}
             end
 
           end
@@ -568,33 +604,6 @@ module Spec
           end
         end
 
-        describe "#backtrace" do        
-          it "returns the backtrace from where the example group was defined" do
-            example_group = Class.new(ExampleGroupDouble).describe("foo") do
-              example "bar" do; end
-            end
-            example_group.backtrace.join("\n").should include("#{__FILE__}:#{__LINE__-3}")
-          end
-        end
-
-        describe "#example_group_backtrace (deprecated)" do        
-          before(:each) do
-            Kernel.stub!(:warn)
-          end
-          it "sends a deprecation warning" do
-            example_group = Class.new(ExampleGroupDouble) {}
-            Kernel.should_receive(:warn).with(/#example_group_backtrace.*deprecated.*#backtrace instead/m)
-            example_group.example_group_backtrace
-          end
-
-          it "returns the backtrace from where the example group was defined" do
-            example_group = Class.new(ExampleGroupDouble).describe("foo") do
-              example "bar" do; end
-            end
-            example_group.example_group_backtrace.join("\n").should include("#{__FILE__}:#{__LINE__-3}")
-          end
-        end
-        
         describe "#before" do
           it "stores before(:each) blocks" do
             example_group = Class.new(ExampleGroupDouble) {}
@@ -661,7 +670,88 @@ module Spec
             example_group.__send__ :run_after_all, true, {}, nil
           end
         end
+        
+        describe "#examples_to_run" do
+          it "runs only the example identified by a line number" do
+            example_group = Class.new(ExampleGroupDouble).describe("this") do
+              it { 3.should == 3 }
+              it "has another example which raises" do
+                raise "this shouldn't have run"
+              end
+            end
+            options.examples << :ignore
+            options.line_number = __LINE__ - 6
+            options.files << __FILE__
+            example_group.run(options).should be_true
+          end
 
+          it "runs the example identified by a line number even if it's not the example line number" do
+            example_group = Class.new(ExampleGroupDouble).describe("this") do
+
+              it { raise "foo" }
+
+            end
+            options.examples << :ignore
+            options.line_number = __LINE__ - 3
+            options.files << __FILE__
+            example_group.run(options).should be_false
+          end
+
+          it "runs all the examples in the group " do
+            first_example_ran  = false
+            second_example_ran = false
+            example_group = Class.new(ExampleGroupDouble).describe("this") do
+
+              it { first_example_ran  = true }
+              it { second_example_ran = true }
+
+            end
+            options.line_number = __LINE__ - 6
+            options.files << __FILE__
+            options.examples << :ignore
+            example_group.run(options)
+            first_example_ran.should be_true
+            second_example_ran.should be_true
+          end
+
+          it "doesn't run any examples in another group" do
+            example_ran  = false
+            example_group_1 = Class.new(ExampleGroupDouble).describe("this") do
+              it "ignore" do
+                example_ran = true
+              end
+            end
+            example_group_2 = Class.new(ExampleGroupDouble).describe("that") do
+            end
+            options.examples << :ignore
+            options.line_number = __LINE__ - 3
+            options.files << __FILE__
+            example_group_1.run(options)
+            example_group_2.run(options)
+            example_ran.should be_false
+          end
+        end
+
+        describe "#define" do
+          let(:counter) do
+            Class.new do
+              def initialize
+                @count = 0
+              end
+              def count
+                @count += 1
+              end
+            end.new
+          end
+          it "generates an instance method" do
+            counter.count.should == 1
+          end
+          
+          it "caches the value" do
+            counter.count.should == 1
+            counter.count.should == 2
+          end
+        end
       end
     end
   end

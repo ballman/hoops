@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../spec_helper'
+require 'spec_helper'
 
 module Spec
   module Runner
@@ -20,13 +20,6 @@ module Spec
           @options.files << file
           @runner.load_files(@options.files_to_load).should == @options.files_to_load
         end
-      end
-    end
-    
-    describe BehaviourRunner do
-      it "is DEPRECATED (use ExampleGroupRunner)" do
-        Kernel.should_receive(:warn).with(/DEPRECATED/)
-        BehaviourRunner.new(nil)
       end
     end
   end

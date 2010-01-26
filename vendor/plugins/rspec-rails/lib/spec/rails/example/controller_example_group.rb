@@ -66,11 +66,16 @@ module Spec
             klass.subject { controller }
             super
           end
-          
+
           def set_description(*args) # :nodoc:
             super
             if described_class && described_class.ancestors.include?(ActionController::Base)
-              tests described_class
+              controller_klass = if superclass.controller_class.ancestors.include?(ActionController::Base)
+                superclass.controller_class
+              else
+                described_class
+              end
+              tests controller_klass
             end
           end
 
@@ -111,17 +116,16 @@ end
 MESSAGE
           end
           @controller.extend ControllerInstanceMethods
-          @controller.integrate_views! if @integrate_views
+          @controller.integrate_views! if integrate_views?
           @controller.session = session
         end
 
         attr_reader :response, :request, :controller
-
-        def initialize(defined_description, options={}, &implementation) #:nodoc:
-          super
-          @integrate_views = self.class.integrate_views?
-        end
         
+        def integrate_views?
+          @integrate_views || self.class.integrate_views?
+        end
+
         # Bypasses any error rescues defined with rescue_from. Useful
         # in cases in which you want to specify errors coming out of
         # actions that might be caught by a rescue_from clause that is
@@ -161,9 +165,23 @@ MESSAGE
             PickedTemplate.new
           end
           
+          def __action_exists?(params)
+            controller.respond_to? params[:action]
+          end
+          
           def render(*args)
-            return super if Hash === args.last && args.last[:inline]
-            @_rendered ? record_render(args[0]) : super
+            if ::Rails::VERSION::STRING >= "2.1"
+              return super unless __action_exists?(params) 
+            end
+            if file = args.last[:file].instance_eval{@template_path}
+              record_render :file => file
+            elsif args.last[:inline]
+              super
+            elsif @_rendered
+              record_render(args[0])
+            else
+              super
+            end
           end
         
         private
@@ -204,7 +222,24 @@ MESSAGE
               if matching_stub_exists(options)
                 @performed_render = true
               else
+                if ::Rails::VERSION::STRING > '2.1'
+                  super(options, extra_options, &block)
+                else
+                  super(options, &block)
+                end
+              end
+            end
+          end
+          
+          # Rails 2.3
+          def default_template(action_name = self.action_name)
+            if integrate_views?
+              super
+            else
+              begin
                 super
+              rescue ActionView::MissingTemplate
+                "#{self.class.name.sub(/Controller$/,'').underscore}/#{action_name}"
               end
             end
           end

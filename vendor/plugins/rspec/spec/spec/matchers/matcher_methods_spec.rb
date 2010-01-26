@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../spec_helper.rb'
+require 'spec_helper'
 
 module Spec
   module Matchers
@@ -30,9 +30,6 @@ This module should provide the following methods, each of which returns a Matche
       end
       it "have_at_most" do
         have_at_most(0).should be_an_instance_of(Have)
-      end
-      it "include" do
-        include(:value).should be_an_instance_of(Include)
       end
       it "raise_error" do
         raise_error.should be_an_instance_of(RaiseError)

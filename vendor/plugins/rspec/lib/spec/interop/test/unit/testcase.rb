@@ -31,7 +31,7 @@ module Test
       end
 
       def self.test_method?(method_name)
-        method_name =~ /^test[_A-Z]./ && (
+        method_name =~ /^test./ && (
           instance_method(method_name).arity == 0 ||
           instance_method(method_name).arity == -1
         )
@@ -40,10 +40,10 @@ module Test
       before(:each) {setup}
       after(:each) {teardown}
 
-      def initialize(description, options={}, &implementation)
+      def initialize(description, &implementation)
         super
         # Some Test::Unit extensions depend on @method_name being present.
-        @method_name = description
+        @method_name = description.description
         @_result = ::Test::Unit::TestResult.new
       end
 

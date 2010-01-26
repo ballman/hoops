@@ -1,0 +1,160 @@
+<%= render(:partial => 'team/team_header', :locals => { :team => @team }) %>
+    <br />
+    <div id="roster" style="width:87%">
+      <table id="roster_table" cellspacing="0">
+          <tr>
+            <th width="1%">&nbsp;</th>
+            <th width="7%">No.</th>
+            <th width="20%" align="left">Name</th>
+            <th width="10%">Pos.</th>
+            <th width="7%">Height</th>
+            <th width="7%">Weight</th>
+            <th width="7%">Yr.</th>
+            <th width="20%" align="left">Hometown</th>
+            <th width="20%">&nbsp;</th>
+            <th width="1%">&nbsp;</th>
+          </tr>
+        <% bg_color = ""
+          @team.players.sort {|x,y| x.last_name <=> y.last_name}.each do | player |
+           bg_color = (bg_color == "#ffffff") ? "#cccccc" : "#ffffff"%>
+        <tr style="background-color: <%= bg_color %>">
+        <td width="1%">&nbsp;</td>
+        <td width="7%" align="center" style="font-weight:bold"><%= player.number %></td>
+        <td width="20%" align="left" style="font-weight:bold"> <%= player.name %></td>
+        <td width="10%" align="center" style="font-weight:bold"><%= player.position %></td>
+        <td width="7%" align="center" style="font-weight:bold"><%= player.height %></td>
+        <td width="7%" align="center" style="font-weight:bold"><%= player.weight %></td>
+        <td width="7%" align="center" style="font-weight:bold"><%= player.year_string%></td>
+        <td width="20%" style="font-weight:bold"><%= player.hometown %></td>
+        <td width="20%">&nbsp;</td>
+        <td width="1%">&nbsp;</td>
+      </tr>
+  <% end -%>
+    </table>
+  </div>
+  <br />
+  <br />
+    <div id="roster" style="width:87%">
+      <table id="roster_table" cellspacing="0">
+          <tr>
+            <th width="1%">&nbsp;</th>
+            <th width="7%">No.</th>
+            <th width="20%" align="left">Name</th>
+            <th width="10%">Pos.</th>
+            <th width="7%">Height</th>
+            <th width="7%">Weight</th>
+            <th width="7%">Yr.</th>
+            <th width="20%" align="left">Hometown</th>
+            <th width="20%">&nbsp;</th>
+            <th width="1%">&nbsp;</th>
+          </tr>
+  <% @not_on_roster_any_more.each do |player| -%>
+     <tr>
+        <td width="1%">&nbsp;</td>
+        <td width="7%" align="center" style="color: red; font-weight:bold"><%= player.number %></td>
+        <td width="20%" align="left" style="color: red; font-weight:bold"> <%= player.name %></td>
+        <td width="10%" align="center" style="color: red; font-weight:bold"><%= player.position %></td>
+        <td width="7%" align="center" style="color: red; font-weight:bold"><%= player.height %></td>
+        <td width="7%" align="center" style="color: red; font-weight:bold"><%= player.weight %></td>
+        <td width="7%" align="center" style="color: red; font-weight:bold"><%= player.year_string%></td>
+        <td width="20%" style="color: red; font-weight:bold"><%= player.hometown %></td>
+        <td width="20%">&nbsp;</td>
+        <td width="1%">&nbsp;</td>
+     </tr>
+     <% end -%>
+       
+        <% bg_color = ""
+          @team.new_players.sort {|x,y| x.last_name <=> y.last_name}.each do | player |
+           old_player = @last_years_player_hash[player]
+           next if old_player.nil?
+           bg_color = (bg_color == "#ffffff") ? "#cccccc" : "#ffffff"%>
+        <tr style="background-color: <%= bg_color %>">
+        <td width="1%">&nbsp;</td>
+        <td width="7%" align="center" style="font-weight:bold"><%= player.number %></td>
+        <td width="20%" align="left" style="font-weight:bold"> <%= player.name %></td>
+        <td width="10%" align="center" style="font-weight:bold"><%= player.position %></td>
+        <td width="7%" align="center" style="font-weight:bold"><%= player.height %></td>
+        <td width="7%" align="center" style="font-weight:bold"><%= player.weight %></td>
+        <td width="7%" align="center" style="font-weight:bold"><%= player.year_string%></td>
+        <td width="20%" style="font-weight:bold"><%= player.hometown %></td>
+        <td width="20%">&nbsp;</td>
+        <td width="1%">&nbsp;</td>
+      </tr>
+      <tr style="background-color: <%= bg_color %>">
+        <td width="1%">&nbsp;</td>
+        <td width="7%" align="center"><%= old_player.number %></td>
+        <td width="20%" align="left"><%= old_player.name %></td>
+        <td width="7%" align="center"><%= old_player.position %></td>
+        <td width="7%" align="center"><%= old_player.height %></td>
+        <td width="7%" align="center"><%= old_player.weight %></td>
+        <td width="7%" align="center"><%= old_player.year_string %></td>
+        <td width="20%"><%= old_player.hometown %></td>
+        <td width="20%"><%= link_to "Copy player to roster",
+                                      {:action => "update_player_and_add_to_roster",
+                                       :id => player.id, :player_id => old_player.id,
+                                      :team_id => @team.id}
+            %>
+        </td>
+        <td width="1%">&nbsp;</td>
+      </tr>
+  <% end -%>
+      </table>
+    </div>
+    <br/> <br/>
+    <div id="roster" style="width:87%">
+      <table id="roster_table" cellspacing="0">
+          <tr>
+            <th width="1%">&nbsp;</th>
+            <th width="7%">No.</th>
+            <th width="20%" align="left">Name</th>
+            <th width="10%">Pos.</th>
+            <th width="7%">Height</th>
+            <th width="7%">Weight</th>
+            <th width="7%">Yr.</th>
+            <th width="20%" align="left">Hometown</th>
+            <th width="20%">&nbsp;</th>
+            <th width="1%">&nbsp;</th>
+          </tr>
+        <% bg_color = ""
+          @team.new_players.sort {|x,y| x.last_name <=> y.last_name}.each do | player |
+           old_rosters = @other_team_last_year_hash[player]
+           next if old_rosters.nil?
+           bg_color = (bg_color == "#ffffff") ? "#cccccc" : "#ffffff"%>
+        <tr style="background-color: <%= bg_color %>">
+        <td width="1%">&nbsp;</td>
+        <td width="7%" align="center"><%= player.number %></td>
+        <td width="20%" align="left"><%= player.name %></td>
+        <td width="10%" align="center"><%= player.position %></td>
+        <td width="7%" align="center"><%= player.height %></td>
+        <td width="7%" align="center"><%= player.weight %></td>
+        <td width="7%" align="center"><%= player.year_string %></td>
+        <td width="20%"><%= player.hometown %></td>
+        <td width="20%">
+            <%=
+              link_to "[Add Player]", {:action => "create_player_and_add_to_roster",
+                                       :id => player.id, :team_id => @team.id}
+            %>
+          </td>
+        <td width="1%">&nbsp;</td>
+      </tr>
+      <% old_rosters.each_pair do | old_player, roster |
+         next if roster.team == @team && roster.year == CURRENT_YEAR%>
+        <tr style="background-color: <%= bg_color %>">
+        <td width="1%">&nbsp;</td>
+        <td width="7%" align="center"><%= old_player.number %></td>
+        <td width="20%" align="left"><%= old_player.name %></td>
+        <td width="7%" align="center"><%= old_player.position %></td>
+        <td width="7%" align="center"><%= old_player.height %></td>
+        <td width="7%" align="center"><%= old_player.weight %></td>
+        <td width="7%" align="center"><%= old_player.year_string %></td>
+        <td width="20%"><%= old_player.hometown %></td>
+        <td width="20%"> <%= link_to "#{roster.team.name} - #{roster.year}",
+                                      {:action => "update_player_and_add_to_roster",
+                                       :id => player.id, :player_id => old_player.id,
+                                      :team_id => @team.id}
+            %>
+        </td>
+      <% end -%>
+    <% end -%>
+    </table>
+  </div>

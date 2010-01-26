@@ -1,33 +1,34 @@
-require File.dirname(__FILE__) + '/../../spec_helper.rb'
+require 'spec_helper'
 
 module Spec
   module Runner
     describe Configuration do
       with_sandboxed_options do
         with_sandboxed_config do
+          
           describe "#mock_with" do
             it "should default mock framework to rspec" do
-              config.mock_framework.should =~ /\/spec\/adapters\/mock_frameworks\/rspec$/
+              config.mock_framework.should =~ /^spec\/adapters\/mock_frameworks\/rspec$/
             end
 
             it "should set rspec mocking explicitly" do
               config.mock_with(:rspec)
-              config.mock_framework.should =~ /\/spec\/adapters\/mock_frameworks\/rspec$/
+              config.mock_framework.should =~ /^spec\/adapters\/mock_frameworks\/rspec$/
             end
 
             it "should set mocha" do
               config.mock_with(:mocha)
-              config.mock_framework.should =~ /\/spec\/adapters\/mock_frameworks\/mocha$/
+              config.mock_framework.should =~ /^spec\/adapters\/mock_frameworks\/mocha$/
             end
 
             it "should set flexmock" do
               config.mock_with(:flexmock)
-              config.mock_framework.should =~ /\/spec\/adapters\/mock_frameworks\/flexmock$/
+              config.mock_framework.should =~ /^spec\/adapters\/mock_frameworks\/flexmock$/
             end
 
             it "should set rr" do
               config.mock_with(:rr)
-              config.mock_framework.should =~ /\/spec\/adapters\/mock_frameworks\/rr$/
+              config.mock_framework.should =~ /^spec\/adapters\/mock_frameworks\/rr$/
             end
 
             it "should set an arbitrary adapter module" do
@@ -179,7 +180,7 @@ module Spec
               config.append_before(:all, :type => :special_child) do
                 order << :special_child_append_before_all
               end
-              config.append_before(:each) do
+              config.append_before do # default is :each
                 order << :append_before_each
               end
               config.append_before(:each, :type => :special) do
@@ -293,7 +294,25 @@ module Spec
                 :append__after_all
               ]
             end
+
           end
+
+          describe "#ignore_backtrace_patterns" do
+            it "adds patterns to ignore in backtrace" do
+              config.ignore_backtrace_patterns /custom_pattern/, /shoulda/, /spork/
+              config.ignored_backtrace_patterns.should include(/custom_pattern/)
+              config.ignored_backtrace_patterns.should include(/shoulda/)
+              config.ignored_backtrace_patterns.should include(/spork/)
+            end
+          end
+          
+          describe "#predicate_matchers (DEPRECATED)" do
+            it "is deprecated" do
+              Spec.should_receive(:deprecate)
+              config.predicate_matchers[:foo] = :bar?
+            end
+          end
+
         end
       end
     end

@@ -1,48 +1,5 @@
 module Spec
   module Matchers
-    class Include #:nodoc:
-      include Spec::Matchers::Pretty
-
-      def initialize(*expecteds)
-        @expecteds = expecteds
-      end
-      
-      def matches?(actual)
-        @actual = actual
-        @expecteds.each do |expected|
-          if actual.is_a?(Hash)
-            if expected.is_a?(Hash)
-              expected.each_pair do |k,v|
-                return false unless actual[k] == v
-              end
-            else
-              return false unless actual.has_key?(expected)
-            end
-          else
-            return false unless actual.include?(expected)
-          end
-        end
-        true
-      end
-      
-      def failure_message_for_should
-        _message
-      end
-      
-      def failure_message_for_should_not
-        _message("not ")
-      end
-      
-      def description
-        "include #{_pretty_print(@expecteds)}"
-      end
-      
-      private
-        def _message(maybe_not="")
-          "expected #{@actual.inspect} #{maybe_not}to include #{_pretty_print(@expecteds)}"
-        end
-    end
-
     # :call-seq:
     #   should include(expected)
     #   should_not include(expected)
@@ -60,7 +17,28 @@ module Spec
     #   "spread".should include("read")
     #   "spread".should_not include("red")
     def include(*expected)
-      Matchers::Include.new(*expected)
+      Matcher.new :include, *expected do |*_expected_|
+        match do |actual|
+          helper(actual, *_expected_)
+        end
+        
+        def helper(actual, *_expected_)
+          _expected_.each do |expected|
+            if actual.is_a?(Hash)
+              if expected.is_a?(Hash)
+                expected.each_pair do |k,v|
+                  return false unless actual[k] == v
+                end
+              else
+                return false unless actual.has_key?(expected)
+              end
+            else
+              return false unless actual.include?(expected)
+            end
+          end
+          true
+        end
+      end
     end
   end
 end

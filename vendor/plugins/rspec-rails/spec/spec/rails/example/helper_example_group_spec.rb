@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../../spec_helper'
+require 'spec_helper'
 Spec::Runner.configuration.global_fixtures = :people
 
 describe ExplicitHelper, :type => :helper do
@@ -148,7 +148,7 @@ module Spec
         helper_name :explicit
         
         before(:each) do
-          if Rails::VERSION::STRING <= "2.1"
+          if ::Rails::VERSION::STRING < "2.2"
             pending("need to get this new feature working against pre 2.2 versions of rails")
           end
         end

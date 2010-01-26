@@ -1,5 +1,3 @@
-RAILS_ENV ||= "test"
-
 begin
   require_dependency 'application_controller'
 rescue MissingSourceFile
@@ -22,7 +20,7 @@ require 'spec/rails/interop/testcase'
 
 Spec::Example::ExampleGroupFactory.default(ActiveSupport::TestCase)
 
-if ActionView::Base.respond_to?(:cache_template_extension)
+if ActionView::Base.respond_to?(:cache_template_extensions)
   ActionView::Base.cache_template_extensions = false
 end
 

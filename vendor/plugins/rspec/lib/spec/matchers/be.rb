@@ -7,6 +7,7 @@ module Spec
       def initialize(*args)
         @expected = args.empty? ? true : set_expected(args.shift)
         @args = args
+        @comparison_method = nil
       end
       
       def matches?(actual)
@@ -29,23 +30,33 @@ module Spec
       end
       
       def failure_message_for_should
-        handling_predicate? ?
-          "expected #{predicate}#{args_to_s} to return true, got #{@result.inspect}" :
+        if handling_predicate?
+          if predicate == :nil?
+            "expected nil, got #{@actual.inspect}"
+          else
+            "expected #{predicate}#{args_to_s} to return true, got #{@result.inspect}"
+          end
+        else
           "expected #{@comparison_method} #{expected}, got #{@actual.inspect}".gsub('  ',' ')
+        end
       end
       
       def failure_message_for_should_not
         if handling_predicate?
+          if predicate == :nil?
+            "expected not nil, got nil"
+          else
           "expected #{predicate}#{args_to_s} to return false, got #{@result.inspect}"
+          end
         else
           message = <<-MESSAGE
 'should_not be #{@comparison_method} #{expected}' not only FAILED,
-it reads really poorly.
+it is a bit confusing.
           MESSAGE
           
           raise message << ([:===,:==].include?(@comparison_method) ?
-            "Why don't you try expressing it without the \"be\"?" :
-            "Why don't you try expressing it in the positive?")
+            "It might be more clearly expressed without the \"be\"?" :
+            "It might be more clearly expressed in the positive?")
         end
       end
       
@@ -100,6 +111,9 @@ it reads really poorly.
         end
         
         def prefix
+          # FIXME - this is a bit goofy - but we get failures
+          # if just defining @prefix = nil in initialize
+          @prefix = nil unless defined?(@prefix)
           @prefix
         end
 
@@ -109,7 +123,9 @@ it reads really poorly.
         
         def handling_predicate?
           return false if [true, false, nil].include?(expected)
-          return @handling_predicate
+          # FIXME - this is a bit goofy - but we get failures
+          # if just defining @handling_predicate = nil or false in initialize
+          return defined?(@handling_predicate) ? @handling_predicate : nil
         end
 
         def predicate
@@ -154,9 +170,9 @@ it reads really poorly.
     #   should be_true
     #   should be_false
     #   should be_nil
-    #   should be_arbitrary_predicate(*args)
+    #   should be_[arbitrary_predicate](*args)
     #   should_not be_nil
-    #   should_not be_arbitrary_predicate(*args)
+    #   should_not be_[arbitrary_predicate](*args)
     #
     # Given true, false, or nil, will pass if actual value is
     # true, false or nil (respectively). Given no args means
