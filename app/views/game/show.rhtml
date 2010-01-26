@@ -11,7 +11,7 @@
       <th>2</th>
       <% (1..@game.get_number_of_overtimes).to_a.each do | i | %>
         <th>OT<%= i %></th>
-      <%- end %>
+      <% end %>
       <th>Total</th>
     </tr>
 
@@ -27,10 +27,10 @@
          attr_name = sprintf("ot%d_point", i)
        %>
         <td style="width: 1.5em;"><%= team_game.send(attr_name) %></td>
-      <%- end %>
+      <% end %>
       <td style="font-weight: bold; width: 2.5em;" ><%= team_game.total_point %></td>
     </tr>
-    <%- end %>
+    <% end %>
     </table>
     </center>
   <br />
@@ -40,7 +40,7 @@
   <ul>
     <% @game.away_team_game_for_type(@type).validate_stats.flatten.each do | valid_error | %>
       <li><%= valid_error.to_s %></li>
-    <%- end %>
+    <% end %>
   </ul>
   <br />
   <%= team_box(@game.home_team_game_for_type(@type), true) %>
@@ -48,7 +48,7 @@
   <ul>
     <% @game.home_team_game_for_type(@type).validate_stats.flatten.each do | valid_error | %>
       <li><%= valid_error.to_s %></li>
-    <%- end %>
+    <% end %>
   </ul>
 </div>
 <div id="edit_player_game">

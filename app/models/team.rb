@@ -1,10 +1,15 @@
 class Team < ActiveRecord::Base
   has_many :conference_memberships
   has_many :historic_conferences, :through => :conference_memberships, :source => :conference
-  has_many :conferences, :through => :conference_memberships, :conditions => [ "year = #{CURRENT_YEAR}" ]
+  has_one :conference, :through => :conference_memberships, :conditions => [ "year = #{CURRENT_YEAR}" ]
 
   has_many :rosters
+  has_many :historic_players, :through => :rosters, :source => :player
+  has_many :last_season_players, :through => :rosters, :conditions => [ "year = #{CURRENT_YEAR - 1}" ] ,
+           :source => :player
   has_many :players, :through => :rosters, :conditions => [ "year = #{CURRENT_YEAR}" ]
+
+  has_many :new_players
 
   has_many :team_averages
   has_many :team_foe_averages
@@ -13,12 +18,8 @@ class Team < ActiveRecord::Base
 
   has_many :team_games, :conditions => ["type = 'MasterTeamGame'" ]
   has_many :games, :through => :team_games
+
   def <=>(other)
-      return self.name <=> other.name
+    return self.name <=> other.name
   end
-
-  def conference
-    conferences[0] unless conferences.nil?
-  end
-
 end

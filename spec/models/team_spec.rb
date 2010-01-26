@@ -15,19 +15,17 @@ describe Team do
     end
 
     it 'should limit stats to the most recent team average data' do
-      2006.upto(2008) do |year|
+      2006.upto(CURRENT_YEAR) do |year|
         @team.team_averages.generate!(:as_of => Date.new(year, 11, 1))
       end
-
-      @team.stats.as_of.should == Date.new(2008, 11, 1)
+      @team.stats.as_of.should == Date.new(CURRENT_YEAR, 11, 1)
     end
 
     it 'should limit opponent stats to the most recent team foe average data' do
-      2006.upto(2008) do |year|
+      2006.upto(CURRENT_YEAR) do |year|
         @team.team_foe_averages.generate!(:as_of => Date.new(year, 11, 1))
       end
-
-      @team.opp_stats.as_of.should == Date.new(2008, 11, 1)
+      @team.opp_stats.as_of.should == Date.new(CURRENT_YEAR, 11, 1)
     end
   end
 end

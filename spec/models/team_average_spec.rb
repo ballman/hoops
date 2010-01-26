@@ -12,7 +12,7 @@ describe TeamAverage do
 
     it 'should allow setting and reloading of as_of_date' do
       @team_average.as_of = date = Date.today
-      @team_average.save!
+      @team_average.save
       @team_average.reload.as_of.should == date
     end
   end

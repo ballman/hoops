@@ -3,91 +3,91 @@
     <canvas id="efficiency"></canvas>
     <%= team_stats_graph(@team, 'Efficiency', :ppp, 'efficiency') %>
     <table class="ranktable">
-    <%= stat_header %>
-    <tr>
-      <td>Stats</td>
-    <% TeamAverage.stat_columns.each do |col| -%> 
-      <td style="text-align: right;"><%= stat_format(@team.stats.send(col), col) %></td>
-    <% end -%> 
-    </tr>
-    <tr>
-      <td>Opp. Stats</td>
-    <% TeamAverage.stat_columns.each do |col| -%> 
-      <td style="text-align: right;"><%= stat_format(@team.opp_stats.send(col), col) %></td>
-    <% end -%> 
-    </tr>
-    <tr >
-      <td style='border-top: solid 1px black; border-bottom: solid 1px black;'>Difference</td>
-    <% TeamAverage.stat_columns.each do |col| -%> 
-      <td style='text-align: right; border-top: solid 1px black; border-bottom: solid 1px black;<%= "color: red;" if (@team.stats.send(col) - @team.opp_stats.send(col) < 0) %> '>
-	<%= stat_format(@team.stats.send(col) - @team.opp_stats.send(col) , col) %>
-      </td>
-    <% end -%> 
-    </tr>
-    <tr>
-      <td>Rank</td>
-    <% TeamAverage.stat_columns.each do |col| -%> 
-      <td style="text-align: right;"><%= @rank.send(col) %></td>
-    <% end -%> 
-    </tr>
-    <tr>
-      <td>Opp. Rank</td>
-    <% TeamAverage.stat_columns.each do |col| -%> 
-      <td style="text-align: right;"><%= @opp_rank.send(col) %></td>
-    <% end -%> 
-    </tr>
-    <tr>
-      <td>Diff Rank</td>
-    <% TeamAverage.stat_columns.each do |col| -%> 
-      <td style="text-align: right;"><%= @diff_rank.send(col) %></td>
-    <% end -%> 
-    </tr>
+	    <%= stat_header %>
+	    <tr>
+	      <td>Stats</td>
+	    	<% TeamAverage.stat_columns.each do |col| -%> 
+	      <td style="text-align: right;"><%= stat_format(@team.stats.send(col), col) %></td>
+	    	<% end -%> 
+	    </tr>
+	    <tr>
+	      <td>Opp. Stats</td>
+	    <% TeamAverage.stat_columns.each do |col| -%> 
+	      <td style="text-align: right;"><%= stat_format(@team.opp_stats.send(col), col) %></td>
+	    <% end -%> 
+	    </tr>
+	    <tr >
+	      <td style='border-top: solid 1px black; border-bottom: solid 1px black;'>Difference</td>
+	    <% TeamAverage.stat_columns.each do |col| -%> 
+	      <td style='text-align: right; border-top: solid 1px black; border-bottom: solid 1px black;<%= "color: red;" if (@team.stats.send(col) - @team.opp_stats.send(col) < 0) %> '>
+		<%= stat_format(@team.stats.send(col) - @team.opp_stats.send(col) , col) %>
+	      </td>
+	    <% end -%> 
+	    </tr>
+	    <tr>
+	      <td>Rank</td>
+	    <% TeamAverage.stat_columns.each do |col| -%> 
+	      <td style="text-align: right;"><%= @rank.send(col) %></td>
+	    <% end -%> 
+	    </tr>
+	    <tr>
+	      <td>Opp. Rank</td>
+	    <% TeamAverage.stat_columns.each do |col| -%> 
+	      <td style="text-align: right;"><%= @opp_rank.send(col) %></td>
+	    <% end -%> 
+	    </tr>
+	    <tr>
+	      <td>Diff Rank</td>
+	    <% TeamAverage.stat_columns.each do |col| -%> 
+	      <td style="text-align: right;"><%= @diff_rank.send(col) %></td>
+	    <% end -%> 
+	    </tr>
     </table>
     <div id="roster">
       <table cellspacing="0" class="sortable" id="player_unique_id">
-	<tr style="color: white;">
-	  <th width="4%">No</th>
-	  <th width="4%">Pos</th>
-	  <th width="20%" style="border-right: solid 2px black;">Name</th>
-	  <th width="3%">GP</th>
-	  <th width="3%">PPG</th>
-	  <th width="3%">fga</th>
-	  <th width="5%">fg%</th>
-	  <th width="3%">fta</th>
-	  <th width="5%">ft%</th>
-	  <th width="3%">tpa</th>
-	  <th width="5%" style="border-right: solid 1px black;">tp%</th>
-	  <th width="3%">offrb</th>
-	  <th width="3%">totrb</th>
-	  <th width="3%">ast</th>
-	  <th width="3%">tov</th>
-	  <th width="3%">stl</th>
-	  <th width="3%">blk</th>
-	  <th width="3%">foul</th>
-	</tr>
+		<tr style="color: white;">
+	  		<th width="4%">No</th>
+		  <th width="4%">Pos</th>
+		  <th width="20%" style="border-right: solid 2px black;">Name</th>
+		  <th width="3%">GP</th>
+		  <th width="3%">PPG</th>
+		  <th width="3%">fga</th>
+		  <th width="5%">fg%</th>
+		  <th width="3%">fta</th>
+		  <th width="5%">ft%</th>
+		  <th width="3%">tpa</th>
+		  <th width="5%" style="border-right: solid 1px black;">tp%</th>
+		  <th width="3%">offrb</th>
+		  <th width="3%">totrb</th>
+		  <th width="3%">ast</th>
+		  <th width="3%">tov</th>
+		  <th width="3%">stl</th>
+		  <th width="3%">blk</th>
+		  <th width="3%">foul</th>
+		</tr>
 	<% @team.players.each do | player | %>
-	<tr >
-	  <td width="5%"><%= player.number -%></td>
-	  <td width="5%"><%= player.position -%></td>
-	  <td width="15%" style="border-right: solid 2px black;"><%= player.last_name -%>, <%= player.first_name -%></td>
-	  <td width="5%"><%= player.player_average.games_played -%></td>
-	  <td width="5%"><%= stat_format(player.player_average.total_point, "total_point") -%></td>
-	  <td width="5%"><%= number_with_precision(player.player_average.fga * player.player_average.games_played, 0) -%></td>
-	  <td width="8%"><%= stat_format(player.player_average.fgp, "fgp") -%></td>
-	  <td width="5%"><%= number_with_precision(player.player_average.fta * player.player_average.games_played, 0) -%></td>
-	  <td width="8%"><%= stat_format(player.player_average.ftp, "ftp") -%></td>
-	  <td width="5%"><%= number_with_precision(player.player_average.tpa * player.player_average.games_played, 0) -%></td>
-	  <td width="8%" style="border-right: solid 1px black;"><%= stat_format(player.player_average.tpp, "tpp") -%></td>
-	  <td width="5%"><%= stat_format(player.player_average.offense_rebound, "offense_rebound") -%></td>
-	  <td width="5%"><%= stat_format(player.player_average.total_rebound, "total_rebound") -%></td>
-	  <td width="5%"><%= stat_format(player.player_average.assist, "assist") -%></td>
-	  <td width="5%"><%= stat_format(player.player_average.turnover, "turnover") -%></td>
-	  <td width="5%"><%= stat_format(player.player_average.steal, "steal") -%></td>
-	  <td width="5%"><%= stat_format(player.player_average.block, "block") -%></td>
-	  <td width="5%"><%= stat_format(player.player_average.foul, "foul") -%></td>
-	</tr
-	<%- end -%>
-      </table>
+		<tr >
+		  <td width="5%"><%= player.number -%></td>
+		  <td width="5%"><%= player.position -%></td>
+		  <td width="15%" style="border-right: solid 2px black;"><%= player.last_name -%>, <%= player.first_name -%></td>
+		  <td width="5%"><%= player.player_average.games_played -%></td>
+		  <td width="5%"><%= stat_format(player.player_average.total_point, "total_point") -%></td>
+		  <td width="5%"><%= number_with_precision(player.player_average.fga * player.player_average.games_played, 0) -%></td>
+		  <td width="8%"><%= stat_format(player.player_average.fgp, "fgp") -%></td>
+		  <td width="5%"><%= number_with_precision(player.player_average.fta * player.player_average.games_played, 0) -%></td>
+		  <td width="8%"><%= stat_format(player.player_average.ftp, "ftp") -%></td>
+		  <td width="5%"><%= number_with_precision(player.player_average.tpa * player.player_average.games_played, 0) -%></td>
+		  <td width="8%" style="border-right: solid 1px black;"><%= stat_format(player.player_average.tpp, "tpp") -%></td>
+		  <td width="5%"><%= stat_format(player.player_average.offense_rebound, "offense_rebound") -%></td>
+		  <td width="5%"><%= stat_format(player.player_average.total_rebound, "total_rebound") -%></td>
+		  <td width="5%"><%= stat_format(player.player_average.assist, "assist") -%></td>
+		  <td width="5%"><%= stat_format(player.player_average.turnover, "turnover") -%></td>
+		  <td width="5%"><%= stat_format(player.player_average.steal, "steal") -%></td>
+		  <td width="5%"><%= stat_format(player.player_average.block, "block") -%></td>
+		  <td width="5%"><%= stat_format(player.player_average.foul, "foul") -%></td>
+		</tr
+	<% end -%>
+	</table>
       <%= link_to "[Edit]", { :controller => "player", 
                               :action => "list",
                               :id => @team } -%>

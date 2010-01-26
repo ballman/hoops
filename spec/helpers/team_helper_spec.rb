@@ -93,16 +93,12 @@ describe TeamHelper do
         helper.draw_stats_graph(@dom_id, @title, @hash, @options).should match(Regexp.new(Regexp.escape(@dom_id)))        
       end
 
-      it 'should escape the graph title'
-
       it 'should include each hash key as a graph label' do
         result = helper.draw_stats_graph(@dom_id, @title, @hash, @options)
         @hash.keys.each do |key|
           result.should match(Regexp.new(Regexp.escape(key)))
         end
       end
-
-      it 'should escape the hash keys'
 
       it 'should include the data points in each hash value' do
         result = helper.draw_stats_graph(@dom_id, @title, @hash, @options)

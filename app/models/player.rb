@@ -1,40 +1,42 @@
-gem 'diff-lcs'
 require 'diff/lcs'
 require 'diff/lcs/string'
 
 class Player < ActiveRecord::Base
   has_many :rosters
-  has_many :teams, :through => :rosters, :conditions => [ "rosters.year = #{CURRENT_YEAR}" ]
+  has_one :team, :through => :rosters, :conditions => [ "rosters.year = #{CURRENT_YEAR}" ]
 
   has_one :player_average
 
   before_create :create_cstv_bs_name, :create_fox_bs_name, :create_sn_bs_name,
                 :create_yahoo_bs_name
 
-
   #  validates_presence_of :number, :last_name, :first_name, :position
 
-  def year_string()
-    case self.acad_year
-    when 1 then "Fr."
-    when 2 then "So."
-    when 3 then "Jr."
-    when 4 then "Sr."
-    when 5 then "5th"
-    else        "NA"
+  def teams
+    rosters.inject({}) do |hash, roster_entry|
+      hash[roster_entry.year] = roster_entry.team
+      hash
     end
   end
-
-  def team
-    return teams[0] unless teams.nil?
+  
+  def year_string
+    year_hash = {1 => 'Fr.', 2 => 'So.', 3 => 'Jr.', 4 => 'Sr.', 5 => '5th'}
+    year_hash.default = 'Unk'
+    year_hash[acad_year]
   end
 
   def name
-    "#{self.last_name}, #{self.first_name} #{self.suffix_name}" unless self.last_name.nil?
+    name_string = last_name.nil? ? nil : "#{self.last_name}, #{self.first_name}"
+    name_string += " #{self.suffix_name}" unless self.suffix_name.nil? or self.last_name.nil?
+    name_string
+  end
+
+  def remove_from_current_roster
+    Roster.remove_player(id)
   end
 
   def name_and_number
-    "#{self.last_name}, #{self.first_name} #{self.suffix_name} - #{self.number}" unless self.last_name.nil?
+    "#{name} - #{self.number}" unless name.nil?
   end
 
   def last_name_closeness(other)
@@ -43,10 +45,6 @@ class Player < ActiveRecord::Base
 
   def first_name_closeness(other)
     closeness(self.first_name, other)
-  end
-
-  def remove_from_current_roster
-    Roster.remove_player(id)
   end
 
   private

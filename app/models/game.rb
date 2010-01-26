@@ -5,7 +5,7 @@ class Game < ActiveRecord::Base
   has_many   :master_team_games
   has_many  :game_files
 
-  named_scope :current, lambda { { :conditions => [ 'played_on > ?', Date.new(2008, 11, 1)] }}
+  named_scope :current, lambda { { :conditions => [ 'played_on > ?', Date.new(CURRENT_YEAR, 11, 1)] }}
   
   def self.find_or_create(played_on, away_team, home_team)
     game = Game.find(:first,

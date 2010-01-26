@@ -1,14 +1,14 @@
     <% form_tag(:action => "save_player_game", :id => @player_game) do %>
       <% if (!@player_game.nil?) %>
         <h3>Editing game of <%= @player_game.player_name %> on <%= @player_game.team_game.team.name %> </h3>
-      <%- end %>
+      <% end %>
       <table >
         <%= stats_header %>
         <tr>
           <td style='width:150px;'>
             <% if (!@players.nil?) %>
               <%= collection_select('player', 'id', @players, 'id', 'name_and_number') %>
-            <%- end %>
+            <% end %>
           </td>
           <td>
             <%= text_field 'player_game', 'minutes', :maxlength => "2" %>

@@ -74,7 +74,7 @@ a img {
 }
 #row_1 {
   background: #F0F0F0;
-  line-height: .95fromem;
+  line-height: .95em;
 }
 
 /* Roster */
@@ -88,12 +88,11 @@ a img {
 }
 
 #roster table th {
-  background: #cceecc;
+  background: #004000;
   color: white;
-  text-align: right;
 }
+
 #roster table td {
-  text-align: right;
 }
 
 #add {

@@ -53,7 +53,7 @@
               <img src='/images/question.gif' />
             <% else %>
               &nbsp;
-            <%- end %>
+            <% end %>
           </td>
           <td style="border-right: 1px solid black;">
             <% if (game.has_games_of_type?(FoxTeamGame) &&
@@ -64,7 +64,7 @@
               <img src='/images/question.gif' />
             <% else %>
               &nbsp;
-            <%- end %>
+            <% end %>
           </td>
           <td>
             <%= link_to "#{game.game_file_for_type(YahooGameFile).source_id}",
@@ -75,9 +75,9 @@
               <img src="<%= (game.valid_stats_for_type?(YahooTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
             <% elsif (game.has_games_of_type?(YahooTeamGame))%>
               <img src='/images/question.gif' />
-            <%- else %>
+            <% else %>
               &nbsp;
-            <%- end %>
+            <% end %>
           </td>
           <td style="border-right: 1px solid black;">
             <% if (game.has_games_of_type?(YahooTeamGame) &&
@@ -88,7 +88,7 @@
               <img src='/images/question.gif' />
             <% else %>
               &nbsp;
-            <%- end %>
+            <% end %>
 </td>
           <td>
             <%=link_to "#{game.game_file_for_type(SportsNetworkGameFile).source_id}",
@@ -99,9 +99,9 @@
               <img src="<%= (game.valid_stats_for_type?(SportsNetworkTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
             <% elsif (game.has_games_of_type?(SportsNetworkTeamGame))%>
               <img src='/images/question.gif' />
-            <%- else %>
+            <% else %>
               &nbsp;
-            <%- end %>
+            <% end %>
           </td>
           <td>
             <% if (game.has_games_of_type?(SportsNetworkTeamGame) &&
@@ -112,10 +112,10 @@
               <img src='/images/question.gif' />
             <% else %>
               &nbsp;
-            <%- end %>
+            <% end %>
           </td>
         </tr>
-        <%- end %>
+        <% end %>
       </table>
       <br />
       <%= link_to "Load Fox", { :action => "fox_loader", :date => @date } %>
@@ -143,13 +143,13 @@
               <%= image_tag("/images/yahoo.ico") %>
             <% elsif (file.instance_of?(SportsNetworkGameFile)) %>
               <%= image_tag("/images/sports_network.ico") %>
-            <%- end %>
+            <% end %>
           </td>
           <td><%= file.source_id %></td>
           <td><%= file.content.length %></td>
           <td><%= link_to "parse", { :action => "parse", :id => file.source_id, :type => file.type} %></td>
         </tr>
-        <%- end %>
+        <% end %>
       </table>
     </div>
 
