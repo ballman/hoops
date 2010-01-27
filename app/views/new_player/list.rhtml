@@ -48,21 +48,6 @@
             <th width="20%">&nbsp;</th>
             <th width="1%">&nbsp;</th>
           </tr>
-  <% @not_on_roster_any_more.each do |player| -%>
-     <tr>
-        <td width="1%">&nbsp;</td>
-        <td width="7%" align="center" style="color: red; font-weight:bold"><%= player.number %></td>
-        <td width="20%" align="left" style="color: red; font-weight:bold"> <%= player.name %></td>
-        <td width="10%" align="center" style="color: red; font-weight:bold"><%= player.position %></td>
-        <td width="7%" align="center" style="color: red; font-weight:bold"><%= player.height %></td>
-        <td width="7%" align="center" style="color: red; font-weight:bold"><%= player.weight %></td>
-        <td width="7%" align="center" style="color: red; font-weight:bold"><%= player.year_string%></td>
-        <td width="20%" style="color: red; font-weight:bold"><%= player.hometown %></td>
-        <td width="20%">&nbsp;</td>
-        <td width="1%">&nbsp;</td>
-     </tr>
-     <% end -%>
-       
         <% bg_color = ""
           @team.new_players.sort {|x,y| x.last_name <=> y.last_name}.each do | player |
            old_player = @last_years_player_hash[player]
@@ -98,6 +83,21 @@
         <td width="1%">&nbsp;</td>
       </tr>
   <% end -%>
+  <% @not_on_roster_any_more.each do |player| -%>
+     <tr>
+        <td width="1%">&nbsp;</td>
+        <td width="7%" align="center" style="color: red; font-weight:bold"><%= player.number %></td>
+        <td width="20%" align="left" style="color: red; font-weight:bold"> <%= player.name %></td>
+        <td width="10%" align="center" style="color: red; font-weight:bold"><%= player.position %></td>
+        <td width="7%" align="center" style="color: red; font-weight:bold"><%= player.height %></td>
+        <td width="7%" align="center" style="color: red; font-weight:bold"><%= player.weight %></td>
+        <td width="7%" align="center" style="color: red; font-weight:bold"><%= player.year_string%></td>
+        <td width="20%" style="offcolor: red; font-weight:bold"><%= player.hometown %></td>
+        <td width="20%">&nbsp;</td>
+        <td width="1%">&nbsp;</td>
+     </tr>
+     <% end -%>
+       
       </table>
     </div>
     <br/> <br/>
