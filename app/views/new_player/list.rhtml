@@ -138,7 +138,7 @@
         <td width="1%">&nbsp;</td>
       </tr>
       <% old_rosters.each_pair do | old_player, roster |
-         next if roster.team == @team && roster.year == CURRENT_YEAR%>
+         next if roster.nil? || (roster.team == @team && roster.year == CURRENT_YEAR)%>
         <tr style="background-color: <%= bg_color %>">
         <td width="1%">&nbsp;</td>
         <td width="7%" align="center"><%= old_player.number %></td>
