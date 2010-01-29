@@ -25,8 +25,8 @@
         <td width="7%" align="center"><%= player.height %></td>
         <td width="7%" align="center"><%= player.weight %></td>
         <td width="7%" align="center"><%= player.year_string%></td>
-        <td width="20%"><%= player.hometown %></td>
-        <td width="20%">&nbsp;</td>
+        <td width="39%"><%= player.hometown %></td>
+        <td width="1%">&nbsp;</td>
         <td width="1%">&nbsp;</td>
       </tr>
   <% end -%>
@@ -141,7 +141,8 @@
         <td width="1%">&nbsp;</td>
       </tr>
   <% end -%>
-  <% @not_on_roster_any_more.each do |player| -%>
+          @team.new_players.sort 
+  <% @not_on_roster_any_more.sort{ |x,y| x.last_name <=> y.last_name}.each do | player | -%>
      <tr>
         <td width="1%">&nbsp;</td>
         <td width="7%" align="center" style="color: red"><%= player.number %></td>
