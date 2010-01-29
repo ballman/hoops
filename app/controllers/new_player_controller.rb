@@ -2,7 +2,7 @@ class NewPlayerController < ApplicationController
   def list
     @team = Team.find(params[:id])
 
-    @not_on_roster_any_more = players_not_in_new_players(@team)
+    @not_on_roster_any_more = players_not_on_roster_anymore(@team)
     
     @last_years_player_hash = @team.new_players.inject({}) do|hash, np|
       hash[np] = np.find_matching_player(@team.last_season_players)
@@ -54,10 +54,12 @@ class NewPlayerController < ApplicationController
     end
   end
 
-  def players_not_in_new_players(team)
-    team.last_season_players.select do |p|
+  def players_not_on_roster_anymore(team)
+    last_years_players =  team.last_season_players.select do |p|
       team.new_players.select { |np| np.first_name == p.first_name && np.last_name == p.last_name }.empty?
     end
+    last_years_players.delete_if { |lp| team.players.include?(lp) }
+    last_years_players
   end
   
   def redirect_to_list(team_id)
