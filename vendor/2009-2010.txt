@@ -1082,19 +1082,20 @@
 40  Ward, Mathias      F  6'7"  236  FR  Gig Harbor, WA
 2  Young, Raason      F  6'6"  175  JR  Washington, DC (Hagerston CC)
 72 :::: Montana State
-34  Anderson, Cody   Center  6-10  270  Fr  Canyon Country, CA
-1  Brown, Austin      Forward 6-4  215  Fr  Flower Mound, TX
-20  Bynum, Will      Guard  6-3  185  Jr  Alamogordo, NM (Eastern Arizona JC)
-21  Henderson, Cameron  Forward 6-7  235  Jr  Forest City, AR (Connors State)
-4  Hennessy, James  Guard  6-2  185  Jr  Williston, ND (Williston State)
-5  Hopkins, Trevor  Guard  5-11  160  Fr  Santa Barbara, CA
-15  Howard, Bobby      Forward 6-7  220  So  Great Falls, MT
-42  Johnson, Branden  Forward 6-8  215  Jr  Yakima, WA
-32  Mbunga, Divaldo  Center  6-9  240  Sr  Luauda, Angola (Peninsula JC)
-3  Navarre, Marquis  Guard  5-11  165  Jr  Oceanside, CA
-33  Piepoli, Danny      Forward 6-6  195  So  Pasadena, CA
-23  Rush, Erik          Guard  6-5  200  So  San Jose, CA
-24  Swann, Larry      Guard  6-1  170  Jr  Columbus, OH
+1  Austin Brown        F 6-4     205 So.  Lewisville, TX
+3  Marquis Navarre  G 5-11 165 Sr.  Oceanside, CA
+4  Cameron Henderson  F 6-7     235 Sr.  Forest City, AR (Connors State)
+5  Bryan Louff      G 5-11 175 So.  Santa Monica, CA (Marshalltown JC)
+12  Colt Idol           G 6-3     200 Fr.  Whitefish, MT
+15  Bobby Howard      F 6-7     225 Jr.  Great Falls, MT
+20  Will Bynum          G 6-3     180 Sr.  Alamogordo, NM (Eastern Arizona JC)
+21  Michel Swita    G   6-3     170 Fr.  Paris, France (North Idaho JC)
+23  Erik Rush          G 6-5     210 Jr.  San Jose, CA
+32  Steven Davis      F 6-7     225 Fr.  Billings, MT
+33  Danny Piepoli      F 6-6     200 Jr.  Pasadena, CA
+34  Cody Anderson      C 6-10 270 So.  Canyon Country, CA
+40  Jeff Budinich      F 6-9     225 Fr.  Maple Valley, WA
+42  Branden Johnson  F 6-9     230 Sr.  Yakima, WA
 73 :::: Northern Arizona
 2   DeAngelo Jones   F   6-5   200   Jr   Seattle, WA (New Mexico State)
 10  Cameron Jones      G  6-4  185  Jr.  Los Angeles, CA
