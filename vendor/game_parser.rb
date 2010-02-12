@@ -28,16 +28,14 @@ class GameParser
     teams = Array.new
     team_table = (@doc/"table.sbTeamsBg")
     (team_table/"tr.sbTeam td b a").each do | team_link |
-      teams << [team_link.inner_html.sub(/\n/," "), team_from_link(team_link.attributes['href'].to_s)]
+      teams << [team_link.inner_html.sub(/\n/," "), team_from_link(team_link)]
     end
 
     return teams
   end
 
   def team_from_link(link)
-    if (link =~ /statsId=(\d+)/)
-      Team.find(:first, :conditions => [ "fox_code = ?", $1.to_i])
-    end
+    Team.find(:first, :conditions => [ "fox_code = ?", link.inner_text])
   end
 
   def home_scores_by_period
@@ -180,7 +178,6 @@ class GameParser
     return player_game
   end
 
-  private
   def final_scores
     sb = scoring_table
     (sb/"tr.sbTeam/td/div.scoreboxTotal").collect {|e| e.inner_html.to_i }
@@ -225,6 +222,5 @@ class GameParser
   def team_turnovers
     team_extras("Team Turnovers")
   end
-
 end
 
