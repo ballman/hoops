@@ -164,7 +164,6 @@ class SportsNetworkGameParser
     return player_game
   end
 
-  private
   def score_lines
     @score_lines unless @score_lines.nil?
     score_table = (@doc%"tr.TSN1").next_sibling%"tr/td/table"
