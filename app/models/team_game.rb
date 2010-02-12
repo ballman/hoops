@@ -137,6 +137,31 @@ class TeamGame < ActiveRecord::Base
                       :conditions => ['player_id = ?', player])
   end
 
+  def ==(other)
+    (self.minutes         == other.minutes &&                
+     self.fgm             == other.fgm &&                  
+     self.fga             == other.fga &&                      
+     self.ftm             == other.ftm &&
+     self.fta             == other.fta &&
+     self.tpm             == other.tpm &&
+     self.tpa             == other.tpa &&
+     self.offense_rebound == other.offense_rebound &&
+     self.total_rebound   == other.total_rebound &&
+     self.assist          == other.assist &&
+     self.steal           == other.steal &&
+     self.block           == other.block &&
+     self.turnover        == other.turnover &&
+     self.foul            == other.foul &&
+     self.half1_point     == other.half1_point &&
+     self.half2_point     == other.half2_point &&
+     self.ot1_point       == other.ot1_point &&
+     self.ot2_point       == other.ot2_point &&
+     self.ot3_point       == other.ot3_point &&
+     self.ot4_point       == other.ot4_point &&
+     self.total_point     == other.total_point &&
+     self.team_turnover   == other.team_turnover &&
+     self.team_rebound    == other.team_rebound)
+  end
   private
   def closeness(string, other)
     string.downcase.lcs(other.downcase).length/string.length.to_f
