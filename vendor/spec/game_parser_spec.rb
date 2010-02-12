@@ -21,7 +21,8 @@ describe GameParser do
 
       @home_scores = [46, 42, 88]
       @away_scores = [30, 42, 72]
-
+      @number_of_away_player_entries = 12
+      @number_of_home_player_entries = 16
       @home_team_game = TeamGame.create!(:type => 'FoxTeamGame', :minutes => 200, :fgm => 34,
                                          :fga => 61, :tpm => 4, :tpa => 13, :ftm => 16,
                                          :fta => 19, :offense_rebound => 12,
@@ -38,6 +39,18 @@ describe GameParser do
                                          :turnover => 20, :team_turnover => 0, :foul => 18,
                                          :half1_point => 30, :half2_point => 42,
                                          :total_point => 72)
+      @home_player_game = FoxPlayerGame.new( :minutes => 23, 
+                                             :fgm=> 5, :fga => 8, :tpm => 0, :tpa => 0,
+                                             :ftm => 3, :fta => 3, :offense_rebound => 1,
+                                             :total_rebound => 11, :assist => 2, :steal => 1,
+                                             :block => 4, :turnover => 4, :foul => 2,
+                                             :total_point => 13, :player_name => 'E Davis, F')
+      @away_player_game = FoxPlayerGame.new(:minutes => 33, 
+                                             :fgm => 5, :fga => 14, :tpm => 2, :tpa => 5,
+                                             :ftm => 4, :fta => 5, :offense_rebound => 1,
+                                             :total_rebound => 4, :assist => 6, :steal => 1,
+                                             :block => 1, :turnover => 6, :foul => 2,
+                                             :total_point => 16, :player_name => 'A Watson')
     end
 
     describe 'get_teams' do
@@ -149,5 +162,44 @@ describe GameParser do
       @parser.away_team_turnover.should eql(@away_team_game.team_turnover)
     end
 
+    it 'should find team tables' do
+      @parser.team_tables.should_not be_nil
+    end
+    
+    describe 'finding the player tables' do
+      it 'should find the player tables' do
+        @parser.player_tables.should_not be_nil
+      end
+
+      it 'should find an array of tables' do
+        @parser.player_tables.should be_an_instance_of Array
+      end
+
+      it 'should find 3 tables' do
+        @parser.player_tables.should have(3).items
+      end
+    end
+
+    describe 'building player games' do
+      it 'should return an array' do
+        @parser.build_player_games(0).should be_an_instance_of Array
+      end
+
+      it 'should find the correct number of away player game entries' do
+        @parser.build_player_games(0).should have(@number_of_away_player_entries).items
+      end
+
+      it 'should find the correct number of home player game entries' do
+        @parser.build_player_games(1).should have(@number_of_home_player_entries).items
+      end
+
+      it 'should contain the away player game' do
+        @parser.build_player_games(0).should include(@away_player_game)
+      end
+
+      it 'should contain the home player game' do
+        @parser.build_player_games(1).should include(@home_player_game)
+      end
+    end
   end
 end
