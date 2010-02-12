@@ -10,6 +10,9 @@ class Player < ActiveRecord::Base
   before_create :create_cstv_bs_name, :create_fox_bs_name, :create_sn_bs_name,
                 :create_yahoo_bs_name
 
+  before_update :create_cstv_bs_name, :create_fox_bs_name, :create_sn_bs_name,
+                :create_yahoo_bs_name
+
   #  validates_presence_of :number, :last_name, :first_name, :position
 
   def teams
@@ -54,21 +57,21 @@ class Player < ActiveRecord::Base
 
   def create_yahoo_bs_name
     self.yahoo_bs_name = "#{self.first_name[0].chr}. #{self.last_name}"
-    self.yahoo_bs_name += " #{self.suffix_name}" if self.suffix_name != ''
+    self.yahoo_bs_name += " #{self.suffix_name}" unless (self.suffix_name.nil? || self.suffix_name == '')
   end
 
   def create_cstv_bs_name
     self.cstv_bs_name = "#{self.first_name[0].chr} #{self.last_name}"
-    self.cstv_bs_name += " #{self.suffix_name}" if self.suffix_name != ''
+    self.cstv_bs_name += " #{self.suffix_name}" unless (self.suffix_name.nil? || self.suffix_name == '')
   end
 
   def create_fox_bs_name
     self.fox_bs_name = "#{self.first_name[0].chr} #{self.last_name}"
-    self.fox_bs_name += " #{self.suffix_name}" if self.suffix_name != ''
+    self.fox_bs_name += " #{self.suffix_name}" unless (self.suffix_name.nil || self.suffix_name == '')
   end
 
   def create_sn_bs_name
     self.sn_bs_name = "#{self.first_name} #{self.last_name}"
-    self.sn_bs_name += ", #{self.suffix_name}" if self.suffix_name != ''
+    self.sn_bs_name += ", #{self.suffix_name}" unless (self.suffix_name.nil? || self.suffix_name == '')
   end
 end
