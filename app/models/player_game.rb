@@ -74,4 +74,23 @@ class PlayerGame < ActiveRecord::Base
     return "#{stripped_name} does not match #{player.first_name} #{player.last_name} [#{boxscore_name}]" unless stripped_name.downcase == boxscore_name.downcase
   end
 
+  def ==(other)
+    (self.type            == other.type ||
+     self.minutes         == other.minutes ||
+     self.fgm             == other.fgm ||
+     self.fga             == other.fga ||            
+     self.tpm             == other.tpm ||            
+     self.tpa             == other.tpa ||            
+     self.fta             == other.fta ||            
+     self.ftm             == other.ftm ||            
+     self.offense_rebound == other.offense_rebound ||
+     self.total_rebound   == other.total_rebound ||
+     self.assist          == other.assist ||
+     self.steal           == other.steal ||
+     self.block           == other.block ||
+     self.turnover        == other.turnover ||
+     self.foul            == other.foul ||
+     self.total_point     == other.total_point ||
+     self.player_name     == other.player_name)
+  end
 end
