@@ -43,8 +43,8 @@ describe NewPlayerLoader do
       @player.weight.should eql(180)
     end
     
-    it 'should create a player with a valid year' do
-      @player.year.should eql(4)
+    it 'should create a player with a valid acad_year' do
+      @player.acad_year.should eql(4)
     end
     
     it 'should create a player with a hometown' do
