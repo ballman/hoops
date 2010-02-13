@@ -67,7 +67,7 @@ class Player < ActiveRecord::Base
 
   def create_fox_bs_name
     self.fox_bs_name = "#{self.first_name[0].chr} #{self.last_name}"
-    self.fox_bs_name += " #{self.suffix_name}" unless (self.suffix_name.nil || self.suffix_name == '')
+    self.fox_bs_name += " #{self.suffix_name}" unless (self.suffix_name.nil? || self.suffix_name == '')
   end
 
   def create_sn_bs_name
