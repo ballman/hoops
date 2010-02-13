@@ -30,7 +30,6 @@ class YahooGameParser
       raise ArgumentError, "Unable to find team: #{team_link.inner_text}" if (team.nil?)
 
       [team_link.inner_text, team]
-#      team_from_link(team_link.get_attribute('href'))]
     end
   end
 
@@ -113,30 +112,9 @@ class YahooGameParser
     team_game.steal = team_line[9]
     team_game.block = team_line[10]
     team_game.foul = team_line[11]
-    team_game.team_turnover = 0
+    team_game.team_turnover = team_turnover
     team_game.team_rebound = team_rebound
     team_game
-  end
-
-  def get_team_turnovers(data, position)
-    return get_team_extras(data, 'Team Turnovers:', position)
-  end
-
-  def get_team_rebounds(data, position)
-    return get_team_extras(data, 'Team Rebounds:', position)
-  end
-
-  def get_team_scores(data_table)
-    scores = Array.new
-    data_table.each do | table |
-      table.elements.each('*/tr[@class="sbTeam"]/td | tr[@class="sbTeam"]/td') do |td|
-        scores << td.text unless td.has_attributes? || td.has_elements?
-        td.elements.each('div[@class="scoreboxTotal"]') do |final|
-          scores << final.text
-        end
-      end
-    end
-    return scores
   end
 
   def build_player_games(team_index)
@@ -145,11 +123,10 @@ class YahooGameParser
     end
   end
 
-
   def new_player_game(player_line)
     player_game = YahooPlayerGame.new
 
-    player_game.player_name = player_line[0]
+    player_game.player_name = player_line[0].sub(/^[^A-Za-z]+/, '')
     player_game.minutes = player_line[1]
     (player_game.fgm, player_game.fga) = player_line[2].split(/-/)
     (player_game.tpm, player_game.tpa) = player_line[3].split(/-/)
@@ -166,7 +143,6 @@ class YahooGameParser
     return player_game
   end
 
-  private
   def final_scores
     (@doc/"tr.ysptblclbg5/td.ysptblclbg6/span").collect do |e|
       e.inner_text.to_i if (e.inner_text =~ /^\d+$/)
@@ -186,7 +162,7 @@ class YahooGameParser
   end
 
   def team_rebounds(index)
-    rows =(team_score_tables[index]/"tr:last-child/td/b[text()*='Team Reb']")
+    rows =(team_score_tables[index]/"tr:last-of-type/td/b[text()*='Team Reb']")
     rows[0].parent.inner_text.match(/\d+/m).to_s.to_i
   end
 
