@@ -6,7 +6,6 @@ class PlayerController < ApplicationController
 
   def add
     @player = Player.new(params[:player])
-    puts "**** First name: #{@player.first_name}; last: #{@player.last_name}; suffix: #{@player.suffix_name}"
     @team = Team.find(@player.team_id)
     render :action => 'list'
   end
