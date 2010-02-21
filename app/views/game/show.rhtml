@@ -21,21 +21,29 @@
         <td style="font-weight: bold; background: #<%= team_game.team.color_1 %>;">
           <%= team_mascot_link(team_game.team) %>
         </td>
-        <td style="width: 1.5em;"><%= team_game.half1_point %></td>
-        <td style="width: 1.5em;"><%= team_game.half2_point %></td>
+        <td style="width: 1.5em;">
+          <%= editable_team_game_stat(team_game, "half1_point", team_game.id) %>
+        </td>
+        <td style="width: 1.5em;">
+          <%= editable_team_game_stat(team_game, "half2_point", team_game.id) %>
+        </td>
       <% (1..@game.get_number_of_overtimes).to_a.each do |i|
          attr_name = sprintf("ot%d_point", i)
        %>
-        <td style="width: 1.5em;"><%= team_game.send(attr_name) %></td>
+        <td style="width: 1.5em;">
+          <%= editable_team_game_stat(team_game, attr_name, team_game.id) %>
+        </td>
       <% end %>
-      <td style="font-weight: bold; width: 2.5em;" ><%= team_game.total_point %></td>
+      <td style="font-weight: bold; width: 2.5em;" >
+         <%= editable_team_game_stat(team_game, "total_point", team_game.id) %>
+      </td>
     </tr>
     <% end %>
     </table>
     </center>
   <br />
 
-  <%= team_box(@game.away_team_game_for_type(@type), true) %>
+  <%= editable_team_box(@game.away_team_game_for_type(@type), true) %>
   Validation Errors:
   <ul>
     <% @game.away_team_game_for_type(@type).validate_stats.flatten.each do | valid_error | %>
@@ -43,7 +51,7 @@
     <% end %>
   </ul>
   <br />
-  <%= team_box(@game.home_team_game_for_type(@type), true) %>
+  <%= editable_team_box(@game.home_team_game_for_type(@type), true) %>
   Validation Errors:
   <ul>
     <% @game.home_team_game_for_type(@type).validate_stats.flatten.each do | valid_error | %>
@@ -54,3 +62,8 @@
 <div id="edit_player_game">
   <%= render :partial => 'edit_player_game' %>
 </div
+<script type="text/javascript">
+  <%= edit_team_game_script(@game.get_number_of_overtimes, @game.away_team_game_for_type(@type)) %>
+
+  <%= edit_team_game_script(@game.get_number_of_overtimes, @game.home_team_game_for_type(@type)) %>
+</script>

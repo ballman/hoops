@@ -14,6 +14,27 @@ module GameHelper
       "<td class='#{klass}' style='width: 2em;'>#{stats.total_point}</td>"
   end
 
+  def editable_stats_row(stats, row_id, klass=nil)
+    editable_team_game_td(stats, "minutes", row_id, 2, klass) +
+      "<td class='#{klass}' style='width: 3em;'>" +
+      editable_team_game_stat(stats, "fgm", row_id) + "-" +
+      editable_team_game_stat(stats, "fga", row_id) + "</td>" +
+      "<td class='#{klass}' style='width: 3em;'>" +
+      editable_team_game_stat(stats, "ftm", row_id) + "-" +
+      editable_team_game_stat(stats, "fta", row_id) + "</td>" +
+      "<td class='#{klass}' style='width: 3em;'>" +
+      editable_team_game_stat(stats, "tpm", row_id) + "-" +
+      editable_team_game_stat(stats, "tpa", row_id) + "</td>" +
+      editable_team_game_td(stats, "offense_rebound", row_id, 2, klass) +
+      editable_team_game_td(stats, "total_rebound", row_id, 2, klass) +
+      editable_team_game_td(stats, "assist", row_id, 2, klass) +
+      editable_team_game_td(stats, "steal", row_id, 2, klass) +
+      editable_team_game_td(stats, "block", row_id, 2, klass) +
+      editable_team_game_td(stats, "turnover", row_id, 2, klass) +
+      editable_team_game_td(stats, "foul", row_id, 2, klass) +
+      editable_team_game_td(stats, "total_point", row_id, 2, klass) 
+  end
+
   def stats_header
     stats= %w(Name min fgs fts 3pt off tot ast stl blk tvr fls pts)
     "<tr>\n<th colspan='5'>&nbsp;</th>\n<th colspan='2'>Rebounds</th>\n" +
@@ -46,6 +67,28 @@ module GameHelper
       "</tr>\n</table>\n"
   end
 
+  def editable_team_box(team_game, edit_player_line_flag)
+    "<table>\n" +
+      team_box_header(team_game.team) +
+      stats_header +
+      players_boxes(team_game.player_games, edit_player_line_flag) +
+      "<tr>\n<td class='total'>TOTALS</td>\n" +
+      editable_stats_row(team_game, team_game.id, "total") + "\n</tr>\n" +
+      "<tr ><td class='total' style='text-align: left;' colspan='3'>" +
+      link_to("Add player game",
+              {:controller => "game", :action     => "add_player_game",
+                :id         => team_game.id}
+              ) +
+      "</td>\n" +
+      "<td class='total' colspan='5'>Team Rebounds: " +
+      editable_team_game_stat(team_game, "team_rebound", team_game.id) +
+      "</td>\n"+
+      "<td class='total' colspan='5'>Team Turnovers: " +
+      editable_team_game_stat(team_game, "team_turnover", team_game.id) +
+      "</td>\n" +
+      "</tr>\n</table>\n"
+  end
+
   def master_edit_box(team_game)
     number_of_ots = team_game.game.get_number_of_overtimes
     "<table>\n" +
@@ -53,7 +96,7 @@ module GameHelper
       split_stats_header +
       player_diff_boxes(team_game.player_games) +
       "</table>\n<br />\n<table>\n" +
-      editable_total_line_header(number_of_ots) +
+      master_total_line_header(number_of_ots) +
       team_game.game.team_games_for_team(team_game.team).inject("")  do |s, tg|
           s += editable_total_line(tg, team_game, number_of_ots)
       end + "</table>\n"
@@ -72,7 +115,7 @@ module GameHelper
       "</table>\n"
   end
 
-  def editable_total_line_header(ots)
+  def master_total_line_header(ots)
     cols = %w(Name min fgm fga ftm fta 3pm 3pa off tot Tm ast stl blk tot
               Tm fls tot 1st 2nd) + (1..ots).to_a.map { |i| "OT#{i}" }
     "<tr>\n<th colspan='8'>&nbsp;</th>\n<th colspan='3'>Rebounds</th>\n" +
@@ -98,28 +141,32 @@ module GameHelper
       "<td>#{stats.type.to_s.sub(/TeamGame$/,'')}</td>\n" +
       master_cols(ots).map do |col|
         if (stats.class == MasterTeamGame)
-          editable_master_stat(stats, col, stats.id)
+          editable_team_game_td(stats, col, stats.id)
         else
-          master_stat_td(2, spanner(stats.send(col),
-                                    different_highlight(stats.send(col),
-                                                       master.send(col))))
+          stat_td(2, spanner(stats.send(col),
+                             different_highlight(stats.send(col),
+                                                 master.send(col))))
         end
 
       end.join("\n") +
       "</tr>"
   end
 
-  def edit_scripts(ots, team_game)
+  def edit_team_game_script(ots, team_game)
     master_cols(ots).inject("") do |str, col|
-      str += "new Ajax.InPlaceEditor('master_edit_#{col}_#{team_game.id}', '/game/update_master', {cols: 3, cancelLink: false, okButton: false, formClassName: 'master_edit_field'});"
+      str += "new Ajax.InPlaceEditor('team_game_edit_#{col}_#{team_game.id}', '/game/update_master', {cols: 3, cancelLink: false, okButton: false, formClassName: 'team_total_edit_field'});\n"
     end
   end
 
-  def editable_master_stat(stats, col, team_game_id)
-    master_stat_td(2, "<span id='master_edit_#{col}_#{team_game_id}' class='editable'>#{stats.send(col)}</span>")
+  def editable_team_game_stat(stats, col, id)
+    "<span id='team_game_edit_#{col}_#{id}' class='editable'>#{stats.send(col)}</span>"
+  end
+  
+  def editable_team_game_td(stats, col, team_game_id, width=2, klass=nil)
+    stat_td(width, editable_team_game_stat(stats, col, team_game_id), klass)
   end
 
-  def master_stat_td(width, stat, klass=nil)
+  def stat_td(width, stat, klass=nil)
     sprintf("<td %s style=\"width: %dem;\">%s</td>",
             (klass) ? "class=#{klass} " : "", width, stat)
   end
@@ -181,7 +228,7 @@ module GameHelper
     cols = %w(minutes fgm fga ftm fta tpm tpa offense_rebound total_rebound
               assist steal block turnover foul total_point)
     cols.map do |c|
-      master_stat_td(2, master.send(c),
+      stat_td(2, master.send(c),
                      (player_stat_diff?(c, player_games, master) ? 'difference' : ''))
     end.join("\n")
   end
@@ -204,7 +251,7 @@ module GameHelper
       "<td style='width: 150px; text-align: left;'>" +
       "#{player.last_name}, #{player.first_name}</td>\n" +
     cols.map! do |c|
-      master_stat_td(2, '?', 'difference')
+      stat_td(2, '?', 'difference')
     end.join(" ")
   end
 

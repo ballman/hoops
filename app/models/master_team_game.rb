@@ -6,4 +6,8 @@ class MasterTeamGame < TeamGame
     end
     return mtg
   end
+
+  def add_player_game!(player, name)
+    player_games << MasterPlayerGame.new(:player => player, :player_name => name)
+  end
 end

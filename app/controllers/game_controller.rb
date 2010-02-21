@@ -48,6 +48,7 @@ class GameController < ApplicationController
     redirect_to :action => 'list', :id => params[:date]
   end
 
+  
   def move_player_line_into_edit
     @player_game = PlayerGame.find(params[:id])
     @players = @player_game.team_game.team.players.sort do
@@ -63,6 +64,13 @@ class GameController < ApplicationController
     else
       update_player_game
     end
+  end
+
+  def add_player_game
+    team_game = TeamGame.find(params[:id])
+    team_game.add_player_game!(team_game.team.players.first, 'Added')
+    redirect_to :action => 'show', :id => team_game.game.id,
+                :type => team_game.class
   end
 
   def update_player_game
@@ -104,7 +112,7 @@ class GameController < ApplicationController
   end
 
   def update_master
-    params[:editorId] =~ /^master_edit_(.*)_(\d+)$/
+    params[:editorId] =~ /^team_game_edit_(.*)_(\d+)$/
     team_game_id = $2.to_i
     stat = $1
     TeamGame.update(team_game_id, {stat.to_sym => params[:value]})

@@ -10,7 +10,7 @@
 </div>
 <br />
 <script type="text/javascript">
-  <%= edit_scripts(@game.get_number_of_overtimes, @game.away_team_game_for_type(MasterTeamGame)) %>
+  <%= edit_team_game_script(@game.get_number_of_overtimes, @game.away_team_game_for_type(MasterTeamGame)) %>
 
-  <%= edit_scripts(@game.get_number_of_overtimes, @game.home_team_game_for_type(MasterTeamGame)) %>
+  <%= edit_team_game_script(@game.get_number_of_overtimes, @game.home_team_game_for_type(MasterTeamGame)) %>
 </script>
