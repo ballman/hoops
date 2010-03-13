@@ -93,9 +93,9 @@ def add_averages(games, team, foe=false)
   end
 end
 
-Team.all.each do |team|
+Team.all.sort { |a,b| a.name <=> b.name}.each do |team|
   puts "#{team.name}"
-  games = team.games.select {|g| g.played_on > Date.new(2008,11,1) }
+  games = team.games.select {|g| g.played_on > Date.new(2009,11,1) }
   next if games.nil?
   add_averages(games, team)
   add_averages(games, team, true)
