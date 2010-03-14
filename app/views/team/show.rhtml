@@ -128,7 +128,7 @@
 	  %> 
 	  <td>
 	 <%= game_link(away.total_point.to_s + '-' + home.total_point.to_s, game) -%></td>
-	  <td> <%= (win = game.win?(@team)) ? 'W' : 'L' -%></td>
+	  <%= (win = game.win?(@team)) ? '<td style="color: green">W</td>' : '<td style="color: red">L</td>' -%>
 	  <% win ? (wins += 1) : (losses += 1) -%>
 	  <% win ? (wins_64 += 1) : (loss_64 += 1) if opponent.in_64 -%>
 	  <% win ? (conf_wins += 1) : (conf_losses += 1) if conference -%>
