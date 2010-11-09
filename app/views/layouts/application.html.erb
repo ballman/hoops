@@ -2,15 +2,10 @@
 <html>
   <head>
     <title>WereFrog College Basketball</title>
-    <%= stylesheet_link_tag "ncaa", :media => "all" %>
-    <%= stylesheet_link_tag "calendar-system.css" %>
-    <%= javascript_include_tag "prototype" %>
-    <%= javascript_include_tag "sorttable" %>
-    <%= javascript_include_tag "effects" %>
-    <%= javascript_include_tag "controls" %>
-    <%= javascript_include_tag 'bluff/excanvas', 'bluff/js-class', 'bluff/bluff-min' %>
+    <%= stylesheet_link_tag :all %>
+    <%= javascript_include_tag :defaults %>
+    <%= csrf_meta_tag %>
 
-    <script type="text/javascript"><%= @content_for_player_edit_scripts %></script>
    </head>
     <body bgcolor="<%= session[:authorized] ? 'e8ffdc' : '#f8f8f8' %>">
       <div id="banner">
@@ -47,7 +42,7 @@
       			</ul>
     		</div>
     	<% end -%>
-    	<%= @content_for_layout %>
+    	<%= yield %>
 	    	<div style="clear:left;height:0;line-height:0" >
 		
 		
