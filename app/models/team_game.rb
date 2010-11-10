@@ -133,8 +133,7 @@ class TeamGame < ActiveRecord::Base
 
 
   def player_games_for_player(player)
-    player_games.find(:first,
-                      :conditions => ['player_id = ?', player])
+    player_games.where(:player_id => player).first
   end
 
   def ==(other)

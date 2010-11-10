@@ -11,17 +11,17 @@ describe 'team/show' do
   end
   
   def do_render
-    render 'team/show'
+    render(:template => 'team/show.html.erb')
   end
 
   it 'should include a region for an offensive efficiency graph' do
-    template.stubs(:team_stats_graph)
+    view.stubs(:team_stats_graph)
     do_render
-    response.should have_tag('canvas[id=?]', 'efficiency')
+    rendered.should have_selector('canvas[id=efficiency]')
   end
 
   it 'should generate an offensive efficiency graph' do
-    template.expects(:team_stats_graph)
+    view.expects(:team_stats_graph)
     do_render
   end
 end

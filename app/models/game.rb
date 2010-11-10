@@ -5,12 +5,11 @@ class Game < ActiveRecord::Base
   has_many   :master_team_games
   has_many  :game_files
 
-  named_scope :current, lambda { { :conditions => [ 'played_on > ?', Date.new(CURRENT_YEAR, 11, 1)] }}
+  scope :current, lambda { { :conditions => [ 'played_on > ?', Date.new(CURRENT_YEAR, 11, 1)] }}
   
   def self.find_or_create(played_on, away_team, home_team)
-    game = Game.find(:first,
-                     :conditions => [ 'played_on = ? and away_team_id = ? and home_team_id = ?',
-                                      played_on, away_team.id, home_team.id ])
+    game = Game.where(:played_on => played_on, :away_team_id => away_team.id,
+                      :home_team_id => home_team.id).first
     if (game.nil?)
       game = Game.new
       game.played_on = played_on
@@ -60,6 +59,7 @@ class Game < ActiveRecord::Base
   end
 
   def away_team_game_for_type(klass)
+
     team_game_for_type(klass, away_team)
   end
 
@@ -68,9 +68,7 @@ class Game < ActiveRecord::Base
   end
 
   def team_games_for_team(team)
-    team_games.find(:all,
-                    :conditions => ['team_id = ?', team],
-                    :order => 'id desc')
+    team_games.where(:team_id => team).all.order('id desc')
   end
 
   def opp_team_game_for_team_and_type(team, klass)
@@ -97,10 +95,9 @@ class Game < ActiveRecord::Base
   end
 
   def different_from_master_for_type?(klass)
-    team_games.find(:all,
-      :conditions => ['type= ?', klass.to_s]).inject(true) do | same, team_game|
-        same &&= team_game.different_stats(team_game_for_type(MasterTeamGame,
-                                                              team_game.team)).empty?
+    team_games.where(:type => klass.to_s).all.inject(true) do | same, team_game|
+      same &&= team_game.different_stats(team_game_for_type(MasterTeamGame,
+                                                            team_game.team)).empty?
     end
   end
 
@@ -145,7 +142,6 @@ class Game < ActiveRecord::Base
 
   private
   def team_game_for_type(klass, team)
-    team_games.find(:first, :conditions => ['team_id = ? and type = ?',
-                                            team, klass.to_s])
+    team_games.where(:team_id => team, :type => klass.to_s).first
   end
 end

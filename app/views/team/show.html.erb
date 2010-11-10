@@ -72,11 +72,11 @@
 		  <td width="15%" style="border-right: solid 2px black;"><%= player.last_name -%>, <%= player.first_name -%></td>
 		  <td width="5%"><%= player.player_average.games_played -%></td>
 		  <td width="5%"><%= stat_format(player.player_average.total_point, "total_point") -%></td>
-		  <td width="5%"><%= number_with_precision(player.player_average.fga * player.player_average.games_played, 0) -%></td>
+		  <td width="5%"><%= number_with_precision(player.player_average.fga * player.player_average.games_played, :precision => 0) -%></td>
 		  <td width="8%"><%= stat_format(player.player_average.fgp, "fgp") -%></td>
-		  <td width="5%"><%= number_with_precision(player.player_average.fta * player.player_average.games_played, 0) -%></td>
+		  <td width="5%"><%= number_with_precision(player.player_average.fta * player.player_average.games_played, :precision => 0) -%></td>
 		  <td width="8%"><%= stat_format(player.player_average.ftp, "ftp") -%></td>
-		  <td width="5%"><%= number_with_precision(player.player_average.tpa * player.player_average.games_played, 0) -%></td>
+		  <td width="5%"><%= number_with_precision(player.player_average.tpa * player.player_average.games_played, :precision => 0) -%></td>
 		  <td width="8%" style="border-right: solid 1px black;"><%= stat_format(player.player_average.tpp, "tpp") -%></td>
 		  <td width="5%"><%= stat_format(player.player_average.offense_rebound, "offense_rebound") -%></td>
 		  <td width="5%"><%= stat_format(player.player_average.total_rebound, "total_rebound") -%></td>

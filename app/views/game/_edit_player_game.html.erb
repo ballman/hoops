@@ -1,4 +1,4 @@
-    <% form_tag(:action => "save_player_game", :id => @player_game) do %>
+<%= form_tag(:action => "save_player_game", :id => @player_game) do %>
       <% if (!@player_game.nil?) %>
         <h3>Editing game of <%= @player_game.player_name %> on <%= @player_game.team_game.team.name %> </h3>
       <% end %>

@@ -4,7 +4,7 @@ class Roster < ActiveRecord::Base
   
   def self.remove_player(player_id, year = nil)
     year ||= CURRENT_YEAR
-    roster = Roster.find(:first, :conditions => [ 'player_id = ? and year = ?', player_id, year])
+    roster = Roster.where(:player_id => player_id, :year => year).first
     roster.destroy()
   end
 end

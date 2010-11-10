@@ -36,7 +36,7 @@ module TeamHelper
     return_string = "<tr><td class='team' style='width: 17em;'>#{team_link(team_game.team)}</td>"
     return_string += breakdown_stats.collect do | stat |
       precision = (percentage_stat.include?(stat)) ? 3 : 0
-      "<td class='team'>#{number_with_precision(team_game.send(stat),  precision)}</td>"
+      "<td class='team'>#{number_with_precision(team_game.send(stat),  :precision => precision)}</td>"
     end.join("\n")
     return_string += "</tr>"
   end
@@ -46,7 +46,7 @@ module TeamHelper
     return_string += breakdown_stats.collect do | stat |
       precision = (percentage_stat.include?(stat)) ? 3 : 1
       negative = (team_game.send(stat) - average.send(stat) < 0) ?  "negative" : ""
-      "<td class='diff#{negative}'>#{number_with_precision(team_game.send(stat) - average.send(stat),  precision)}</td>"
+      "<td class='diff#{negative}'>#{number_with_precision(team_game.send(stat) - average.send(stat),  :precision => precision)}</td>"
     end.join("\n")
   end
 

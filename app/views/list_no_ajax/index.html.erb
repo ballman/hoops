@@ -17,11 +17,7 @@
       <%= render(:partial => 'item', :collection => @items) %>
     </ul>
 
-    <% form_remote_tag(:url      => { :action => "add_item"},
-                        :update   => "items",
-                        :position => :top,
-                        :loading  => 'item_loading()',
-                        :complete => 'item_added()') do %>
+    <%= form_tag({ :action => "add_item"}, :remote => true }) do %>
       <%= text_field_tag('item_body', '', :id => 'item-body-field') %>
       <%= submit_tag("Add Item", :id => 'form-submit-button') %>
       <span id='busy' style="display: none">Adding...</span>

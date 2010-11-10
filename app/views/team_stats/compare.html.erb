@@ -1,7 +1,7 @@
 <h1>Team comparison</h1>
 <h3><%= @teams[0].name %> <%= link_to "[breakdown]", { :controller => "team", :action => "breakdown", :id => @teams[0]} %> vs. <%= @teams[1].name %> <%= link_to "[breakdown]", { :controller => "team", :action => "breakdown", :id => @teams[1]} %> </h3>
 
-<% form_tag({ :action => 'compare' }, { :method => 'get' }) do %>
+<%= form_tag({ :action => 'compare' }, { :method => 'get' }) do %>
 Choose:
 <select name="team1">
 <%= options_from_collection_for_select(@tourney_teams, 'id', 'name', @teams[0].id) %>

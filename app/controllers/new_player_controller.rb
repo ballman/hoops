@@ -45,8 +45,8 @@ class NewPlayerController < ApplicationController
 
   private
   def find_player_on_other_teams(player)
-    other_players_with_same_name = Player.find(:all, :conditions => {:first_name => player.first_name,
-                                                                    :last_name => player.last_name})
+    other_players_with_same_name = Player.where(:first_name => player.first_name,
+                                                :last_name => player.last_name)
     other_players_with_same_name.inject({}) do | hash, player |
       max_roster = player.rosters.max_by { |r| r.year }
       hash[player] = max_roster

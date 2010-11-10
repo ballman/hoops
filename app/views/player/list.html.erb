@@ -38,13 +38,12 @@
       <tr style="background-color: <%= background %>" id="row_<%= count %>" >
         <td width="1%">&nbsp;</td>
         <td width="8%"><%= player.number %></td>
-        <td width="25%"><%= link_to_remote player.name,
-                :url => {
+        <td width="25%"><%= link_to player.name,
+                {
                     :controller => "player",
                     :action     => "move_into_edit",
                     :id         => player.id},
-                :loading   => "editing_player('row_#{count}')",
-                :update => "add"
+                :remote => true
              %>
         </td>
         <td width="8%"><%= player.position %></td>

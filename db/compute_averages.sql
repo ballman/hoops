@@ -27,7 +27,7 @@ select pg.player_id as id,
    and tg.type = 'MasterTeamGame'
    and pg.team_game_id = tg.id
    and tg.game_id = g.id
-   and g.played_on > '2009-11-1'
+   and g.played_on > '2010-11-1'
  group by player_id;
 
 

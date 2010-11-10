@@ -1,6 +1,6 @@
 class TeamController < ApplicationController
   def list
-    @conferences = Conference.find :all
+    @conferences = Conference.find.all
   end
 
   def tourney
@@ -12,16 +12,14 @@ class TeamController < ApplicationController
     @rank = TeamRanks.find_by_team_id(@team.id)
     @opp_rank = TeamFoeRanks.find_by_team_id(@team.id)
     @diff_rank = TeamDiffRanks.find_by_team_id(@team.id)
-    @games = Game.current.find(:all,
-:conditions => ['(home_team_id = ? or away_team_id = ?)', @team.id, @team.id],
-    :order => :played_on )
+    @games = Game.current.where('home_team_id = ? or away_team_id = ?',
+                                @team.id, @team.id).order(:played_on).all
   end
 
   def breakdown
     @team = Team.find(params[:id])
-    @games = Game.current.find(:all,
-    :conditions => ['(home_team_id = ? or away_team_id = ?)', @team.id, @team.id],
-    :order => :played_on )
+    @games = Game.current.where('home_team_id = ? or away_team_id = ?',
+                                @team.id, @team.id).order(:played_on).all
   end
 
   def save

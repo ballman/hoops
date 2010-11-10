@@ -1,9 +1,8 @@
 class GameController < ApplicationController
   def list
     @date = params[:id]
-    @games = Game.find(:all, :conditions => [ "played_on = ?", @date ])
-    @unloaded_files = GameFile.find(:all,
-                :conditions => [ "game_date = ? and game_id is null", @date ])
+    @games = Game.where(:played_on => @date).all
+    @unloaded_files = GameFile.where(game_date => @date, :game_id => nil).all
     @validate = (params[:validate].nil?) ? false : true
   end
 
@@ -24,14 +23,13 @@ class GameController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id])
+    @game = Game.findq(params[:id])
     @type = Object.const_get(params[:type] || 'FoxTeamGame')
   end
 
   def parse
-    game_file = GameFile.find(:first,
-                              :conditions => ["source_id = ? and type = ?",
-                                              params[:id], params[:type]])
+    game_file = GameFile.where(:source_id => params[:id],
+                               :type => params[:type]).first
     _parse_game(game_file)
     redirect_to :action => 'list', :id => game_file.game_date
   end
@@ -39,8 +37,8 @@ class GameController < ApplicationController
   def parse_all
     (y, m, d) = params[:date].split("-")
     type = Object.const_get(params[:type])
-    GameFile.find(:all, :conditions => ["game_date = ?",
-                    Date.civil(y.to_i, m.to_i, d.to_i)]).each do | game_file |
+    GameFile.where(:game_date => Date.civil(y.to_i, m.to_i,
+                                            d.to_i)).all.each do | game_file |
       next if (!game_file.is_a?(type) || game_file.content.nil? ||
                game_file.content.length == 0)
       _parse_game(game_file)
@@ -101,10 +99,8 @@ class GameController < ApplicationController
 
   def load_master_for_date
     (y, m, d) = params[:date].split("-")
-    type = Object.const_get(params[:type])
-    games = Game.find(:all,
-                      :conditions => [ "played_on = ?",
-                                       Date.civil(y.to_i, m.to_i, d.to_i) ])
+    type = Object.const_get(params[:type]) 
+    games = Game.find(:played_on => Date.civil(y.to_i, m.to_i, d.to_i)).all
     games.each do |game|
       _load_master(game.id, type)
     end

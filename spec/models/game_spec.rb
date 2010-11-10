@@ -5,7 +5,7 @@ describe Game do
     describe 'current games' do
       it 'should automatically limit game retrieval to those games after November 1st of the current year' do
         games = []
-        (2006).upto(2009) do |year|
+        (2006).upto(2010) do |year|
           games << Game.generate!(:played_on => Date.new(year, 11, 2))
         end
         Game.current.find(:all).size.should == 1

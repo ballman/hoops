@@ -13,7 +13,7 @@ class PlayerController < ApplicationController
   def move_into_edit
     @player = Player.find(params[:id])
     @team = @player.team.id
-    render(:partial => 'form')
+#    render(:partial => 'form')
   end
 
   def save
