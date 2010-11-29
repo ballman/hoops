@@ -4,7 +4,7 @@ class FoxGameFetcher < GameFetcher
   URL = 'msn.foxsports.com'
 
   def get_game_list_html(game_date, url)
-    path = '/cbk/scores?scheduleDayCode=' + game_date.strftime("%Y-%m-%d") +
+    path = '/collegebasketball/scores?scheduleDayCode=' + game_date.strftime("%Y-%m-%d") +
 	   '&conference=all'
     Net::HTTP.start(url) do |http|
       response = http.get(path)
@@ -14,7 +14,9 @@ class FoxGameFetcher < GameFetcher
 
   def create_game_list(html)
     games = Array.new
-    html.grep(/<a href=\"([^>]*)\">Box Score/m) { | match | games << $1 }
+    html.grep(/<a href=\"([^>]*)\">Box Score/m) do | match |
+      games << $1.sub(/cbk/, 'collegebasketball')
+    end
     return games
   end
 

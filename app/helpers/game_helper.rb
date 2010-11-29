@@ -37,11 +37,11 @@ module GameHelper
 
   def stats_header
     stats= %w(Name min fgs fts 3pt off tot ast stl blk tvr fls pts)
-    "<tr>\n<th colspan='5'>&nbsp;</th>\n<th colspan='2'>Rebounds</th>\n" +
+    ("<tr>\n<th colspan='5'>&nbsp;</th>\n<th colspan='2'>Rebounds</th>\n" +
       "<th colspan='6'>&nbsp;</th>\n</tr>\n" +
       "<tr><th>" +
       stats.join("</th>\n<th>") +
-      "</th></tr>\n"
+      "</th></tr>\n").html_safe
   end
 
   def split_stats_header
@@ -54,7 +54,7 @@ module GameHelper
   end
 
   def team_box(team_game, edit_player_line_flag)
-    "<table>\n" +
+    str = "<table>\n" +
       team_box_header(team_game.team) +
       stats_header +
       players_boxes(team_game.player_games, edit_player_line_flag) +
@@ -65,10 +65,11 @@ module GameHelper
       "<td class='total' colspan='5'>Team Rebounds: #{team_game.team_rebound}</td>\n"+
       "<td class='total' colspan='5'>Team Turnovers: #{team_game.team_turnover}</td>\n" +
       "</tr>\n</table>\n"
+    str.html_safe
   end
 
   def editable_team_box(team_game, edit_player_line_flag)
-    "<table>\n" +
+    ("<table>\n" +
       team_box_header(team_game.team) +
       stats_header +
       players_boxes(team_game.player_games, edit_player_line_flag) +
@@ -86,7 +87,7 @@ module GameHelper
       "<td class='total' colspan='5'>Team Turnovers: " +
       editable_team_game_stat(team_game, "team_turnover", team_game.id) +
       "</td>\n" +
-      "</tr>\n</table>\n"
+      "</tr>\n</table>\n").html_safe
   end
 
   def master_edit_box(team_game)
@@ -159,7 +160,7 @@ module GameHelper
   end
 
   def editable_team_game_stat(stats, col, id)
-    "<span id='team_game_edit_#{col}_#{id}' class='editable'>#{stats.send(col)}</span>"
+    "<span id='team_game_edit_#{col}_#{id}' class='editable'>#{stats.send(col)}</span>".html_safe
   end
   
   def editable_team_game_td(stats, col, team_game_id, width=2, klass=nil)
@@ -181,8 +182,8 @@ module GameHelper
 
   private
   def team_box_header(team)
-    "<caption style='background: \##{team.color_1}; color: \##{team.color_3}; colspan='13'>\n" +
-      link_to("#{team.name} #{team.mascot}", { :controller => 'player', :action => 'list', :id => team.id}, { :class => (team.in_64 ? 'non64' : 'in64'), :style => "color: ##{team.color_3} " })
+    ("<caption style='background: \##{team.color_1}; color: \##{team.color_3}; colspan='13'>\n" +
+      link_to("#{team.name} #{team.mascot}", { :controller => 'player', :action => 'list', :id => team.id}, { :class => (team.in_64 ? 'non64' : 'in64'), :style => "color: ##{team.color_3} " }))
   end
 
   def players_boxes(player_games, edit_flag, use_type=false)
@@ -264,12 +265,12 @@ module GameHelper
   def edit_player_line(player_game, link_text=nil)
     out = ""
     link_text ||= player_game.player.last_name + ', ' + player_game.player.first_name
-    out += link_to_remote(link_text,
-                          :url => { :controller => "game",
-                                    :action     => "move_player_line_into_edit",
-                                    :id         => player_game.id
-                                  },
-                          :update => "edit_player_game")
+    out += link_to(link_text,
+                   { :controller => "game",
+                     :action     => "move_player_line_into_edit",
+                     :id         => player_game.id
+                   },
+                   :remote => true)
   end
 
 end

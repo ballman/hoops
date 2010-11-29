@@ -2,7 +2,7 @@ class GameController < ApplicationController
   def list
     @date = params[:id]
     @games = Game.where(:played_on => @date).all
-    @unloaded_files = GameFile.where(game_date => @date, :game_id => nil).all
+    @unloaded_files = GameFile.where(:game_date => @date, :game_id => nil).all
     @validate = (params[:validate].nil?) ? false : true
   end
 
@@ -23,7 +23,7 @@ class GameController < ApplicationController
   end
 
   def show
-    @game = Game.findq(params[:id])
+    @game = Game.find(params[:id])
     @type = Object.const_get(params[:type] || 'FoxTeamGame')
   end
 

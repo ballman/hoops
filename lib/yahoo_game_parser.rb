@@ -162,8 +162,8 @@ class YahooGameParser
   end
 
   def team_rebounds(index)
-    rows =(team_score_tables[index]/"tr:last-of-type/td/b[text()*='Team Reb']")
-    rows[0].parent.inner_text.match(/\d+/m).to_s.to_i
+    rows = (team_score_tables[index]/"tr:last-of-type/td/b[text()*='Team Reb']")
+    (rows.nil? || rows[0].nil?) ? 0 : rows[0].parent.inner_text.match(/\d+/m).to_s.to_i
   end
 
   def team_score_tables

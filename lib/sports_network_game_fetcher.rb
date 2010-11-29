@@ -10,7 +10,7 @@ class SportsNetworkGameFetcher < GameFetcher
   end
 
   def create_game_list(html)
-    html.split(/<\/[Aa]>/).grep(/<[Aa] href=\"([^\"]*)?\"[^>]*>Box/) do | match |
+    html.split(/<\/[Aa]>/).grep(/<[Aa] href=\"([^\"]*)?\"[^>]*>Box$/) do | match |
       $1
     end
   end
