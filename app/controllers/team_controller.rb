@@ -1,6 +1,6 @@
 class TeamController < ApplicationController
   def list
-    @conferences = Conference.find.all
+    @conferences = Conference.all
   end
 
   def tourney

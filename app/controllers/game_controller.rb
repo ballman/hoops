@@ -53,7 +53,7 @@ class GameController < ApplicationController
       | x, y | x.name <=> y.name
     end
     @player = @player_game.player
-    render(:partial => 'edit_player_game')
+#    render(:partial => 'edit_player_game')
   end
 
   def save_player_game

@@ -154,7 +154,7 @@ module GameHelper
   end
 
   def edit_team_game_script(ots, team_game)
-    master_cols(ots).inject("") do |str, col|
+    master_cols(ots).inject("".html_safe) do |str, col|
       str += "new Ajax.InPlaceEditor('team_game_edit_#{col}_#{team_game.id}', '/game/update_master', {cols: 3, cancelLink: false, okButton: false, formClassName: 'team_total_edit_field'});\n"
     end
   end
