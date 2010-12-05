@@ -5,7 +5,7 @@ class FoxGameFetcher < GameFetcher
 
   def get_game_list_html(game_date, url)
     path = '/collegebasketball/scores?scheduleDayCode=' + game_date.strftime("%Y-%m-%d") +
-	   '&conference=all'
+	   '&region=&tournament=&conference=0'
     Net::HTTP.start(url) do |http|
       response = http.get(path)
       response.body
