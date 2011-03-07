@@ -101,7 +101,7 @@ class GameController < ApplicationController
   def load_master_for_date
     (y, m, d) = params[:date].split("-")
     type = Object.const_get(params[:type]) 
-    games = Game.find(:played_on => Date.civil(y.to_i, m.to_i, d.to_i)).all
+    games = Game.where(:played_on => Date.civil(y.to_i, m.to_i, d.to_i)).all
     games.each do |game|
       _load_master(game.id, type)
     end
