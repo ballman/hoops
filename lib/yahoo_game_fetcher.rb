@@ -1,7 +1,7 @@
 class YahooGameFetcher < GameFetcher
   URL = 'rivals.yahoo.com'
 
-  def get_game_list_html(game_date, url)
+  def get_game_list_html(game_date, url, conference_id='all')
     path = sprintf('/ncaa/basketball/scoreboard?d=%s&c=all',
                   game_date.strftime("%Y-%m-%d"))
     puts "ARB {PATH} ::: #{path}"

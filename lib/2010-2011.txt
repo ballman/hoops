@@ -1,0 +1,30 @@
+160 :::: Oakland
+2       Larry Wright    Guard           6-2     165     SR      Saginaw, MI (St. John's)
+3       Travis Bader    Guard           6-4     180     FR      Okemos, MI
+4       Will Hudson     Forward             6-9 235     SR      Madison, WI
+11      Jordan Howenstine       Guard   6-1     155             SO      Lansing, MI
+12      Ledrick Eackles Guard           6-2     196             SO      Zachary, LA
+13      Laval Lucas-Perry       Guard   6-2     200             JR      Flint, MI (Arizona/Michigan)
+15      Drew Valentine  Forward         6-5     225             SO      Lansing, MI
+22      Blake Cushingberry      Guard   6-3     249             JR      Romeo, MI
+23      Reggie Hamilton Guard           5-11 175        JR      Chicago, IL (Missouri-Kansas City)
+32      Drew Maynard    Guard           6-7     225             JR      Lake Orion, MI
+33      Ryan Bass       Guard           5-10 160        FR      Dayton, OH
+34      Keith Benson    Center          6-11 230        SR      Farmington Hills, MI
+40      Kyle Sikora         Center              7-0     231             FR Key Largo, FL
+42      Corey Petros    C/F         6-9 243             FR      Sterling Heights, MI
+50      Ilija Milutinovic       Center  7-0     252             JR      Nis, Serbia
+52      Joey Asbury             Forward 6-7     200             FR      Warren, MI
+302 :::: Western Kentucky              
+1       Kerusch, Sergio          F       6-5     225     Sr.     Memphis, TN (Itawamba CC)
+2       Pattillo, Juan  F       6-6     220     Sr.     Las Vegas, NV (Oklahoma)
+3       McDonald, Kahlil        G       6-2     195     Jr.     Brooklyn, NY (Blinn College)
+5       Dixon, Cliff    F/C     6-10    210     Sr.     Suitland, MD (Hutchinson CC)
+10      Dickerson, Caden        G       6-4     193     So.     Argyle, TX
+12      Brown, Ken      G       5-11    160     Jr.     St. Louis, MO (Cerritos College)
+14      Crook, Jamal    G       6-3     165     So.     Louisville, KY
+15      Anyigbo, Kene   F       6-5     245     Fr.     Bellaire, TX
+22      Akol, Teeng     F/C     6-11    220     So.     Wian, Sudan (Oklahoma State)
+23      Peters, Brandon         G       6-1     180     Fr.     Houston, TX
+24      Drane, Stephon  F       6-7     210     Fr.     Raleigh, NC
+30      Pettigrew, Steffphon    F       6-5     223     Sr.     Elizabethtown, KY

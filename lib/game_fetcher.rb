@@ -3,9 +3,9 @@ require 'net/http'
 class GameFetcher
 
   # do not override this method.
-  def get_games(game_date, url)
+  def get_games(game_date, url, conference_id='all')
     games = Array.new
-    game_list = create_game_list(get_game_list_html(game_date, url))
+    game_list = create_game_list(get_game_list_html(game_date, url, conference_id))
     loaded_games = loaded_games(game_date)
     game_list.each do | game_url |
       next if (loaded_games.include?(get_game_source_id(game_url)))
@@ -31,7 +31,7 @@ class GameFetcher
   end
 
   # override this method
-  def get_game_list_html(game_date, url)
+  def get_game_list_html(game_date, url, conference_id='all')
     raise NotImplementedError("GameFetcher::get_game_list_html must be overriden")
   end
 

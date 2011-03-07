@@ -1,9 +1,8 @@
 class SportsNetworkGameFetcher < GameFetcher
   URL = 'www.sportsnetwork.com'
 
-  def get_game_list_html(game_date, url)
-    path = sprintf('/merge/tsnform.aspx?c=sportsnetwork&misc=11&page=cbask/scores/live/scoreboard.aspx?date=%s',
-                   game_date.strftime("%m%d%y"))
+  def get_game_list_html(game_date, url, conference_id='all')
+    path = sprintf('/merge/tsnform.aspx?c=sportsnetwork&misc=11&page=cbask/scores/live/scoreboard.aspx?date=%s', game_date.strftime("%m%d%y"))
     Net::HTTP.start(URL) do | http |
       http.get(path).body
     end

@@ -7,7 +7,8 @@ class GameController < ApplicationController
   end
 
   def fox_loader
-    loader(FoxGameFetcher.new, FoxGameFetcher::URL)
+    @conference_id = params[:id]
+    loader(FoxGameFetcher.new, FoxGameFetcher::URL, @conference_id)
   end
 
   def cstv_loader
