@@ -12,9 +12,8 @@ class FoxGameFetcher < GameFetcher
     end
   end
 
-  def create_game_list(game_date, url)
+  def create_game_list(html)
     games = Array.new
-    html = get_game_list_html(game_date, url)
     html.grep(/<a href=\"([^>]*)\">Box Score/m) do | match |
       games << $1.sub(/cbk/, 'collegebasketball')
     end
