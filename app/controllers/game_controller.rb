@@ -119,9 +119,9 @@ class GameController < ApplicationController
   #======================================================================
   private
   #======================================================================
-  def loader(fetcher, url)
+  def loader(fetcher, url, conference_id = 'all')
     (y, m, d) = params[:date].split("-")
-    fetcher.get_games(Date.civil(y.to_i, m.to_i, d.to_i), url)
+    fetcher.get_games(Date.civil(y.to_i, m.to_i, d.to_i), url, conference_id)
     redirect_to :action => 'list', :id => params[:date]
   end
 
