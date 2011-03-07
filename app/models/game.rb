@@ -68,7 +68,7 @@ class Game < ActiveRecord::Base
   end
 
   def team_games_for_team(team)
-    team_games.where(:team_id => team).all.order('id desc')
+    team_games.where(:team_id => team).order('id desc').all
   end
 
   def opp_team_game_for_team_and_type(team, klass)
