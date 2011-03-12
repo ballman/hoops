@@ -4,6 +4,7 @@ class FoxGameFetcher < GameFetcher
   URL = 'msn.foxsports.com'
 
   def get_game_list_html(game_date, url, conference_id='all')
+    conference_id ||= 'all'
     path = '/collegebasketball/scores?scheduleDayCode=' + game_date.strftime("%Y-%m-%d") +
 	   '&conference=' + conference_id.to_s
     Net::HTTP.start(url) do |http|
