@@ -92,7 +92,7 @@ module GameHelper
 
   def master_edit_box(team_game)
     number_of_ots = team_game.game.get_number_of_overtimes
-    "<table>\n" +
+    ("<table>\n" +
       team_box_header(team_game.team) +
       split_stats_header +
       player_diff_boxes(team_game.player_games) +
@@ -100,7 +100,7 @@ module GameHelper
       master_total_line_header(number_of_ots) +
       team_game.game.team_games_for_team(team_game.team).inject("")  do |s, tg|
           s += editable_total_line(tg, team_game, number_of_ots)
-      end + "</table>\n"
+      end + "</table>\n").html_safe
   end
 
   def all_team_totals(game, team)
