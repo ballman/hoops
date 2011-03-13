@@ -36,12 +36,13 @@ module GameHelper
   end
 
   def stats_header
-    stats= %w(Name min fgs fts 3pt off tot ast stl blk tvr fls pts)
-    ("<tr>\n<th colspan='5'>&nbsp;</th>\n<th colspan='2'>Rebounds</th>\n" +
+    stats = %w(Name min fgs fts 3pt off tot ast stl blk tvr fls pts)
+    text = ("<tr>\n<th colspan='5'>&nbsp;</th>\n<th colspan='2'>Rebounds</th>\n" +
       "<th colspan='6'>&nbsp;</th>\n</tr>\n" +
       "<tr><th>" +
       stats.join("</th>\n<th>") +
-      "</th></tr>\n").html_safe
+      "</th></tr>\n")
+    text.html_safe
   end
 
   def split_stats_header
@@ -203,7 +204,7 @@ module GameHelper
       out += stats_row(player_game)
       out += "\n</tr>"
     end
-    return out
+    return out.html_safe
   end
 
   def player_diff_boxes(player_games)

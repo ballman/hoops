@@ -35,7 +35,7 @@ create temporary table game_swap (
 );
 
 truncate table game_swap;
-insert into game_swap values (28575, 28548);
+insert into game_swap values (32221, 32259);
 
 update team_games set game_id = gs.new_id from game_swap gs where gs.old_id = team_games.game_id;
 update game_files set game_id = gs.new_id from game_swap gs where gs.old_id = game_files.game_id;
@@ -48,7 +48,7 @@ create temp table delete_games (
 );
 
 truncate table delete_games;
-insert into delete_games values 
+insert into delete_games values (32234);
 
 delete from player_games where team_game_id in (select id from team_games where game_id  in (select id from delete_games));
 delete from team_games where game_id in (select id from delete_games);
@@ -63,9 +63,9 @@ delete from player_games where id =  2201747;
 delete from game_files where game_date = '2011-3-5' and game_id is null and type = 'YahooGameFile';
 
 update games 
-   set neutral_site = 't'
+   set neutral_site = 'f'
  where id in (29074);
--- where played_on = '2010-12-24'; 15
+-- where played_on = '2011-3-11';
 
 
 select g1.id, g2.id, g2.played_on
