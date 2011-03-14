@@ -18,7 +18,7 @@ module TeamHelper
 
     # set data series
     series.keys.sort.each do |key|
-      result << "g.data('#{key.gsub(/'/, "\\'")}', #{series[key].collect(&:first).inspect});\n"
+      result << %Q{g.data("#{key}", #{series[key].collect(&:first).inspect});\n}
     end
 
     # set options
