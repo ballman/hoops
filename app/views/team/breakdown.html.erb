@@ -8,7 +8,7 @@
       %>
       <table>
 	<tr>
-	  <th style="width: 17em; background-color: <%= game.win?(@team) ? 'green' : 'red' %> "> <%= this_team_game.total_point %> - <%= opp_team_game.total_point %></th>
+	  <th style="width: 17em; background-color: <%= game.win?(@team) ? 'green'.html_safe : 'red'.html_safe %> "> <%= this_team_game.total_point %> - <%= opp_team_game.total_point %></th>
 	  <th>fgm</th>
 	  <th>fga</th>
 	  <th>fg%</th>

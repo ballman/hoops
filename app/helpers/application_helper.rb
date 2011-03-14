@@ -25,6 +25,7 @@ module ApplicationHelper
       result += %{<th class="statheadcell">#{name}</th>}
     end
     result += "</tr>\n"
+    result.html_safe
   end
 
   def stat_format(value, col)

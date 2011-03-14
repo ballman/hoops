@@ -3,7 +3,7 @@
 
   def list
     @foe = params[:foe]
-    @teams = Team.find.all.inject({}) {|h,t| h[t.id] = t; h}
+    @teams = Team.all.inject({}) {|h,t| h[t.id] = t; h}
     case @foe
       when '1'
         @team_stats = Team.all.collect(&:opp_stats).compact.sort_by { |s| s.team.name }

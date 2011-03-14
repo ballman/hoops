@@ -29,7 +29,7 @@ module TeamHelper
     # draw graph and close script
     result << %Q!g.draw();\n</script>\n!
 
-    result
+    result.html_safe
   end
   
   def team_breakdown_row(team_game)
@@ -39,6 +39,7 @@ module TeamHelper
       "<td class='team'>#{number_with_precision(team_game.send(stat),  :precision => precision)}</td>"
     end.join("\n")
     return_string += "</tr>"
+    return_string.html_safe
   end
 
   def team_breakdown_diff_row(team_game, average, label)
@@ -48,6 +49,7 @@ module TeamHelper
       negative = (team_game.send(stat) - average.send(stat) < 0) ?  "negative" : ""
       "<td class='diff#{negative}'>#{number_with_precision(team_game.send(stat) - average.send(stat),  :precision => precision)}</td>"
     end.join("\n")
+    return_string.html_safe
   end
 
   def breakdown_stats
