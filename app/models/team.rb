@@ -1,7 +1,7 @@
 class Team < ActiveRecord::Base
   has_many :conference_memberships
   has_many :historic_conferences, :through => :conference_memberships, :source => :conference
-  has_one :conference, :through => :conference_memberships, :conditions => [ "year = #{CURRENT_YEAR}" ]
+#  has_one :conference, :through => :conference_memberships, :conditions => [ "year = #{CURRENT_YEAR}" ]
 
   has_many :rosters
   has_many :historic_players, :through => :rosters, :source => :player
@@ -22,4 +22,9 @@ class Team < ActiveRecord::Base
   def <=>(other)
     return self.name <=> other.name
   end
+
+  def conference
+    conference_memberships.where(:year => CURRENT_YEAR)
+  end
+
 end
