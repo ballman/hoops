@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
+gem 'rails', '3.1.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -32,6 +32,8 @@ gem 'nokogiri'
 # end
 
 gem 'hpricot'
+gem "rake", "0.8.7"
+
 
 group :development, :test do
   gem 'rspec-rails', '>= 2.5.0'
