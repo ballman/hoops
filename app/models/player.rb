@@ -15,7 +15,7 @@ class Player < ActiveRecord::Base
   #  validates_presence_of :number, :last_name, :first_name, :position
 
   def team 
-    rosters.where(year => CURRENT_YEAR)
+    rosters.where(:year => CURRENT_YEAR)
   end
   
   def teams
