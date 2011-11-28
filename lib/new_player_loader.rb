@@ -59,6 +59,6 @@ if __FILE__ == $PROGRAM_NAME
   $running_main = 1
   NewPlayer.connection.execute("truncate table new_players;")
   loader = NewPlayerLoader.new
-  loader.parse(File.open('2010-2011.txt'))
+  loader.parse(File.open('2011-2012.txt'))
 end
 

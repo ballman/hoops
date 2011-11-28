@@ -3,7 +3,6 @@ require 'diff/lcs/string'
 
 class Player < ActiveRecord::Base
   has_many :rosters
-  has_one :team, :through => :rosters, :conditions => [ "rosters.year = #{CURRENT_YEAR}" ]
 
   has_one :player_average
 
@@ -15,6 +14,10 @@ class Player < ActiveRecord::Base
 
   #  validates_presence_of :number, :last_name, :first_name, :position
 
+  def team 
+    rosters.where(year => CURRENT_YEAR)
+  end
+  
   def teams
     rosters.inject({}) do |hash, roster_entry|
       hash[roster_entry.year] = roster_entry.team
