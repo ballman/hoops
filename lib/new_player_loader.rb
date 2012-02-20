@@ -1,4 +1,4 @@
-ENV["RAILS_ENV"] = 'development' if __FILE__ == $PROGRAM_NAME
+#ENV["RAILS_ENV"] = 'development' if __FILE__ == $PROGRAM_NAME
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
 #require 'spec/autorun'
@@ -54,11 +54,11 @@ class NewPlayerLoader
 end
 
 if __FILE__ == $PROGRAM_NAME
-  ENV["RAILS_ENV"] = 'development'
+  ENV["RAILS_ENV"] = 'production'
   puts "Loading to #{ENV['RAILS_ENV']}"
   $running_main = 1
   NewPlayer.connection.execute("truncate table new_players;")
   loader = NewPlayerLoader.new
-  loader.parse(File.open('2011-2012.txt'))
+  loader.parse(File.open('semo.txt'))
 end
 

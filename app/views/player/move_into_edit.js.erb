@@ -1,1 +1,1 @@
-$("add").update("<%= escape_javascript(render :partial => 'form', :locals => { :team_id => @team.id }) %>")
+$("#add").html("<%= escape_javascript(render :partial => 'form', :locals => { :team_id => @team.id }) %>")

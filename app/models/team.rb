@@ -24,7 +24,7 @@ class Team < ActiveRecord::Base
   end
 
   def conference
-    conference_memberships.where(:year => CURRENT_YEAR)
+    conference_memberships.where(:year => CURRENT_YEAR).first.conference
   end
 
 end
