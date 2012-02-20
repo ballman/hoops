@@ -14,3 +14,4 @@ spec/rcov.opts
 public/javascripts/all.js
 public/stylesheets/all.js
 .dotest/*
+Gemfile.lock
