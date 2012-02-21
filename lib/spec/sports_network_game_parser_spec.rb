@@ -135,11 +135,11 @@ describe SportsNetworkGameParser do
     end
 
     it 'should build the correct home team game' do
-      @parser.home_team_game(@home_team).should eql(@home_team_game)
+      @parser.home_team_game(@home_team).should == @home_team_game
     end
 
     it 'should build the correct away team game' do
-      @parser.away_team_game(@away_team).should eql(@away_team_game)
+      @parser.away_team_game(@away_team).should == @away_team_game
     end
 
     describe 'building player games' do

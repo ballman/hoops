@@ -24,15 +24,15 @@ describe YahooGameParser do
       @away_scores = [30, 42, 72]
       @number_of_away_player_entries = 11
       @number_of_home_player_entries = 16
-      @home_team_game = YahooTeamGame.new(:minutes => 200, :fgm => 34, :fga => 61,
+      @home_team_game = YahooTeamGame.new(:team_id => @home_team.id, :minutes => 200, :fgm => 34, :fga => 61,
                                           :tpm => 4, :tpa => 13, :ftm => 16, :fta => 19,
                                           :offense_rebound => 11, :total_rebound => 42,
                                           :team_rebound => 2, :assist => 23, :steal => 10,
                                           :block => 8, :turnover => 26, :team_turnover => 0,
                                           :foul => 19, :half1_point => 46, :half2_point => 42,
                                           :total_point => 88)
-      @away_team_game = YahooTeamGame.new(:minutes => 200, :fgm => 25, :fga => 68, :tpm => 8,
-                                          :tpa => 23, :ftm => 14, :fta => 17,
+      @away_team_game = YahooTeamGame.new(:team_id => @away_team.id, :minutes => 200, :fgm => 25, :fga => 68, 
+                                          :tpm => 8,:tpa => 23, :ftm => 14, :fta => 17,
                                           :offense_rebound => 9, :total_rebound => 21,
                                           :team_rebound => 8, :assist => 15, :steal => 14,
                                           :block => 2, :turnover => 20, :team_turnover => 0,
@@ -181,11 +181,11 @@ describe YahooGameParser do
 
     describe 'builing team games' do
       it 'should build the correct home team game' do
-        @parser.home_team_game(@home_team).should eql(@home_team_game)
+        @parser.home_team_game(@home_team).should == @home_team_game
       end
 
       it 'should build the correct away team game' do
-        @parser.away_team_game(@away_team).should eql(@away_team_game)
+        @parser.away_team_game(@away_team).should == @away_team_game
       end
     end
 
