@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+# -*- coding: undecided -*-
 require 'hpricot'
 
 class GameParser
@@ -151,7 +152,7 @@ class GameParser
 
   def build_player_games(team_index)
     player_games = []
-    player_tables[team_index].each do |tr |
+    player_tables[team_index].each do |tr|
       player_games << new_player_game((tr/"td").collect { |td| td.inner_text })
     end
     return player_games
@@ -161,6 +162,8 @@ class GameParser
   def new_player_game(player_line)
     player_game = FoxPlayerGame.new
 
+#    player_line[0].gsub!(/[^a-zA-Z,\. ]/, '')
+    player_line[0].gsub!("\302\240", '')
     player_game.player_name = player_line[0]
     player_game.minutes = player_line[1]
     (player_game.fgm, player_game.fga) = player_line[2].split(/-/)
