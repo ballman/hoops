@@ -2,6 +2,8 @@
 require 'hpricot'
 
 class YahooGameParser
+  MAIN = "div#doc/div#bd/div#yui-main"
+
   def initialize(_raw_html, played_on)
     @doc = Hpricot(_raw_html)
     @played_on = played_on
@@ -25,7 +27,7 @@ class YahooGameParser
   end
 
   def get_teams
-    (@doc/"td.yspscores/b/a").collect do | team_link |
+    (@doc/"#{MAIN}//div#ysp-reg-box-header/div.hd//a").collect do | team_link |
       team = team_from_link(team_link.get_attribute('href'))
       raise ArgumentError, "Unable to find team: #{team_link.inner_text}" if (team.nil?)
 
@@ -96,12 +98,12 @@ class YahooGameParser
   def new_team_game(team, team_line, scores, total_score, team_turnover, team_rebound)
     team_game = YahooTeamGame.new
     team_game.team = team
+    team_game.minutes = 200 + ((scores.length - 2) * 25)
 
     (team_game.half1_point, team_game.half2_point, team_game.ot1_point,
      team_game.ot2_point, team_game.ot3_point, team_game.ot4_point, team_game.ot5_point) = scores.fill(0, scores.length .. 6)
     team_game.total_point = total_score
 
-    team_game.minutes = team_line[1]
     (team_game.fgm, team_game.fga) = team_line[2].split(/-/)
     (team_game.tpm, team_game.tpa) = team_line[3].split(/-/)
     (team_game.ftm, team_game.fta) = team_line[4].split(/-/)
@@ -144,38 +146,36 @@ class YahooGameParser
   end
 
   def final_scores
-    (@doc/"tr.ysptblclbg5/td.ysptblclbg6/span").collect do |e|
-      e.inner_text.to_i if (e.inner_text =~ /^\d+$/)
+    (@doc/"#{MAIN}//div#ysp-reg-box-line_score_region//td/span").collect do |e|
+      e.inner_html.to_i if (e.inner_html =~ /^\d+$/)
     end.compact
   end
 
   def scores_by_period
-    (@doc/"tr.ysptblclbg5/td.yspscores").collect do |e|
+    (@doc/"#{MAIN}//div#ysp-reg-box-line_score_region//td").collect do |e|
       e.inner_html.to_i if e.inner_html =~ /^\d+/
     end.compact
   end
 
   def team_total_lines(index)
-    (team_score_tables[index]/"tr.ysptblclbg5/td").collect do |stats|
+    (team_score_tables[index]/"tfoot/tr/td").collect do |stats|
       stats.inner_text.sub!(/[^\d-]*/, '').sub!(/[^\d-]*$/, '')
     end
   end
 
   def team_rebounds(index)
-    rows = (team_score_tables[index]/"tr:last-of-type/td/b[text()*='Team Reb']")
-    (rows.nil? || rows[0].nil?) ? 0 : rows[0].parent.inner_text.match(/\d+/m).to_s.to_i
+    team_total_lines(index)[-1].to_i
   end
 
   def team_score_tables
-    if @team_tables.nil?
-      @team_tables = (@doc/"tr.ysptblbdr3").map { |e| e.parent }
-    end
-    @team_tables
+    @team_tables ||= @doc/"#{MAIN}//div#ysp-reg-box-game_details-game_stats/div.bd/table"
   end
 
   def player_stats(index)
-    t = team_score_tables[index]
-    p = (t/"tr").select { | tr | tr.get_attribute('class') =~ /ysprow[12]/ }
-    p.collect { |r| (r/"td").collect { |td| td.inner_text.gsub(/\? */,'')}}
+    (team_score_tables[index]/"tbody/tr").collect do |tr| 
+      (tr/"td").collect do |td|
+        td.inner_text.gsub(/^[\n ]+([A-Za-z\. ]+?)[ \n]+$/,'\1')
+      end
+    end
   end
 end

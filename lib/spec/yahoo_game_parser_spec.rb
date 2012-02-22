@@ -8,48 +8,50 @@ describe YahooGameParser do
 
   describe 'parsing' do
     before :all do
-      @game_html = File.read("yahoo_game_2009.html")
+      @game_html = File.read("yahoo_game_2011.html")
       @parser = YahooGameParser.new(@game_html, Date.today)
     end
     
     before :each do
-      @away_code = 'fam'
-      @away_name = 'Florida Intl.'
+      @away_code = 'aac'
+      @away_name = 'Akron'
       @away_team = Team.create!(:id => 1, :name => "The away team", :yahoo_code => @away_code)
-      @home_code = 'nav'
-      @home_name = 'North Carolina'
+      @home_code = 'mbg'
+      @home_name = 'Mississippi St.'
       @home_team = Team.create!(:id => 2, :name => "The home team", :yahoo_code => @home_code)
 
-      @home_scores = [46, 42, 88]
-      @away_scores = [30, 42, 72]
-      @number_of_away_player_entries = 11
-      @number_of_home_player_entries = 16
-      @home_team_game = YahooTeamGame.new(:team_id => @home_team.id, :minutes => 200, :fgm => 34, :fga => 61,
-                                          :tpm => 4, :tpa => 13, :ftm => 16, :fta => 19,
-                                          :offense_rebound => 11, :total_rebound => 42,
-                                          :team_rebound => 2, :assist => 23, :steal => 10,
-                                          :block => 8, :turnover => 26, :team_turnover => 0,
-                                          :foul => 19, :half1_point => 46, :half2_point => 42,
-                                          :total_point => 88)
-      @away_team_game = YahooTeamGame.new(:team_id => @away_team.id, :minutes => 200, :fgm => 25, :fga => 68, 
-                                          :tpm => 8,:tpa => 23, :ftm => 14, :fta => 17,
-                                          :offense_rebound => 9, :total_rebound => 21,
-                                          :team_rebound => 8, :assist => 15, :steal => 14,
-                                          :block => 2, :turnover => 20, :team_turnover => 0,
-                                          :foul => 18, :half1_point => 30, :half2_point => 42,
-                                          :total_point => 72)
-      @home_player_game = YahooPlayerGame.new(:minutes => 23, :fgm=> 5, :fga => 8, :tpm => 0,
-                                              :tpa => 0, :ftm => 3, :fta => 3,
-                                              :offense_rebound => 1, :total_rebound => 11,
-                                              :assist => 2, :steal => 1, :block => 4,
-                                              :turnover => 4, :foul => 2, :total_point => 13,
-                                              :player_name => 'E. Davis')
-      @away_player_game = YahooPlayerGame.new(:minutes => 33, :fgm => 5, :fga => 14, :tpm => 2,
-                                              :tpa => 5, :ftm => 4, :fta => 5,
-                                              :offense_rebound => 1, :total_rebound => 4,
-                                              :assist => 6, :steal => 1, :block => 1,
-                                              :turnover => 6, :foul => 2, :total_point => 16,
-                                              :player_name => 'A. Watson')
+      @home_scores = [29, 29, 58]
+      @away_scores = [37, 31, 68]
+      @number_of_away_player_entries = 10
+      @number_of_home_player_entries = 8
+      @home_team_game = YahooTeamGame.new(:team_id => @home_team.id, :minutes => 200, 
+                                          :fgm => 19, :fga => 55,:tpm => 2, :tpa => 13, 
+                                          :ftm => 18, :fta => 25, :offense_rebound => 17, 
+                                          :total_rebound => 39, :team_rebound => 2, 
+                                          :assist => 5, :steal => 4, :block => 5, 
+                                          :turnover => 19, :team_turnover => 0, :foul => 12,
+                                          :half1_point => 29, :half2_point => 29,
+                                          :total_point => 58)
+      @away_team_game = YahooTeamGame.new(:team_id => @away_team.id, :minutes => 200, 
+                                          :fgm => 30, :fga => 62, :tpm => 2,:tpa => 10, 
+                                          :ftm => 6, :fta => 8, :offense_rebound => 11,
+                                          :total_rebound => 32, :team_rebound => 2,
+                                          :assist => 6, :steal => 8, :block => 6, 
+                                          :turnover => 15, :team_turnover => 0, :foul => 22,
+                                          :half1_point => 37, :half2_point => 31,
+                                          :total_point => 68)
+      @away_player_game = YahooPlayerGame.new(:minutes => 30, :fgm=> 3, :fga => 7, :tpm => 0,
+                                              :tpa => 1, :ftm => 2, :fta => 2,
+                                              :offense_rebound => 1, :total_rebound => 6,
+                                              :assist => 0, :steal => 1, :block => 1,
+                                              :turnover => 2, :foul => 4, :total_point => 8,
+                                              :player_name => 'N. Cvetinovic')
+      @home_player_game = YahooPlayerGame.new(:minutes => 33, :fgm => 2, :fga => 9, :tpm => 1,
+                                              :tpa => 6, :ftm => 8, :fta => 9,
+                                              :offense_rebound => 0, :total_rebound => 5,
+                                              :assist => 2, :steal => 3, :block => 1,
+                                              :turnover => 4, :foul => 4, :total_point => 13,
+                                              :player_name => 'D. Bost')
     end
 
     describe 'get_teams' do
@@ -109,7 +111,7 @@ describe YahooGameParser do
 
     describe 'finding team total lines' do
       it 'should find the html tables as an array' do
-        @parser.team_score_tables.should be_an_instance_of Array
+        @parser.team_score_tables.should be_an_instance_of Hpricot::Elements
       end
 
       it 'should find the html tables as an array' do
@@ -125,19 +127,19 @@ describe YahooGameParser do
       end
 
       it 'should find correct number of stats for index 0' do
-        @parser.team_total_lines(0).should have(13).items
+        @parser.team_total_lines(0).should have(20).items
       end
 
       it 'should find correct number of stats for index 1' do
-        @parser.team_total_lines(0).should have(13).items
+        @parser.team_total_lines(0).should have(20).items
       end
 
       it 'should find correct number of stats for the away team' do
-        @parser.away_total_line.should have(13).items
+        @parser.away_total_line.should have(20).items
       end
 
       it 'should find correct number of stats for the home team' do
-        @parser.home_total_line.should have(13).items
+        @parser.home_total_line.should have(20).items
       end
     end
 
