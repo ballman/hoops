@@ -155,13 +155,19 @@ module GameHelper
   end
 
   def edit_team_game_script(ots, team_game)
-    master_cols(ots).inject("".html_safe) do |str, col|
-      str += "new Ajax.InPlaceEditor('team_game_edit_#{col}_#{team_game.id}', '/game/update_master', {cols: 3, cancelLink: false, okButton: false, formClassName: 'team_total_edit_field'});\n"
-    end
+    "$(function() {\n".html_safe +
+      "$(\".arbedit\").editable(\"".html_safe + 
+      url_for(:action => 'update_master').html_safe + "\", {\n".html_safe +
+      "tooltip   : \"Click to edit...\", \n".html_safe +
+      "width   : \"20\", \n".html_safe +
+      "height   : \"15\", \n".html_safe +
+      "style  : \"inherit\"\n".html_safe +
+      "});\n".html_safe +
+    "});\n".html_safe
   end
 
   def editable_team_game_stat(stats, col, id)
-    "<span id='team_game_edit_#{col}_#{id}' class='editable'>#{stats.send(col)}</span>".html_safe
+    "<span id=\"team_game_edit_#{col}_#{id}\" class=\"arbedit\" style=\"display: inline\">#{stats.send(col)}</span>".html_safe
   end
   
   def editable_team_game_td(stats, col, team_game_id, width=2, klass=nil)

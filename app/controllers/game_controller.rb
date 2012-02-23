@@ -109,7 +109,7 @@ class GameController < ApplicationController
   end
 
   def update_master
-    params[:editorId] =~ /^team_game_edit_(.*)_(\d+)$/
+    params[:id] =~ /^team_game_edit_(.*)_(\d+)$/
     team_game_id = $2.to_i
     stat = $1
     TeamGame.update(team_game_id, {stat.to_sym => params[:value]})
