@@ -48,9 +48,9 @@
           </td>
           <td align="center">
             <% if (game.has_games_of_type?(FoxTeamGame) && @validate) %>
-              <img src="<%= (game.valid_stats_for_type?(FoxTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+              <img src="<%= (game.valid_stats_for_type?(FoxTeamGame)) ? '/assets/gr_check.gif' : '/assets/red_x.gif' %>" />
             <% elsif (game.has_games_of_type?(FoxTeamGame))%>
-              <img src='/images/question.gif' />
+              <img src='/assets/question.gif' />
             <% else %>
               &nbsp;
             <% end %>
@@ -58,10 +58,10 @@
           <td style="border-right: 1px solid black;">
             <% if (game.has_games_of_type?(FoxTeamGame) &&
                    game.has_games_of_type?(MasterTeamGame) && @validate) %>
-              <img src="<%= (game.different_from_master_for_type?(FoxTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+              <img src="<%= (game.different_from_master_for_type?(FoxTeamGame)) ? '/assets/gr_check.gif' : '/assets/red_x.gif' %>" />
             <% elsif (game.has_games_of_type?(FoxTeamGame) &&
                    game.has_games_of_type?(MasterTeamGame)) %>
-              <img src='/images/question.gif' />
+              <img src='/assets/question.gif' />
             <% else %>
               &nbsp;
             <% end %>
@@ -72,9 +72,9 @@
           </td>
           <td align="center">
             <% if (game.has_games_of_type?(YahooTeamGame) && @validate) %>
-              <img src="<%= (game.valid_stats_for_type?(YahooTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+              <img src="<%= (game.valid_stats_for_type?(YahooTeamGame)) ? '/assets/gr_check.gif' : '/assets/red_x.gif' %>" />
             <% elsif (game.has_games_of_type?(YahooTeamGame))%>
-              <img src='/images/question.gif' />
+              <img src='/assets/question.gif' />
             <% else %>
               &nbsp;
             <% end %>
@@ -82,10 +82,10 @@
           <td style="border-right: 1px solid black;">
             <% if (game.has_games_of_type?(YahooTeamGame) &&
                    game.has_games_of_type?(MasterTeamGame) && @validate) %>
-              <img src="<%= (game.different_from_master_for_type?(YahooTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+              <img src="<%= (game.different_from_master_for_type?(YahooTeamGame)) ? '/assets/gr_check.gif' : '/assets/red_x.gif' %>" />
             <% elsif (game.has_games_of_type?(YahooTeamGame) &&
                    game.has_games_of_type?(MasterTeamGame)) %>
-              <img src='/images/question.gif' />
+              <img src='/assets/question.gif' />
             <% else %>
               &nbsp;
             <% end %>
@@ -96,9 +96,9 @@
           </td>
           <td align="center">
             <% if (game.has_games_of_type?(SportsNetworkTeamGame) && @validate) %>
-              <img src="<%= (game.valid_stats_for_type?(SportsNetworkTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+              <img src="<%= (game.valid_stats_for_type?(SportsNetworkTeamGame)) ? '/assets/gr_check.gif' : '/assets/red_x.gif' %>" />
             <% elsif (game.has_games_of_type?(SportsNetworkTeamGame))%>
-              <img src='/images/question.gif' />
+              <img src='/assets/question.gif' />
             <% else %>
               &nbsp;
             <% end %>
@@ -106,10 +106,10 @@
           <td>
             <% if (game.has_games_of_type?(SportsNetworkTeamGame) &&
                    game.has_games_of_type?(MasterTeamGame) && @validate) %>
-              <img src="<%= (game.different_from_master_for_type?(SportsNetworkTeamGame)) ? '/images/gr_check.gif' : '/images/red_x.gif' %>" />
+              <img src="<%= (game.different_from_master_for_type?(SportsNetworkTeamGame)) ? '/assets/gr_check.gif' : '/assets/red_x.gif' %>" />
             <% elsif (game.has_games_of_type?(SportsNetworkTeamGame) &&
                    game.has_games_of_type?(MasterTeamGame)) %>
-              <img src='/images/question.gif' />
+              <img src='/assets/question.gif' />
             <% else %>
               &nbsp;
             <% end %>
@@ -130,7 +130,7 @@
           <th>Source</th>
           <th>Id</th>
           <th>length</th>
-          <th>Parse All: &nbsp;&nbsp;<%= link_to(image_tag("/images/fox.ico"), {:action => "parse_all", :date => @date, :type => "FoxGameFile"}) %>&nbsp;&nbsp;<%= link_to(image_tag("/images/yahoo.ico"), {:action => "parse_all", :date => @date, :type => "YahooGameFile"}) %>&nbsp;&nbsp;<%= link_to(image_tag("/images/sports_network.ico"), {:action => "parse_all", :date => @date, :type => "SportsNetworkGameFile"})%></th>
+          <th>Parse All: &nbsp;&nbsp;<%= link_to(image_tag("fox.ico"), {:action => "parse_all", :date => @date, :type => "FoxGameFile"}) %>&nbsp;&nbsp;<%= link_to(image_tag("yahoo.ico"), {:action => "parse_all", :date => @date, :type => "YahooGameFile"}) %>&nbsp;&nbsp;<%= link_to(image_tag("sports_network.ico"), {:action => "parse_all", :date => @date, :type => "SportsNetworkGameFile"})%></th>
         </tr>
         <% count = 0
            @unloaded_files.each do | file |
@@ -138,11 +138,11 @@
         %>
         <tr id="row_<%= count %>" >
           <td><% if (file.instance_of?(FoxGameFile)) %>
-              <%= image_tag("/images/fox.ico") %>
+              <%= image_tag("/fox.ico") %>
             <% elsif (file.instance_of?(YahooGameFile)) %>
-              <%= image_tag("/images/yahoo.ico") %>
+              <%= image_tag("/yahoo.ico") %>
             <% elsif (file.instance_of?(SportsNetworkGameFile)) %>
-              <%= image_tag("/images/sports_network.ico") %>
+              <%= image_tag("/sports_network.ico") %>
             <% end %>
           </td>
           <td><%= file.source_id %></td>
