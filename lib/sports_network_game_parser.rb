@@ -144,7 +144,7 @@ class SportsNetworkGameParser
 
   def new_player_game(player_line)
     player_game = SportsNetworkPlayerGame.new
-    player_game.player_name = player_line[0]
+    player_game.player_name = player_line[0].gsub("`", "'")
     player_game.minutes = player_line[1]
     player_game.fgm = player_line[2]
     player_game.fga = player_line[3]
