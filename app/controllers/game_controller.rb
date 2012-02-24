@@ -116,6 +116,30 @@ class GameController < ApplicationController
     render :layout=>false, :inline=> "<%= params[:value] %>"
   end
 
+  def save_box_name_in_player
+    player_game = PlayerGame.find(params[:id])
+    player = Player.find(player_game.player_id)
+      puts "ARB ---->  #{player_game.class}"
+#    if player_game.is_a?(FoxPlayerGame)
+#      player.update_attribute('fox_bs_name', params[:name])
+#    elsif player_game.is_a?(YahooPlayerGame)
+#      player.update_attribute('yahoo_bs_name', params[:name])
+#    elsif player_game.is_a?(SportsNetworkPlayerGame)
+#      player.update_attribute('sn_bs_name', params[:name])
+    case player_game
+    when FoxPlayerGame
+      player.update_attribute('fox_bs_name', params[:name])
+    when YahooPlayerGame
+      player.update_attribute('yahoo_bs_name', params[:name])
+    when SportsNetworkPlayerGame
+      player.update_attribute('sn_bs_name', params[:name])
+    else
+      puts "ARB ----> none: #{player_game.class}"
+    end
+
+    redirect_to :action => 'show', :id => player_game.team_game.game.id,
+                :type => player_game.team_game.class
+  end
   #======================================================================
   private
   #======================================================================
@@ -137,7 +161,7 @@ class GameController < ApplicationController
   end
 
   def _parse_game(game_file)
-    parser = if (game_file.is_a?(FoxGameFile))
+    parser = if(game_file.is_a?(FoxGameFile))
                GameParser.new(game_file.content, game_file.game_date)
              elsif (game_file.is_a?(YahooGameFile))
                YahooGameParser.new(game_file.content, game_file.game_date)

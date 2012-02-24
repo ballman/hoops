@@ -48,9 +48,9 @@
           </td>
         </tr>
       </table>
-      <p> Name in box: <%= text_field 'player_game','player_name', :maxlength => "33" %>
+    <p> Name in box: <%= text_field 'player_game','player_name', :maxlength => "33" %>
       <% if (!@player_game.nil?) %>
-	    id: <%= @player_game.player.id %>
+             <%= link_to "id: #{@player_game.player.id}", {:controller => "game", :action => "save_box_name_in_player", :id => @player_game.id, :name => @player_game.player_name }%>
       <% end %>
 
       <p style="clear:left;"><br/><%= submit_tag "Save" %></p>

@@ -9,8 +9,8 @@ class Player < ActiveRecord::Base
   before_create :create_cstv_bs_name, :create_fox_bs_name, :create_sn_bs_name,
                 :create_yahoo_bs_name
 
-  before_update :create_cstv_bs_name, :create_fox_bs_name, :create_sn_bs_name,
-                :create_yahoo_bs_name
+#  before_update :create_cstv_bs_name, :create_fox_bs_name, :create_sn_bs_name,
+#                :create_yahoo_bs_name
 
   #  validates_presence_of :number, :last_name, :first_name, :position
 
